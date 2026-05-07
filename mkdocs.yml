@@ -1,0 +1,58 @@
+site_name: World Forger
+site_url: https://b2c3d.github.io/World-Forger/
+site_description: World Forger — Procedural world generation toolkit for Unity
+site_author: B2C3D
+
+repo_name: b2c3d/World-Forger
+repo_url: https://github.com/b2c3d/World-Forger
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: blue
+    accent: blue
+  font:
+    text: Segoe UI
+    code: Cascadia Code
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - toc.follow
+
+nav:
+  - Getting Started: index.md
+  - Village Forger: village-forger.md
+  - Village Profile: village-profile.md
+  - Prefab Forger: prefab-forger.md
+  - Stencil Graph: stencil-graph.md
+  - Tools: tools.md
+  - Scripting: scripting.md
+  - Advanced: advanced.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/unity
+      link: https://assetstore.unity.com
