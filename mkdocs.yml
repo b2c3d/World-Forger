@@ -6,12 +6,15 @@ site_author: B2C3D
 repo_name: b2c3d/World-Forger
 repo_url: https://github.com/b2c3d/World-Forger
 
+extra_css:
+  - stylesheets/custom.css
+
 theme:
   name: material
   palette:
     scheme: slate
-    primary: blue
-    accent: blue
+    primary: custom
+    accent: custom
   font:
     text: Segoe UI
     code: Cascadia Code
