@@ -134,10 +134,9 @@ The `ForgerOutput` component is an internal marker system that ensures robust
 
 ### Why Markers?
 
-Previous versions relied on finding GameObjects by their name (e.g.
-            `__WorldForgerOutput__`). If a user renamed these objects in the profile,
-            the editor would lose track of them — disabling the Demolish button and leaving
-            orphaned objects in the scene. The marker system decouples identification from naming.
+Tracking by component rather than by name ensures that generated objects can always
+be found and cleaned up, regardless of how they are renamed or reorganised in the
+Hierarchy. The marker system decouples identification from naming entirely.
 
 ### How It Works
 
@@ -150,15 +149,8 @@ All procedurally generated objects (Holders, Splines, Overlays) are tagged
 
 **`Detection`**
 
-The editor searches for `ForgerOutput` markers first. If none are
-                found, it falls back to name-based lookup for backward compatibility.
-
----
-
-**`Auto-Upgrade`**
-
-Objects created before the marker system are automatically upgraded with
-                markers when found by name during a run.
+The editor uses `ForgerOutput` markers to locate all generated objects reliably,
+independent of their names in the Hierarchy.
 
 ---
 
