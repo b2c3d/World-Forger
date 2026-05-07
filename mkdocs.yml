@@ -16,8 +16,8 @@ theme:
     text: Segoe UI
     code: Cascadia Code
   features:
-    - navigation.tabs
     - navigation.sections
+    - navigation.expand
     - navigation.top
     - navigation.indexes
     - search.highlight
