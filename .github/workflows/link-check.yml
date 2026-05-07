@@ -22,6 +22,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install system dependencies for social cards
+        run: sudo apt-get install -y libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev
+
       - name: Install dependencies
         run: |
           pip install \
@@ -38,11 +41,5 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: |
-            --verbose
-            --no-progress
-            --exclude "fonts\.googleapis\.com"
-            --exclude "fonts\.gstatic\.com"
-            --exclude "assetstore\.unity\.com"
-            site/
+          args: '--verbose --no-progress --exclude "fonts\.googleapis\.com" --exclude "fonts\.gstatic\.com" --exclude "assetstore\.unity\.com" site/'
           fail: true

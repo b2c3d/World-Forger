@@ -17,5 +17,5 @@ jobs:
       - uses: codespell-project/actions-codespell@v2
         with:
           path: docs
-          ignore_words_file: .codespellignore
+          ignore_words_list: forger,forgers,stencil,stencils,prefab,prefabs,asmdef,scriptableobject,scriptableobjects,gameobject,gameobjects,navmesh,worldforger,villageforger,prefabforger,stamper,spawner,gizmo,gizmos,lerp
           skip: '*.png,*.jpg,*.gif,*.svg,*.ico,*.webp'
