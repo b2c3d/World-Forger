@@ -919,7 +919,7 @@ The spawned GameObject one level up the chain. Carries
 **`MarkerLocalPos / MarkerLocalRot / MarkerLocalScale`** · `Vector3 / Quaternion / Vector3`
 
 Captured at spawn time from
-                `parent.transform.worldToLocalMatrix * markerWorldMatrix`. Re-using these
+                `parent.transform.worldToLocalMatrix * markerWorldMatrix`. Reusing these
                 instead of re-querying the marker each tick lets the fast path survive cases where
                 the marker GameObject has been disabled or moved by another system.
 
@@ -946,7 +946,7 @@ GUIDs of the Stamp Rule the child resolved to (by name match)
 **`EvaluationSeed`** · `int`
 
 The seed passed to `WorldForgerVector3.Evaluate` at
-                spawn time. Re-using it keeps random offset rolls deterministic across fast-path
+                spawn time. Reusing it keeps random offset rolls deterministic across fast-path
                 ticks.
 
 ---
