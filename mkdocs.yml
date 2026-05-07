@@ -29,7 +29,8 @@ theme:
     - toc.follow
 
 nav:
-  - Getting Started: index.md
+  - Home: index.md
+  - Getting Started: getting-started.md
   - Village Forger: village-forger.md
   - Village Profile: village-profile.md
   - Prefab Forger: prefab-forger.md
