@@ -1,4 +1,4 @@
-﻿![](../images/PrefabForgerBanner.png)
+![](../images/PrefabForgerBanner.png)
 
 # Prefab Forger
 
@@ -9,10 +9,10 @@ The Prefab Forger is a precision tool for placing individual procedurally-themed
 
 ### Stencils
 
-**`Stencils`** Â· `StencilAsset[]`
+**`Stencils`** · `StencilAsset[]`
 
 One or more Stencils (typically `WorldForgerGraphAsset`)
-            that map stamp names to prefabs. Stencils are searched in array order â€” the first
+            that map stamp names to prefabs. Stencils are searched in array order — the first
             with a matching Stamp Rule wins. Displayed as a reorderable list in the inspector.
 
 ---
@@ -20,11 +20,11 @@ One or more Stencils (typically `WorldForgerGraphAsset`)
 !!! info
     **Project Diagnostics:** The inspector header shows how many Stencil assets
             exist in your project. If zero are found, create one via
-            **Assets â†’ Create â†’ World Forger â†’ Stencil**.
+            **Assets → Create → World Forger → Stencil**.
 
 ### Stamp
 
-**`Stamp Name`** Â· `string`
+**`Stamp Name`** · `string`
 
 The stamp name emitted at this GameObject's world transform. Must
             match a Stamp Rule's `StampName` in one of the assigned Stencils. When
@@ -38,7 +38,7 @@ The stamp name emitted at this GameObject's world transform. Must
 
 ### Generate Settings
 
-**`Randomize Seed`** Â· `bool`
+**`Randomize Seed`** · `bool`
 
 Generates a cryptographically strong random seed before every run, ignoring
             the Seed field. Ensures high-quality variation for hero assets and unique placements.
@@ -47,7 +47,7 @@ Generates a cryptographically strong random seed before every run, ignoring
 
 ---
 
-**`Seed`** Â· `int`
+**`Seed`** · `int`
 
 Manual seed for deterministic output. Disabled when Randomize Seed is checked.
             Set to 0 for a random seed each run.
@@ -56,7 +56,7 @@ Manual seed for deterministic output. Disabled when Randomize Seed is checked.
 
 ---
 
-**`Auto Generate On Start`** Â· `bool`
+**`Auto Generate On Start`** · `bool`
 
 Automatically calls `Build()` when the scene enters Play mode.
 
@@ -68,7 +68,7 @@ Automatically calls `Build()` when the scene enters Play mode.
 
 **`Generate`**
 
-Runs the full pipeline: Demolish â†’ Emit Stamp â†’ Stencil Apply.
+Runs the full pipeline: Demolish → Emit Stamp → Stencil Apply.
             Supports undo and shows a progress bar.
 
 ---
@@ -92,7 +92,7 @@ Removes all procedural output. Enabled whenever any child with a
 Moves the generated children into a new standalone GameObject named after the
             Stamp Name. The baked object no longer depends on the Forger. Live-preview tracker
             components (`ForgerStampInstance` and `ForgerChildStampInstance`)
-            are stripped from the baked hierarchy â€” once detached from the Forger they serve
+            are stripped from the baked hierarchy — once detached from the Forger they serve
             no purpose. Fully undoable.
 
 ---

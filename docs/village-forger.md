@@ -1,4 +1,4 @@
-﻿![](../images/VillageForgerBanner.png)
+![](../images/VillageForgerBanner.png)
 
 # Village Forger
 
@@ -8,10 +8,10 @@ The Village Forger is a high-level layout engine that creates organic, grid-base
 
 ### Stencils
 
-**`Stencils`** Â· `StencilAsset[]`
+**`Stencils`** · `StencilAsset[]`
 
 One or more Stencils that map stamp names to prefabs. Stencils are
-            searched in array order when generating â€” the first Stencil whose Stamp Rule matches
+            searched in array order when generating — the first Stencil whose Stamp Rule matches
             the emitted stamp wins. Stack multiple Stencils to layer overrides (a "Halloween" Stencil
             in front of the year-round one) or to mix biomes.
 
@@ -19,14 +19,14 @@ One or more Stencils that map stamp names to prefabs. Stencils are
 
 ### Generate Settings
 
-**`Randomize Seed`** Â· `bool`
+**`Randomize Seed`** · `bool`
 
 When enabled, picks a new random seed every time `Build()` is called.
             The Seed field is ignored when this is active.
 
 ---
 
-**`Seed`** Â· `int`
+**`Seed`** · `int`
 
 The random seed used for layout generation and prefab selection. Changing this
             value completely changes the village layout. Set to `0` to pick a new random seed
@@ -34,7 +34,7 @@ The random seed used for layout generation and prefab selection. Changing this
 
 ---
 
-**`Auto Generate On Start`** Â· `bool`
+**`Auto Generate On Start`** · `bool`
 
 Automatically calls `Build()` when the scene enters Play mode.
             Disable this if you want to trigger generation manually at runtime.
@@ -43,7 +43,7 @@ Automatically calls `Build()` when the scene enters Play mode.
 
 ---
 
-**`Show Debug Visualization`** Â· `bool`
+**`Show Debug Visualization`** · `bool`
 
 Toggles a terrain-conforming mesh overlay that visualizes the village blueprint.
             Color-coded by cell type (road, house, village square, etc.). Useful for seeing the layout without
@@ -53,7 +53,7 @@ Toggles a terrain-conforming mesh overlay that visualizes the village blueprint.
 
 ---
 
-**`Auto Generate On Move`** Â· `bool`
+**`Auto Generate On Move`** · `bool`
 
 When enabled, dragging the yellow grid handles or moving the GameObject in the
             Scene view will instantly trigger a re-generation. Provides a live-preview workflow.
@@ -68,8 +68,8 @@ These buttons appear at the bottom of the Village Forger inspector.
 
 **`Generate`**
 
-Runs the full generation pipeline: Demolish â†’ Build Layout â†’
-            Emit Stamps â†’ Stencil Apply. Supports full undo and shows a progress bar during execution.
+Runs the full generation pipeline: Demolish → Build Layout →
+            Emit Stamps → Stencil Apply. Supports full undo and shows a progress bar during execution.
 
 ---
 
@@ -94,16 +94,16 @@ Moves all generated children out of the Forger hierarchy into a new standalone
             GameObject. This "bakes" the procedural output into a permanent scene object that no longer
             depends on the Forger. Live-preview tracker components
             (`ForgerStampInstance` and `ForgerChildStampInstance`) are
-            stripped from the baked hierarchy â€” once detached from the Forger they serve no
+            stripped from the baked hierarchy — once detached from the Forger they serve no
             purpose. Fully undoable.
 
 ---
 
 !!! tip
     **Single-step undo.** Generate and Demolish are each collapsed into a single undo
-            group â€” one ++ctrl+z++ reverts an entire generation (spawned prefabs, holder,
+            group — one ++ctrl+z++ reverts an entire generation (spawned prefabs, holder,
             overlay mesh, and road splines) in one step. The debug overlay mesh persists across re-generations
-            and only swaps its mesh data, so successive runs donâ€™t add spurious undo entries.
+            and only swaps its mesh data, so successive runs don’t add spurious undo entries.
             Undo is editor-only; in Play mode these actions are immediate.
 
 ### Scene View Handles
