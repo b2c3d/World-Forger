@@ -1,0 +1,1419 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="World Forger — Procedural world generation toolkit for Unity">
+      
+      
+        <meta name="author" content="B2C3D">
+      
+      
+        <link rel="canonical" href="https://b2c3d.github.io/World-Forger/scripting/">
+      
+      
+        <link rel="prev" href="../tools/">
+      
+      
+        <link rel="next" href="../advanced/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Scripting - World Forger</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Segoe+UI:300,300i,400,400i,700,700i%7CCascadia+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Segoe UI";--md-code-font:"Cascadia Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#runtime-api-events" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="World Forger" class="md-header__button md-logo" aria-label="World Forger" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            World Forger
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scripting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="World Forger" class="md-nav__button md-logo" aria-label="World Forger" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    World Forger
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../village-forger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Village Forger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../village-profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Village Profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prefab-forger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prefab Forger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stencil-graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stencil Graph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-api-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime API &amp; Events
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kicking-off-a-build-from-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kicking off a build from code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle-events-c-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Events (C# event )
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle-events-inspector-unityevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Events (Inspector UnityEvent )
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgeresult-struct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgeResult struct
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lastresult-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LastResult property
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-subscription-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full subscription example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stencil-graph-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stencil Graph Builder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typical-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forger-plugin-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forger Plugin Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-contract-three-pieces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The contract — three pieces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The attribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attribute-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attribute fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovery-typecache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discovery — TypeCache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-registry-drives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the registry drives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-registry-doesnt-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the registry doesn't drive
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-api-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime API &amp; Events
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kicking-off-a-build-from-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kicking off a build from code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle-events-c-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Events (C# event )
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle-events-inspector-unityevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Events (Inspector UnityEvent )
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgeresult-struct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgeResult struct
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lastresult-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LastResult property
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-subscription-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full subscription example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stencil-graph-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stencil Graph Builder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typical-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forger-plugin-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forger Plugin Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-contract-three-pieces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The contract — three pieces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The attribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attribute-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attribute fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovery-typecache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discovery — TypeCache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-registry-drives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the registry drives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-registry-doesnt-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the registry doesn't drive
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Scripting</h1>
+
+<h3 id="runtime-api-events">Runtime API &amp; Events<a class="headerlink" href="#runtime-api-events" title="Permanent link">&para;</a></h3>
+<p>Every Forger exposes a small, build-safe scripting surface so you can kick off generation from
+        gameplay code, react when a build finishes, and inspect timing and seed data after the fact.
+        This is the foundation for on-screen UI demos, procedural worlds that rebuild during play, and
+        automated test harnesses.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Build-safety guarantee.</strong> The Runtime assembly contains <em>zero</em> direct
+        <code>UnityEditor.*</code> references at call sites. All editor-only helpers (Undo registration,
+        prefab-connection preservation) are funnelled through an internal helper whose bodies compile
+        to empty no-ops in player builds. You can drop a <code>VillageForger</code> or
+        <code>PrefabForger</code> into any Windows / macOS / Linux / mobile standalone build without
+        stripping, <code>#if</code> gating, or custom link files.</p>
+</div>
+<h3 id="kicking-off-a-build-from-code">Kicking off a build from code<a class="headerlink" href="#kicking-off-a-build-from-code" title="Permanent link">&para;</a></h3>
+<p><code>Forger.Build()</code> and <code>Forger.Demolish()</code> are both <code>public</code>
+            and runtime-safe. You can call them from any MonoBehaviour on any frame. The base class also
+            exposes <code>AutoBuildOnStart</code> (serialized <code>bool</code>) for scenes that want a
+            generate-on-spawn behaviour without writing glue code.</p>
+<p>[SerializeField] private VillageForger _forger;</p>
+<p>public void OnGenerateButton() =&gt; _forger.Build();
+public void OnClearButton()    =&gt; _forger.Demolish();</p>
+<h3 id="lifecycle-events-c-event">Lifecycle Events (C# event )<a class="headerlink" href="#lifecycle-events-c-event" title="Permanent link">&para;</a></h3>
+<p>For programmatic subscribers, the base <code>Forger</code> class fires four C# events. Use
+            these from code that doesn’t live in the scene inspector.</p>
+<p><strong><code>ForgeStarted</code></strong> · <code>event Action&lt;Forger&gt;</code></p>
+<p>Fires <em>just before</em> generation begins, inside the
+                <code>try</code> block. Useful for disabling the Generate button, showing a progress
+                spinner, or dimming the UI.</p>
+<hr />
+<p><strong><code>ForgeCompleted</code></strong> · <code>event Action&lt;ForgeResult&gt;</code></p>
+<p>Fires after a successful generation. The argument carries the
+                effective seed, stamp count, total milliseconds, and the holder GameObject. See
+                <em>ForgeResult</em> below.</p>
+<hr />
+<p><strong><code>ForgeFailed</code></strong> · <code>event Action&lt;Forger, string&gt;</code></p>
+<p>Fires if <code>Build()</code> throws. The second argument is the
+                exception message. The exception is also logged via <code>Debug.LogException</code>, so
+                the stack trace remains visible in the Console — but the throw itself is caught,
+                so an unhandled exception can never crash the caller.</p>
+<hr />
+<p><strong><code>Demolished</code></strong> · <code>event Action&lt;Forger&gt;</code></p>
+<p>Fires after <code>Demolish()</code> removes the holder. Called once
+                per demolish, including the implicit demolish that runs at the start of
+                <code>Build()</code>.</p>
+<hr />
+<h3 id="lifecycle-events-inspector-unityevent">Lifecycle Events (Inspector UnityEvent )<a class="headerlink" href="#lifecycle-events-inspector-unityevent" title="Permanent link">&para;</a></h3>
+<p>The same four lifecycle moments are also exposed as serialized <code>UnityEvent</code>s under
+            the <strong>Events</strong> header in the Forger inspector. Drag a target GameObject in,
+            pick a method from the dropdown, and you’ve wired a reaction with zero code. Ideal for
+            demo scenes, UGUI buttons, and VFX triggers.</p>
+<p><strong><code>OnForgeStarted</code></strong> · <code>UnityEvent&lt;Forger&gt;</code></p>
+<p>Inspector mirror of <code>ForgeStarted</code>.</p>
+<hr />
+<p><strong><code>OnForgeCompleted</code></strong> · <code>UnityEvent&lt;ForgeResult&gt;</code></p>
+<p>Inspector mirror of <code>ForgeCompleted</code>. The
+                <code>ForgeResult</code> is passed to listeners that accept it; listeners that take no
+                argument are called without one.</p>
+<hr />
+<p><strong><code>OnForgeFailed</code></strong> · <code>UnityEvent&lt;Forger, string&gt;</code></p>
+<p>Inspector mirror of <code>ForgeFailed</code>.</p>
+<hr />
+<p><strong><code>OnDemolished</code></strong> · <code>UnityEvent&lt;Forger&gt;</code></p>
+<p>Inspector mirror of <code>Demolished</code>.</p>
+<hr />
+<h3 id="forgeresult-struct">ForgeResult struct<a class="headerlink" href="#forgeresult-struct" title="Permanent link">&para;</a></h3>
+<p><code>ForgeResult</code> is the payload published by <code>ForgeCompleted</code> /
+            <code>OnForgeCompleted</code>, and also cached on <code>Forger.LastResult</code> so any code
+            can query the most recent outcome.</p>
+<p><strong><code>Forger</code></strong> · <code>Forger</code></p>
+<p>The Forger that produced this result. Handy when one listener
+                subscribes to multiple Forgers.</p>
+<hr />
+<p><strong><code>EffectiveSeed</code></strong> · <code>int</code></p>
+<p>The seed actually used for this run. Equals <code>Forger.Seed</code>
+                when that field was non-zero; otherwise the randomly chosen value that would otherwise
+                be invisible. Copy this to reproduce a layout later.</p>
+<hr />
+<p><strong><code>StampsEmitted</code></strong> · <code>int</code></p>
+<p>Number of stamps the Forger pushed to the engine before spawning.
+                Useful as a quick “how big was this village?” metric.</p>
+<hr />
+<p><strong><code>TotalMs</code></strong> · <code>float</code></p>
+<p>Wall-clock duration of the entire <code>Build()</code> call in
+                milliseconds, captured with <code>System.Diagnostics.Stopwatch</code>. Show this in an
+                on-screen HUD to let viewers compare seed complexity.</p>
+<hr />
+<p><strong><code>Holder</code></strong> · <code>GameObject</code></p>
+<p>The parent GameObject under which spawned prefabs live. Null on
+                failure. Use it to pan the camera, parent FX, or tag the generated content.</p>
+<hr />
+<p><strong><code>Success</code></strong> · <code>bool</code></p>
+<p><code>true</code> if the run completed without throwing.</p>
+<hr />
+<p><strong><code>FailureReason</code></strong> · <code>string</code></p>
+<p>When <code>Success</code> is <code>false</code>, holds the caught
+                exception’s message. <code>null</code> on success.</p>
+<hr />
+<h3 id="lastresult-property">LastResult property<a class="headerlink" href="#lastresult-property" title="Permanent link">&para;</a></h3>
+<p><code>Forger.LastResult</code> returns the most recent <code>ForgeResult</code>. It is
+            updated on both success and failure, so callers that arrive after generation can query it
+            without subscribing to events.</p>
+<p>var r = _forger.LastResult;
+if (r.Success)
+    Debug.Log($"Seed {r.EffectiveSeed} produced {r.StampsEmitted} stamps in {r.TotalMs:F1} ms");</p>
+<h3 id="full-subscription-example">Full subscription example<a class="headerlink" href="#full-subscription-example" title="Permanent link">&para;</a></h3>
+<p>A typical HUD controller subscribes in <code>OnEnable</code> and unsubscribes in
+            <code>OnDisable</code>. Using <code>+=</code> / <code>-=</code> (rather than the inspector
+            UnityEvent) keeps the wiring in source control and lets you share one listener across
+            multiple Forgers.</p>
+<p>using UnityEngine;
+using UnityEngine.UI;
+using B2C3D.WorldForger;</p>
+<p>public class VillageHud : MonoBehaviour
+{
+    [SerializeField] private VillageForger _forger;
+    [SerializeField] private Button        _generateButton;
+    [SerializeField] private Text          _statusLabel;</p>
+<div class="highlight"><pre><span></span><code>void OnEnable()
+{
+    _generateButton.onClick.AddListener(_forger.Build);
+    _forger.ForgeStarted   += HandleStarted;
+    _forger.ForgeCompleted += HandleCompleted;
+    _forger.ForgeFailed    += HandleFailed;
+}
+
+void OnDisable()
+{
+    _generateButton.onClick.RemoveListener(_forger.Build);
+    _forger.ForgeStarted   -= HandleStarted;
+    _forger.ForgeCompleted -= HandleCompleted;
+    _forger.ForgeFailed    -= HandleFailed;
+}
+
+void HandleStarted(Forger f)
+{
+    _generateButton.interactable = false;
+    _statusLabel.text            = &quot;Generating…&quot;;
+}
+
+void HandleCompleted(ForgeResult r)
+{
+    _generateButton.interactable = true;
+    _statusLabel.text            = $&quot;Seed {r.EffectiveSeed} • {r.StampsEmitted} stamps • {r.TotalMs:F0} ms&quot;;
+}
+
+void HandleFailed(Forger f, string reason)
+{
+    _generateButton.interactable = true;
+    _statusLabel.text            = $&quot;Failed: {reason}&quot;;
+}
+</code></pre></div>
+<p>}</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Demo-scene wiring without code.</strong> For a pure-inspector demo, you can skip the
+        script above entirely: drag the Forger into a UGUI <code>Button.OnClick</code> entry and pick
+        <code>Forger.Build</code>; then wire <code>OnForgeCompleted</code> on the Forger itself to a
+        <code>Text.text</code> setter for a status readout, or to an <code>Animator</code> trigger for a
+        celebratory flourish. No <code>#if UNITY_EDITOR</code>, no compile step — ships as-is in a
+        standalone player.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Runtime config mutation is a Phase 2 feature.</strong> Changing
+        <code>VillageForgerConfig</code> or <code>VillageForgerProfile</code> fields at runtime
+        <em>works</em> (they are plain <code>ScriptableObject</code> / <code>MonoBehaviour</code>
+        instances) but mutating the same shared Profile asset from a built player also persists in the
+        editor during Play mode. For safe live-config UIs, clone the Profile into a runtime copy before
+        editing. A first-class <code>ApplyProfile(runtimeCopy)</code> helper and a
+        <code>ForgerRuntimeController</code> MonoBehaviour are planned for Phase 2.</p>
+</div>
+<h3 id="stencil-graph-builder">Stencil Graph Builder<a class="headerlink" href="#stencil-graph-builder" title="Permanent link">&para;</a></h3>
+<p><code>StencilGraphBuilder</code> is an editor-only fluent API for authoring stencil graphs from
+        C# — a higher-level alternative to opening the Graph editor and wiring nodes by hand.
+        It wraps the raw node-data lists (StampRules, PrefabNodes, PrefabArrayNodes, StampEmitters,
+        Edges) so you can map prefabs to stamp names without managing GUIDs, edge records, or canvas
+        positions.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Editor-only.</strong> Lives in
+        <code>B2C3D.WorldForger.Editor.Authoring</code>. Don't ship this assembly with player builds —
+        it's a tool for authoring stencil <em>assets</em>, not a runtime API.</p>
+</div>
+<h3 id="typical-usage">Typical usage<a class="headerlink" href="#typical-usage" title="Permanent link">&para;</a></h3>
+<p>Open a fresh or existing <code>WorldForgerGraphAsset</code>, chain the wirings you want,
+            and call <code>Save()</code>. The same builder instance can be reused across many calls in
+            the same authoring session.</p>
+<p>using B2C3D.WorldForger;
+using B2C3D.WorldForger.Editor.Authoring;</p>
+<p>var asset = AssetDatabase.LoadAssetAtPath<WorldForgerGraphAsset>(path);</p>
+<p>StencilGraphBuilder.Open(asset)
+    .EnsureRule("VillageChurch")
+    .SetStamp("VillageChurch", new[] { church1, church2 })   // weighted array
+    .SetStamp("VillageInn",    tavern)                        // single prefab
+    .SetStamp("VillageWell",   wells, opts =&gt; {
+        opts.AffectsNavigation = true;
+        opts.PositionOffset    = Vector3.up * 0.1f;
+    })
+    .ClearStamp("VillageGround")
+    .RemoveOrphans()
+    .Save();</p>
+<h3 id="api-reference">API reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h3>
+<p><strong><code>Open(asset)</code></strong> · <code>static StencilGraphBuilder</code></p>
+<p>Creates a builder bound to <code>asset</code>. Subsequent method
+            calls mutate this asset in place; use <code>Save()</code> to commit to disk.</p>
+<hr />
+<p><strong><code>EnsureRule(stampName, opts)</code></strong> · <code>StencilGraphBuilder</code></p>
+<p>Ensures a Stamp Rule node with the given name exists. No-op when the
+            rule is already present. Optional <code>StampRuleOptions</code> set Enabled / Position /
+            Euler / Scale on the rule when freshly created.</p>
+<hr />
+<p><strong><code>SetStamp(stampName, GameObject prefab, opts)</code></strong> · <code>StencilGraphBuilder</code></p>
+<p>Wires <em>one</em> prefab as the only candidate for the named stamp.
+            Replaces any existing wiring for this stamp (upsert). Creates a Stamp Rule for the stamp
+            if missing. The prefab is wrapped in a <code>PrefabNodeData</code>; pass
+            <code>PrefabChoiceOptions</code> to set probability / static flag / offsets.</p>
+<hr />
+<p><strong><code>SetStamp(stampName, IEnumerable&lt;GameObject&gt; prefabs, opts)</code></strong> · <code>StencilGraphBuilder</code></p>
+<p>Wires a weighted <em>array</em> of candidates — uniform random
+            selection at spawn time. Creates a single <code>PrefabArrayNodeData</code> sharing one set
+            of <code>PrefabChoiceOptions</code> across every member. Replaces any existing wiring for
+            the named stamp.</p>
+<hr />
+<p><strong><code>ClearStamp(stampName)</code></strong> · <code>StencilGraphBuilder</code></p>
+<p>Removes all prefab wiring for the named stamp — drops the rule's
+            outgoing edges and any prefab-side cards exclusively used by this rule. The rule itself
+            stays in place so its name keeps appearing in stamp-name pickers. Cards shared with other
+            rules are preserved (only the targeted rule's edge is dropped).</p>
+<hr />
+<p><strong><code>RemoveRule(stampName)</code></strong> · <code>StencilGraphBuilder</code></p>
+<p>Stronger than <code>ClearStamp</code> — removes the rule node
+            entirely along with its wiring.</p>
+<hr />
+<p><strong><code>AddChildStamp(parentStamp, childStamp, opts)</code></strong> · <code>StencilGraphBuilder</code></p>
+<p>Adds a Stamp Emitter downstream of every prefab wired to
+            <code>parentStamp</code>'s rule. Each spawned parent prefab will then emit
+            <code>childStamp</code> as a child stamp at runtime. The child's rule must also exist in
+            this stencil — call <code>EnsureRule(childStamp)</code> first if you're building from
+            scratch. Optional <code>EmitterOptions</code> set the per-emitter offsets layered on top
+            of the marker / parent transform.</p>
+<hr />
+<p><strong><code>RemoveOrphans()</code></strong> · <code>StencilGraphBuilder</code></p>
+<p>Drops any edge whose source or target GUID doesn't resolve to an
+            existing node. Useful after manual asset editing or after removing nodes by hand.</p>
+<hr />
+<p><strong><code>Validate()</code></strong> · <code>IReadOnlyList&lt;string&gt;</code></p>
+<p>Returns a (possibly empty) list of human-readable warnings about the
+            current stencil state — rules with no wiring, prefab nodes with null prefabs,
+            arrays with all-null entries, emitters whose target rule doesn't exist. Read-only; does
+            not modify the asset. Useful for build-pipeline assertions.</p>
+<hr />
+<p><strong><code>Save()</code></strong> · <code>void</code></p>
+<p>Commits any pending in-memory edits to disk via
+            <code>AssetDatabase.SaveAssetIfDirty</code> and invalidates the runtime rule-lookup cache
+            so the next <code>GetRuleForStamp</code> call rebuilds from the new edges. No-op if no
+            builder method has modified the asset since the last <code>Save</code>.</p>
+<hr />
+<h3 id="option-classes">Option classes<a class="headerlink" href="#option-classes" title="Permanent link">&para;</a></h3>
+<p>Three lightweight POCOs configure the optional parameters on the builder methods. Each
+            defaults to the same values the corresponding node-data class uses, so passing a
+            zero-config <code>opts</code> reproduces the data-class defaults exactly.</p>
+<p><strong><code>PrefabChoiceOptions</code></strong></p>
+<p>Per-prefab options — <code>Probability</code>,
+            <code>StopFlow</code>, <code>StaticMode</code> (StaticFlag), <code>ExternallyManaged</code>,
+            <code>AffectsNavigation</code>, <code>PositionOffset</code> / <code>EulerOffset</code> /
+            <code>Scale</code> (Vector3). Applies to <code>SetStamp</code> overloads.</p>
+<hr />
+<p><strong><code>StampRuleOptions</code></strong></p>
+<p>Rule-level options — <code>Enabled</code> (bool),
+            <code>PositionOffset</code> / <code>EulerOffset</code> / <code>Scale</code> applied at
+            the rule level (sums with prefab-level offsets at spawn time). Applies to
+            <code>EnsureRule</code>.</p>
+<hr />
+<p><strong><code>EmitterOptions</code></strong></p>
+<p>Per-emitter offsets layered on top of the marker / parent transform
+            when the child stamp fires. Applies to <code>AddChildStamp</code>.</p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Mutation semantics.</strong> Each method writes through to the in-memory asset
+        immediately so subsequent calls in the same chain see the new state.
+        <code>Save()</code> commits to disk — if you don't call it, your edits are still in
+        memory but won't survive a domain reload. Wrap a builder session in your own
+        <code>Undo.RecordObject</code> scope before the first call if you want undo / redo to roll
+        back the whole batch as a single step.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Layout.</strong> Newly-created Prefab / Prefab Array cards land 60 px to the right of
+        their parent rule. New Stamp Rule cards stack vertically below any existing rules so they
+        don't overlap. Matches the manual graph view's left-to-right reading convention so a
+        builder-authored stencil opens cleanly in the editor.</p>
+</div>
+<h3 id="forger-plugin-architecture">Forger Plugin Architecture<a class="headerlink" href="#forger-plugin-architecture" title="Permanent link">&para;</a></h3>
+<p>World Forger discovers <code>Forger</code> subclasses through a small attribute-based plugin
+        contract. Adding a new Forger type — yours or a third-party's — is a matter of writing a
+        <code>Forger</code> subclass, decorating it with <code>[ForgerPlugin(...)]</code>, and
+        shipping the usual editor pieces. Unity's <code>TypeCache</code> picks the type up
+        automatically across asmdefs, so registration is zero-config: install the package, the
+        plugin shows up.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>What ships first-party.</strong> The Village Forger and the Prefab Forger are both
+        registered through this contract — they're concrete plugins, not hardcoded built-ins. Look at
+        their attribute declarations as worked examples.</p>
+</div>
+<h3 id="the-contract-three-pieces">The contract — three pieces<a class="headerlink" href="#the-contract-three-pieces" title="Permanent link">&para;</a></h3>
+<p>A complete Forger plugin is:
+1. A concrete <code>Forger</code> subclass decorated with <code>[ForgerPlugin(...)]</code>
+            (provides the metadata Welcome / pickers / future Forger-Browser surfaces consume).
+2. A custom <code>UnityEditor.Editor</code> targeting that subclass — same pattern as any
+            normal Unity component editor. The plugin system doesn't replace this; you still write
+            an inspector if you want a non-default one.
+3. (Optional) A <code>[MenuItem("GameObject/World Forger/Create &lt;Name&gt;")]</code>
+            helper for one-click GameObject creation. Unity's <code>[MenuItem]</code> requires
+            compile-time-constant paths, so the registry can't auto-generate menu items — but the
+            registry-driven UI (Welcome window cards, pickers, the Forger-side Browser if present)
+            lights up regardless of whether you ship a menu item.</p>
+<h3 id="the-attribute">The attribute<a class="headerlink" href="#the-attribute" title="Permanent link">&para;</a></h3>
+<p><code>ForgerPluginAttribute</code> lives in <code>B2C3D.WorldForger</code> (the runtime
+            assembly) so plugins can apply it without taking an editor dependency. It carries pure
+            metadata — there's no runtime cost, the editor reads it through
+            <code>TypeCache.GetTypesWithAttribute&lt;ForgerPluginAttribute&gt;()</code>.</p>
+<p>[ForgerPlugin(
+    DisplayName         = "Village Forger",
+    Tagline             = "Procedural villages with road generation and building placement.",
+    Description         = "Generates a complete village from a Village Profile asset...",
+    IconName            = "VillageForgerBanner",
+    DocumentationAnchor = "village-forger",
+    Order               = 10)]
+public class VillageForger : Forger { /<em> ... </em>/ }</p>
+<h3 id="attribute-fields">Attribute fields<a class="headerlink" href="#attribute-fields" title="Permanent link">&para;</a></h3>
+<p><strong><code>DisplayName</code></strong> · <code>string</code></p>
+<p>Human-readable name shown on Welcome window cards, future picker UIs,
+            and any other registry-driven surface. Falls back to the type's short name when null.</p>
+<hr />
+<p><strong><code>Tagline</code></strong> · <code>string</code></p>
+<p>One-line summary suitable for a card subtitle.</p>
+<hr />
+<p><strong><code>Description</code></strong> · <code>string</code></p>
+<p>Multi-paragraph long-form description shown when the plugin's card
+            is selected on the Welcome window's Forgers tab.</p>
+<hr />
+<p><strong><code>IconName</code></strong> · <code>string</code></p>
+<p>Filename (without extension) of a banner / icon texture, resolved
+            through the project's <code>IconRegistry</code>. The icon can live anywhere under
+            <code>Assets/</code> as long as its name is unique. Recommended size: 600 × 200 PNG with
+            transparency.</p>
+<hr />
+<p><strong><code>DocumentationAnchor</code></strong> · <code>string</code></p>
+<p>An HTML anchor in <code>WorldForgerHelp.html</code>
+            (e.g. <code>"village-forger"</code>) when your plugin documents itself in the bundled
+            manual, OR a full <code>https://...</code> URL when it ships its own external docs. The
+            "Open Documentation" button on the plugin's Welcome card jumps to whichever you provide.</p>
+<hr />
+<p><strong><code>Order</code></strong> · <code>int</code></p>
+<p>Sort order across all registered plugins (lower = earlier). Default
+            is <code>1000</code>, so first-party plugins (Village = 10, Prefab = 20) lead and
+            third-party plugins fall in afterwards unless they set their own explicit order.</p>
+<hr />
+<h3 id="discovery-typecache">Discovery — TypeCache<a class="headerlink" href="#discovery-typecache" title="Permanent link">&para;</a></h3>
+<p>The editor-side <code>ForgerPluginRegistry</code> queries Unity's <code>TypeCache</code>
+            on first access — Unity pre-computes that cache during domain reload, so the lookup is
+            effectively free. Crucially it works <em>across asmdef boundaries</em>: your plugin can
+            ship in its own asmdef referencing <code>B2C3D.WorldForger.Runtime</code> and the registry
+            picks it up the moment the editor finishes compiling. No <code>[InitializeOnLoad]</code>
+            registration call, no manifest, no rebuild step.</p>
+<p>using B2C3D.WorldForger.Editor;</p>
+<p>foreach (var plugin in ForgerPluginRegistry.All)
+    Debug.Log($"{plugin.DisplayName} ({plugin.Type.FullName})");</p>
+<p>// Or look up a specific Forger
+var info = ForgerPluginRegistry.Get<VillageForger>();</p>
+<h3 id="what-the-registry-drives">What the registry drives<a class="headerlink" href="#what-the-registry-drives" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Welcome window's Forgers tab</strong> — cards iterate the registry; the
+            "Add to Scene" button uses <code>plugin.Type</code> to add the right component.</li>
+<li><strong>Pickers</strong> that need to enumerate Forger types (e.g. a future Forger
+            Browser, the Variant Generator's target dropdown).</li>
+<li>Anywhere else the codebase needs to enumerate Forger types — replaces every previous
+            "hardcoded list of Village + Prefab" branch.</li>
+</ul>
+<h3 id="what-the-registry-doesnt-drive">What the registry doesn't drive<a class="headerlink" href="#what-the-registry-doesnt-drive" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Top-level menu items.</strong> Unity's <code>[MenuItem]</code> attribute
+            requires compile-time-constant paths, so each plugin still ships its own
+            <code>[MenuItem("GameObject/World Forger/Create &lt;Name&gt;")]</code> declaration. This
+            isn't a regression — it's a Unity API constraint — and it's a single line of editor code
+            per plugin.</li>
+<li><strong>Per-Forger inspector editors.</strong> Continue writing
+            <code>UnityEditor.Editor</code> subclasses with <code>[CustomEditor(typeof(MyForger))]</code>
+            the standard way. The plugin system doesn't replace Unity's editor-discovery contract.</li>
+<li><strong>Profiles, configs, and other plugin-specific assets.</strong> If your Forger
+            wants its own <code>ScriptableObject</code> profile (like
+            <code>VillageForgerProfile</code>), define and ship it however you want — the plugin
+            contract doesn't enforce a profile shape.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Coming-soon teasers.</strong> The Welcome window's Forgers tab also supports
+        <em>teaser entries</em> — coming-soon cards with no runtime type yet. They live as a small
+        static array in <code>WorldForgerWelcomeWindow</code> alongside the registry-driven entries
+        so the marketing surface can preview future Forgers (e.g. a Dungeon Forger) before the actual
+        type ships. When the type arrives, decorate it with <code>[ForgerPlugin]</code> and remove
+        the teaser entry — that's the whole conversion.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://assetstore.unity.com" target="_blank" rel="noopener" title="assetstore.unity.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m243.6 91.6 80.1 46.8c2.9 1.6 3 6.2 0 7.8l-95.2 55.6c-2.9 1.7-6.3 1.6-9 0l-95.2-55.6c-2.9-1.6-3-6.3 0-7.8l80.1-46.8V0L0 119.4v238.8l78.4-45.8v-93.6c-.1-3.3 3.8-5.7 6.7-3.9l95.2 55.6c2.9 1.7 4.5 4.7 4.5 7.8v111.2c.1 3.3-3.8 5.7-6.7 3.9L98 346.8l-78.4 45.8L224 512l204.4-119.4-78.4-45.8-80.1 46.8c-2.8 1.7-6.8-.5-6.7-3.9V278.5c0-3.3 1.8-6.3 4.5-7.8l95.2-55.7c2.8-1.7 6.8.5 6.7 3.9v93.6l78.4 45.8V119.5L243.6.1v91.6z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

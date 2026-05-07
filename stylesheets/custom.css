@@ -1,0 +1,226 @@
+/* ── WorldForger Documentation — Custom Palette ─────────────────────────────
+   Matches the dark theme from WorldForgerHelp.html exactly.
+
+   Original palette:
+     --blue:     #44AAE6   (primary accent)
+     --green:    #06D6A0
+     --orange:   #FF9E4E
+     --red:      #EF476F
+     --bg:       #1E1E1E   (page background)
+     --sidebar:  #252525
+     --section:  #2D2D2D
+     --card:     #333333
+─────────────────────────────────────────────────────────────────────────── */
+
+:root,
+[data-md-color-scheme="slate"] {
+
+  /* Primary accent — the WorldForger blue */
+  --md-primary-fg-color:              #44AAE6;
+  --md-primary-fg-color--light:       #6DBFED;
+  --md-primary-fg-color--dark:        #2E8BC0;
+  --md-primary-bg-color:              #ffffff;
+
+  /* Accent (hover highlights, links) */
+  --md-accent-fg-color:               #44AAE6;
+  --md-accent-fg-color--transparent:  rgba(68, 170, 230, 0.12);
+  --md-accent-bg-color:               #ffffff;
+
+  /* Page background */
+  --md-default-bg-color:              #1E1E1E;
+  --md-default-bg-color--light:       #252525;
+  --md-default-bg-color--lighter:     #2D2D2D;
+  --md-default-bg-color--lightest:    #333333;
+
+  /* Default text */
+  --md-default-fg-color:              rgba(255, 255, 255, 0.88);
+  --md-default-fg-color--light:       rgba(255, 255, 255, 0.68);
+  --md-default-fg-color--lighter:     rgba(255, 255, 255, 0.55);
+  --md-default-fg-color--lightest:    rgba(255, 255, 255, 0.28);
+
+  /* Code blocks */
+  --md-code-bg-color:                 #2D2D2D;
+  --md-code-fg-color:                 #FF9E4E;
+
+  /* Admonition accent colors */
+  --md-admonition-fg-color:           rgba(255, 255, 255, 0.88);
+  --md-admonition-bg-color:           #252525;
+
+  /* Footer */
+  --md-footer-bg-color:               #252525;
+  --md-footer-bg-color--dark:         #1E1E1E;
+  --md-footer-fg-color:               rgba(255, 255, 255, 0.55);
+  --md-footer-fg-color--light:        rgba(255, 255, 255, 0.35);
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+.md-sidebar {
+  background-color: #252525;
+}
+
+.md-nav__title {
+  background-color: #252525;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.md-nav__link {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.md-nav__link:hover,
+.md-nav__link:focus {
+  color: #44AAE6;
+}
+
+.md-nav__link--active {
+  color: #44AAE6;
+  font-weight: 600;
+  border-left: 3px solid #44AAE6;
+  padding-left: 9px;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.md-header {
+  background-color: #252525;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Content area ─────────────────────────────────────────────────────────── */
+.md-content {
+  background-color: #1E1E1E;
+}
+
+.md-typeset h1 {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+  border-bottom: 2px solid #44AAE6;
+  padding-bottom: 8px;
+}
+
+.md-typeset h2 {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+}
+
+.md-typeset h3,
+.md-typeset h4 {
+  color: rgba(200, 225, 255, 1);
+}
+
+/* Inline code — orange like the original */
+.md-typeset code {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #FF9E4E;
+  border-radius: 3px;
+}
+
+/* Code blocks */
+.md-typeset pre > code {
+  background-color: #2D2D2D;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Links */
+.md-typeset a {
+  color: #44AAE6;
+}
+
+.md-typeset a:hover {
+  color: #6DBFED;
+}
+
+/* ── Admonitions (tip/warning/info/note) ─────────────────────────────────── */
+.md-typeset .admonition,
+.md-typeset details {
+  background-color: #252525;
+  border-left-width: 4px;
+  border-radius: 8px;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Tip — green */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-left-color: #06D6A0;
+}
+.md-typeset .tip > .admonition-title {
+  background-color: rgba(6, 214, 160, 0.08);
+}
+
+/* Warning — orange */
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-left-color: #FF9E4E;
+}
+.md-typeset .warning > .admonition-title {
+  background-color: rgba(255, 158, 78, 0.08);
+}
+
+/* Info — blue */
+.md-typeset .admonition.info,
+.md-typeset details.info {
+  border-left-color: #44AAE6;
+}
+.md-typeset .info > .admonition-title {
+  background-color: rgba(68, 170, 230, 0.08);
+}
+
+/* Note — blue (accent box equivalent) */
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-left-color: #44AAE6;
+}
+
+/* ── Tables ───────────────────────────────────────────────────────────────── */
+.md-typeset table:not([class]) {
+  background-color: #2D2D2D;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: #333333;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.md-typeset table:not([class]) td {
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.md-typeset table:not([class]) tr:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* ── Horizontal rules ─────────────────────────────────────────────────────── */
+.md-typeset hr {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Search ───────────────────────────────────────────────────────────────── */
+.md-search__input {
+  background-color: #2D2D2D;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* ── Grid cards (MkDocs Material) ────────────────────────────────────────── */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid.cards > ol > li {
+  background-color: #2D2D2D;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 4px solid #44AAE6;
+  border-radius: 8px;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }

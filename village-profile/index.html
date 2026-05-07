@@ -1,0 +1,2131 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="World Forger — Procedural world generation toolkit for Unity">
+      
+      
+        <meta name="author" content="B2C3D">
+      
+      
+        <link rel="canonical" href="https://b2c3d.github.io/World-Forger/village-profile/">
+      
+      
+        <link rel="prev" href="../village-forger/">
+      
+      
+        <link rel="next" href="../prefab-forger/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Village Profile - World Forger</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Segoe+UI:300,300i,400,400i,700,700i%7CCascadia+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Segoe UI";--md-code-font:"Cascadia Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#village-forger-profile" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="World Forger" class="md-header__button md-logo" aria-label="World Forger" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            World Forger
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Village Profile
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="World Forger" class="md-nav__button md-logo" aria-label="World Forger" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    World Forger
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../village-forger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Village Forger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Village Profile
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Village Profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#layout-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout → Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-village-square" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout → Village Square
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-ground-fill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout → Ground Fill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-obstacles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout → Obstacles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roads-main-roads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roads → Main Roads
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#road-width" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Road Width
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Curves
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spline-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spline Export
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stamp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-splines-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse Splines (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-common" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse → Common
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse → Advanced
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse → Quality
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roads-side-roads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roads → Side Roads
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#length-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Length &amp; Spacing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#road-width_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Road Width
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curves_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Curves
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spline-export_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spline Export
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stamp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stamp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-splines-optional_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse Splines (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildings-residential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buildings → Residential
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#house-definition-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        House Definition Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildings-specialized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buildings → Specialized
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#special-building-definition-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special Building Definition Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-debug-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System → Debug Colors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-overlay-shader-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System → Overlay Shader Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System → Diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-object-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System → Object Naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#village-forger-frequently-asked-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Village Forger — Frequently Asked Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-i-set-house-spacing-to-5-or-higher-and-now-no-houses-appear-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: I set House Spacing to 5 (or higher) and now no houses appear. Why?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-why-does-house-spacing-1-produce-more-houses-than-house-spacing-0-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Why does House Spacing = 1 produce more houses than House Spacing = 0 (auto)?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-my-special-building-says-placement-failed-in-the-console-what-can-i-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: My special building says "placement failed" in the console. What can I do?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-what-is-the-difference-between-the-village-profile-and-the-village-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What is the difference between the Village Profile and the Village Config?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-why-do-buildings-overlap-or-float-above-the-terrain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Why do buildings overlap or float above the terrain?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prefab-forger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prefab Forger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stencil-graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stencil Graph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#layout-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout → Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-village-square" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout → Village Square
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-ground-fill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout → Ground Fill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-obstacles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout → Obstacles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roads-main-roads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roads → Main Roads
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#road-width" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Road Width
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Curves
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spline-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spline Export
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stamp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-splines-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse Splines (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-common" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse → Common
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse → Advanced
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse → Quality
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roads-side-roads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roads → Side Roads
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#length-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Length &amp; Spacing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#road-width_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Road Width
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curves_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Curves
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spline-export_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spline Export
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stamp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stamp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microverse-splines-optional_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microverse Splines (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildings-residential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buildings → Residential
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#house-definition-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        House Definition Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildings-specialized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buildings → Specialized
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#special-building-definition-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special Building Definition Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-debug-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System → Debug Colors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-overlay-shader-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System → Overlay Shader Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System → Diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-object-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System → Object Naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#village-forger-frequently-asked-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Village Forger — Frequently Asked Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-i-set-house-spacing-to-5-or-higher-and-now-no-houses-appear-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: I set House Spacing to 5 (or higher) and now no houses appear. Why?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-why-does-house-spacing-1-produce-more-houses-than-house-spacing-0-auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Why does House Spacing = 1 produce more houses than House Spacing = 0 (auto)?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-my-special-building-says-placement-failed-in-the-console-what-can-i-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: My special building says "placement failed" in the console. What can I do?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-what-is-the-difference-between-the-village-profile-and-the-village-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What is the difference between the Village Profile and the Village Config?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-why-do-buildings-overlap-or-float-above-the-terrain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Why do buildings overlap or float above the terrain?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="village-forger-profile">Village Forger Profile<a class="headerlink" href="#village-forger-profile" title="Permanent link">&para;</a></h1>
+<p>The Profile is a ScriptableObject containing the shared "DNA" of a village — road rules,
+        building definitions, debug colors, and diagnostics. Multiple Village Forger instances can share
+        the same profile, while each instance maintains its own grid dimensions and spline assignments
+        via the <code>VillageForgerConfig</code> component.</p>
+<p>The profile editor is organized into four main tabs: <strong>Layout</strong>, <strong>Roads</strong>,
+        <strong>Buildings</strong>, and <strong>System</strong>, each with their own sub-tabs.</p>
+<h3 id="layout-grid">Layout → Grid<a class="headerlink" href="#layout-grid" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Instance vs Profile:</strong> Width, Height, Grid Offset, and the Boundary Spline are stored on the
+        <code>VillageForgerConfig</code> instance component, not the shared profile. Resolution is on the profile.</p>
+</div>
+<p><strong><code>Width</code></strong> · <code>int</code></p>
+<p>Grid width in cell units. Controls the east-west extent of the village.
+            Also adjustable via Scene view corner handles.</p>
+<hr />
+<p><strong><code>Height</code></strong> · <code>int</code></p>
+<p>Grid height in cell units. Controls the north-south extent of the village.</p>
+<hr />
+<p><strong><code>Grid Offset</code></strong> · <code>Vector2</code></p>
+<p>Shifts the grid relative to the GameObject pivot. Useful for centering the village
+            on a specific terrain feature without moving the root object.</p>
+<hr />
+<p><strong><code>Boundary Spline</code></strong> · <code>SplineContainer</code></p>
+<p>Optional <strong>closed</strong> spline that defines a custom-shaped village footprint.
+            Every grid cell whose center falls <em>outside</em> the spline is automatically marked as an obstacle
+            and skipped by the rest of the detection pipeline — so you get both custom silhouettes (circle,
+            irregular coastline, estate boundary, etc.) and a large performance win, because expensive collider
+            and mesh checks are only done for cells inside the boundary.</p>
+<p>The spline is rasterized using a <strong>scanline polygon fill</strong>
+            (O(W·H + S·H) instead of O(W·H·S)), so even fine boundaries with
+            hundreds of samples add only a few milliseconds to each run. If the assigned spline is not closed,
+            boundary detection is skipped and a warning is logged both in the Inspector and in the Console.</p>
+<p><em>Default: null (no boundary; entire grid is considered)</em></p>
+<hr />
+<p><strong><code>Resolution</code></strong> · <code>float</code></p>
+<p>World-space size of each grid cell in meters. Controls the scale of
+            the entire village layout. Lower values produce finer detail; higher values produce coarser
+            layouts. Think of it as pixel size: small Resolution = high detail, large Resolution = coarse layout.
+            Usually 1 for stylized art, 2–4 for realistic.</p>
+<p><em>Default: 1.0  |  Min: 0.1</em></p>
+<hr />
+<h3 id="layout-village-square">Layout → Village Square<a class="headerlink" href="#layout-village-square" title="Permanent link">&para;</a></h3>
+<p><strong><code>Enable Village Square</code></strong> · <code>bool</code></p>
+<p>When enabled, places a central plaza at the midpoint of the main road.
+            The village square acts as a focal point for the settlement layout.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Square Size (Cells)</code></strong> · <code>int</code></p>
+<p>The footprint of the village square in grid cells (width and height).
+            Larger values create a grander central plaza.</p>
+<p><em>Default: 3  |  Min: 1</em></p>
+<hr />
+<p><strong><code>Square Spacing (Cells)</code></strong> · <code>int</code></p>
+<p>Clear buffer of cells surrounding the village square that blocks house placement.
+            Creates breathing room around the plaza.</p>
+<p><em>Default: 1  |  Min: 0</em></p>
+<hr />
+<p><strong><code>Snap To Terrain</code></strong> · <code>bool</code></p>
+<p>Snap the village square stamp to the terrain height at its placement location.
+            Disable if your village square prefab handles its own vertical positioning.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Village Square Stamp</code></strong> · <code>string</code></p>
+<p>The stamp name emitted for the village square area. Must exactly match a
+            Stamp Rule's <code>StampName</code> in one of the assigned Stencils.</p>
+<p><em>Default: VillageSquare</em></p>
+<hr />
+<h3 id="layout-ground-fill">Layout → Ground Fill<a class="headerlink" href="#layout-ground-fill" title="Permanent link">&para;</a></h3>
+<p>Controls how empty grid cells (those not occupied by roads, village square, or buildings) are
+        filled with ground stamps when generating.</p>
+<p><strong><code>Ground Stamp</code></strong> · <code>string</code></p>
+<p>The stamp name emitted for empty ground fill cells. Must exactly match a
+            Stamp Rule's <code>StampName</code> in one of the assigned Stencils. One ground stamp is emitted per grid cell marked as empty.
+            Each stamp is positioned at the cell’s world-space center.</p>
+<p><em>Default: VillageGround</em></p>
+<hr />
+<p><strong><code>Snap To Terrain</code></strong> · <code>bool</code></p>
+<p>Snap ground fill stamps to the terrain height. Disable if your ground
+            prefabs handle their own vertical positioning (e.g. they use their own raycasting or are
+            placed at a fixed Y level).</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Skip Ground In Buffer</code></strong> · <code>bool</code></p>
+<p>When enabled, ground stamps are skipped in cells reserved as building
+            spacing buffers. Reduces visual clutter at building edges where ground tiles would clip
+            through foundations.</p>
+<p><em>Default: false</em></p>
+<hr />
+<h3 id="layout-obstacles">Layout → Obstacles<a class="headerlink" href="#layout-obstacles" title="Permanent link">&para;</a></h3>
+<p><strong><code>Obstacle Layers</code></strong> · <code>LayerMask</code></p>
+<p>The Forger avoids placing buildings on top of existing scene objects on these
+            layers (e.g. Environment, Water). Uses dual detection: <code>Physics.OverlapBox</code> for
+            colliders plus <code>MeshRenderer</code> bounds for non-collider meshes like water planes.
+            Only objects whose top surface is above the terrain height are treated as obstacles.</p>
+<p><em>Default: None (no obstacle avoidance)</em></p>
+<hr />
+<h3 id="roads-main-roads">Roads → Main Roads<a class="headerlink" href="#roads-main-roads" title="Permanent link">&para;</a></h3>
+<h3 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h3>
+<p><strong><code>Routing</code></strong> · <code>MainRoadRouting</code></p>
+<p>Determines how the main road is routed through the grid.</p>
+<hr />
+<h3 id="road-width">Road Width<a class="headerlink" href="#road-width" title="Permanent link">&para;</a></h3>
+<p><strong><code>Thickness</code></strong> · <code>int</code></p>
+<p>Half-width of the main road in grid cells. 0 produces a single-cell-wide road;
+            1 produces a 3-cell-wide road (1 center + 1 on each side).</p>
+<p><em>Default: 0  |  Min: 0</em></p>
+<hr />
+<h3 id="curves">Curves<a class="headerlink" href="#curves" title="Permanent link">&para;</a></h3>
+<p><strong><code>Segments Min</code></strong> · <code>int</code></p>
+<p>Minimum number of bezier control points for the main road.
+            More segments produce more organic curvature.</p>
+<p><em>Default: 2  |  Min: 1</em></p>
+<hr />
+<p><strong><code>Segments Max</code></strong> · <code>int</code></p>
+<p>Maximum number of bezier control points. The actual count is chosen randomly
+            within the Min/Max range.</p>
+<p><em>Default: 6  |  Min: 1</em></p>
+<hr />
+<p><strong><code>Amplitude Min</code></strong> · <code>float</code></p>
+<p>Minimum lateral deviation of curve control points from the straight centerline,
+            in grid cells. 0 produces a perfectly straight road.</p>
+<p><em>Default: 2.0  |  Min: 0</em></p>
+<hr />
+<p><strong><code>Amplitude Max</code></strong> · <code>float</code></p>
+<p>Maximum lateral deviation of curve control points, in grid cells.
+            Higher values produce more winding roads.</p>
+<p><em>Default: 8.0  |  Min: 0</em></p>
+<hr />
+<h3 id="spline-export">Spline Export<a class="headerlink" href="#spline-export" title="Permanent link">&para;</a></h3>
+<p><strong><code>Auto Export Splines</code></strong> · <code>bool</code></p>
+<p>When enabled, procedurally generated roads are automatically exported to a child
+            <code>SplineContainer</code> at generation time. The splines conform to terrain height and can be
+            used by other systems (e.g. Spline Mesh, traffic AI).</p>
+<p><em>Default: false</em></p>
+<hr />
+<p><strong><code>Spline Resolution</code></strong> · <code>float</code></p>
+<p>How frequently (in Unity units) a spline knot is placed to conform to the terrain.
+            Lower values produce more knots and a tighter terrain fit, but increase spline complexity.</p>
+<p><em>Default: 5.0  |  Min: 0.5</em></p>
+<hr />
+<p><strong><code>Height Offset</code></strong> · <code>float</code></p>
+<p>Vertical lift applied to the generated splines to prevent Z-fighting with the
+            terrain surface.</p>
+<p><em>Default: 0.1</em></p>
+<hr />
+<h3 id="stamp">Stamp<a class="headerlink" href="#stamp" title="Permanent link">&para;</a></h3>
+<p><strong><code>Main Road Stamp</code></strong> · <code>string</code></p>
+<p>The stamp name emitted for main road cells. One stamp is emitted per grid cell
+            that the road passes through. Must exactly match a Stamp Rule's <code>StampName</code> in one of the assigned Stencils.</p>
+<p><em>Default: VillageMainRoad</em></p>
+<hr />
+<h3 id="microverse-splines-optional">Microverse Splines (optional)<a class="headerlink" href="#microverse-splines-optional" title="Permanent link">&para;</a></h3>
+<p>When the <a href="https://assetstore.unity.com/packages/tools/terrain/microverse-splines-232974">Microverse Splines</a>
+        package is installed, the Village Forger can attach a <code>JBooth.MicroVerseCore.SplinePath</code> component
+        to every generated main-road spline. The SplinePath component carves the terrain heightmap, paints splat
+        layers, and clears trees and details along the spline at runtime. These settings are only visible in the
+        inspector when the package is installed; otherwise the section is hidden.</p>
+<p><strong>Build-order note:</strong> Microverse only carves terrain when the SplinePath component sits under
+        a <code>MicroVerse</code> scene root. Move the Village Forger GameObject under your MicroVerse hierarchy
+        (or vice versa) for the integration to actually affect terrain.</p>
+<p><strong><code>Use Microverse Spline</code></strong> · <code>bool</code></p>
+<p>Master toggle. When enabled, every generated main-road spline GameObject
+            (<code>MainRoad_NN</code>) gets a <code>SplinePath</code> component configured from the settings below.
+            When disabled, no SplinePath is attached and the rest of this section is hidden in the inspector.</p>
+<p><em>Default: false</em></p>
+<hr />
+<h3 id="microverse-common">Microverse → Common<a class="headerlink" href="#microverse-common" title="Permanent link">&para;</a></h3>
+<p><strong><code>Width</code></strong> · <code>float</code></p>
+<p>Spline carving width in world units — how wide the heightmap modification is.</p>
+<p><em>Default: 4.0</em></p>
+<hr />
+<p><strong><code>Smoothness</code></strong> · <code>float</code></p>
+<p>Falloff distance at the spline edges. Higher values produce a softer transition
+            into the surrounding terrain.</p>
+<p><em>Default: 2.0</em></p>
+<hr />
+<p><strong><code>Trench</code></strong> · <code>float</code></p>
+<p>Vertical depth of the carved trench in world units. Positive values push the
+            terrain down (typical for roads); negative values raise it (e.g. embankments).</p>
+<p><em>Default: 0.2</em></p>
+<hr />
+<p><strong><code>Modify Height Map</code></strong> · <code>bool</code></p>
+<p>When enabled, the spline modifies the terrain heightmap.
+            Disable to leave the height untouched and only paint splats / clear vegetation.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Modify Splat Map</code></strong> · <code>bool</code></p>
+<p>When enabled, the spline applies splat (terrain texture) layers along its path.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Splat Weight</code></strong> · <code>float</code></p>
+<p>Blend strength of the splat layer.</p>
+<p><em>Default: 1.0  |  Range: 0 – 1</em></p>
+<hr />
+<p><strong><code>Splat Width</code></strong> · <code>float</code></p>
+<p>Width of the splat application along the spline.
+            Often set wider than <code>Width</code> to feather the texture beyond the trench edges.</p>
+<p><em>Default: 4.0</em></p>
+<hr />
+<p><strong><code>Layer</code></strong> · <code>TerrainLayer</code></p>
+<p>Primary terrain texture layer painted along the spline (e.g. dirt road, cobblestone).</p>
+<hr />
+<p><strong><code>Embankment Layer</code></strong> · <code>TerrainLayer</code></p>
+<p>Secondary terrain texture layer painted at the spline edges where the trench
+            fades back to surrounding terrain (e.g. roadside grass, gravel shoulder).</p>
+<hr />
+<p><strong><code>Clear Trees</code></strong> · <code>bool</code></p>
+<p>When enabled, terrain trees within the clearing radius are removed along the spline.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Tree Width</code></strong> · <code>float</code></p>
+<p>Tree-clearing radius along the spline.</p>
+<p><em>Default: 4.0</em></p>
+<hr />
+<p><strong><code>Clear Details</code></strong> · <code>bool</code></p>
+<p>When enabled, terrain detail objects (grass, rocks, etc.) are removed along the spline.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Detail Width</code></strong> · <code>float</code></p>
+<p>Detail-clearing radius along the spline.</p>
+<p><em>Default: 4.0</em></p>
+<hr />
+<p><strong><code>Treat as Spline Area</code></strong> · <code>bool</code></p>
+<p>When enabled, the spline is treated as a closed area (e.g. a village square)
+            rather than a linear path. Only meaningful for closed splines.</p>
+<p><em>Default: false</em></p>
+<hr />
+<h3 id="microverse-advanced">Microverse → Advanced<a class="headerlink" href="#microverse-advanced" title="Permanent link">&para;</a></h3>
+<p><strong><code>Blend</code></strong> · <code>float</code></p>
+<p>Overall blend factor of the height-map modification. 0 = no effect on the
+            existing terrain; 1 = full replacement. Useful for previewing the carve at reduced strength.</p>
+<p><em>Default: 1.0  |  Range: 0 – 1</em></p>
+<hr />
+<p><strong><code>Use Trench Curve / Trench Curve</code></strong> · <code>bool + AnimationCurve</code></p>
+<p>When enabled, the trench depth is modulated by the curve across the spline width
+            (x = 0 at the centre, x = 1 at the edge). Default is an ease-in-out from full depth at the centre to
+            zero at the edges.</p>
+<hr />
+<p><strong><code>Use Texture Curve / Texture Curve</code></strong> · <code>bool + AnimationCurve</code></p>
+<p>When enabled, the splat weight is modulated by the curve across the spline width.</p>
+<hr />
+<p><strong><code>Use Tree Curve / Tree Curve</code></strong> · <code>bool + AnimationCurve</code></p>
+<p>When enabled, the tree-clearing strength is modulated by the curve across the spline width.</p>
+<hr />
+<p><strong><code>Use Detail Curve / Detail Curve</code></strong> · <code>bool + AnimationCurve</code></p>
+<p>When enabled, the detail-clearing strength is modulated by the curve across the spline width.</p>
+<hr />
+<p><strong>Noise blocks.</strong> Each of the four noise channels below shares the same set of fields,
+        documented once. By default <code>Type</code> is <code>None</code> — in that state the rest of
+        the noise fields are collapsed and the channel contributes nothing.</p>
+<p><strong><code>Position Noise</code></strong> · <code>Noise</code></p>
+<p>Adds organic deviation to the spline path itself.</p>
+<hr />
+<p><strong><code>Width Noise</code></strong> · <code>Noise</code></p>
+<p>Varies the carving width along the spline.</p>
+<hr />
+<p><strong><code>Height Noise</code></strong> · <code>Noise</code></p>
+<p>Varies the trench depth along the spline.</p>
+<hr />
+<p><strong><code>Splat Noise</code></strong> · <code>Noise</code></p>
+<p>Varies the splat-layer application strength along the spline.</p>
+<hr />
+<p><strong>Noise fields (per channel):</strong></p>
+<p><strong><code>Type</code></strong> · <code>enum</code></p>
+<p>Type of noise. <code>None</code> disables this channel; otherwise pick from
+            <code>Simple</code>, <code>FBM</code>, <code>Worley</code>, <code>Worm</code>, <code>WormFBM</code>,
+            or <code>Texture</code>.</p>
+<p><em>Default: None</em></p>
+<hr />
+<p><strong><code>Space</code></strong> · <code>enum</code></p>
+<p><code>World</code> samples in world space (consistent across the level);
+            <code>Stamp</code> samples relative to the spline.</p>
+<p><em>Default: World</em></p>
+<hr />
+<p><strong><code>Frequency</code></strong> · <code>float</code></p>
+<p>Spatial frequency of the noise. Higher values produce smaller features.</p>
+<p><em>Default: 10.0</em></p>
+<hr />
+<p><strong><code>Amplitude</code></strong> · <code>float</code></p>
+<p>Multiplier on the noise output. Higher values produce stronger displacement / variation.</p>
+<p><em>Default: 1.0</em></p>
+<hr />
+<p><strong><code>Offset</code></strong> · <code>float</code></p>
+<p>Constant added to the noise output before amplitude.</p>
+<p><em>Default: 0.0</em></p>
+<hr />
+<p><strong><code>Balance</code></strong> · <code>float</code></p>
+<p>Skews the noise toward higher (positive) or lower (negative) values.</p>
+<p><em>Default: 0.0  |  Range: -0.5 – 0.5</em></p>
+<hr />
+<h3 id="microverse-quality">Microverse → Quality<a class="headerlink" href="#microverse-quality" title="Permanent link">&para;</a></h3>
+<p><strong><code>SDF Resolution</code></strong> · <code>enum</code></p>
+<p>Resolution of the internal Signed Distance Field used for the spline.
+            Higher values produce more accurate carving at the cost of memory and processing time.
+            Options: <code>K256</code>, <code>K512</code>, <code>K1024</code>, <code>K2048</code>.</p>
+<p><em>Default: K512</em></p>
+<hr />
+<p><strong><code>Search Quality</code></strong> · <code>enum</code></p>
+<p>Quality of the closest-point-on-spline search. Higher quality produces more
+            accurate results but increases update time. Options: <code>VeryLow</code>, <code>Low</code>,
+            <code>Medium</code>, <code>High</code>, <code>VeryHigh</code>, <code>ExtremelyHigh</code>.</p>
+<p><em>Default: Medium</em></p>
+<hr />
+<h3 id="roads-side-roads">Roads → Side Roads<a class="headerlink" href="#roads-side-roads" title="Permanent link">&para;</a></h3>
+<h3 id="routing_1">Routing<a class="headerlink" href="#routing_1" title="Permanent link">&para;</a></h3>
+<p><strong><code>Routing</code></strong> · <code>SideRoadRouting</code></p>
+<p>How side roads are generated.</p>
+<hr />
+<h3 id="count">Count<a class="headerlink" href="#count" title="Permanent link">&para;</a></h3>
+<p><strong><code>Count Min</code></strong> · <code>int</code></p>
+<p>Minimum number of procedural side roads generated per run.
+            Ignored when Count Fixed is greater than 0.</p>
+<p><em>Default: 2  |  Min: 0</em></p>
+<hr />
+<p><strong><code>Count Max</code></strong> · <code>int</code></p>
+<p>Maximum number of procedural side roads. The actual count is chosen randomly
+            within the Min/Max range.</p>
+<p><em>Default: 6  |  Min: 0</em></p>
+<hr />
+<p><strong><code>Count Fixed</code></strong> · <code>int</code></p>
+<p>If greater than 0, always generates exactly this many side roads, overriding
+            Min/Max. Set to 0 to use the Min/Max range instead.</p>
+<p><em>Default: 0</em></p>
+<hr />
+<h3 id="length-spacing">Length &amp; Spacing<a class="headerlink" href="#length-spacing" title="Permanent link">&para;</a></h3>
+<p><strong><code>Length Fraction</code></strong> · <code>float</code></p>
+<p>Side road length as a fraction of the longest grid axis. 0 produces very
+            short roads; 0.5 means they can extend half the grid length.</p>
+<p><em>Default: 0.5  |  Range: 0 – 0.5</em></p>
+<hr />
+<p><strong><code>Min Pivot Spacing</code></strong> · <code>int</code></p>
+<p>Minimum cell spacing between side road attachment points on the main road.
+            Prevents roads from spawning too close together.</p>
+<p><em>Default: 6  |  Min: 0</em></p>
+<hr />
+<p><strong><code>Stop When Hit Road</code></strong> · <code>bool</code></p>
+<p>If enabled, a side road stops extending when it meets an existing road cell.
+            Prevents road overlap and creates a cleaner, more logical street network.</p>
+<p><em>Default: true</em></p>
+<hr />
+<h3 id="road-width_1">Road Width<a class="headerlink" href="#road-width_1" title="Permanent link">&para;</a></h3>
+<p><strong><code>Thickness</code></strong> · <code>int</code></p>
+<p>Half-width of side roads in grid cells. Works the same way as main road thickness.</p>
+<p><em>Default: 0  |  Min: 0</em></p>
+<hr />
+<h3 id="curves_1">Curves<a class="headerlink" href="#curves_1" title="Permanent link">&para;</a></h3>
+<p><strong><code>Segments Min</code></strong> · <code>int</code></p>
+<p>Minimum number of curve segments for side roads.</p>
+<p><em>Default: 1  |  Min: 1</em></p>
+<hr />
+<p><strong><code>Segments Max</code></strong> · <code>int</code></p>
+<p>Maximum number of curve segments for side roads.</p>
+<p><em>Default: 4  |  Min: 1</em></p>
+<hr />
+<p><strong><code>Amplitude Min</code></strong> · <code>float</code></p>
+<p>Minimum lateral curve amplitude for side roads, in grid cells.</p>
+<p><em>Default: 1.0  |  Min: 0</em></p>
+<hr />
+<p><strong><code>Amplitude Max</code></strong> · <code>float</code></p>
+<p>Maximum lateral curve amplitude for side roads, in grid cells.</p>
+<p><em>Default: 6.0  |  Min: 0</em></p>
+<hr />
+<p><strong><code>Angle Jitter</code></strong> · <code>float</code></p>
+<p>Random angular variation applied to each side road's starting direction, in degrees.
+            0 means always perpendicular to the main road; higher values create more organic layouts.</p>
+<p><em>Default: 25°  |  Range: 0 – 90</em></p>
+<hr />
+<h3 id="spline-export_1">Spline Export<a class="headerlink" href="#spline-export_1" title="Permanent link">&para;</a></h3>
+<p><strong><code>Auto Export Splines</code></strong> · <code>bool</code></p>
+<p>When enabled, procedurally generated roads are automatically exported to a child
+            <code>SplineContainer</code> at generation time. The splines conform to terrain height and can be
+            used by other systems (e.g. Spline Mesh, traffic AI).</p>
+<p><em>Default: false</em></p>
+<hr />
+<p><strong><code>Spline Resolution</code></strong> · <code>float</code></p>
+<p>How frequently (in Unity units) a spline knot is placed to conform to the terrain.
+            Lower values produce more knots and a tighter terrain fit, but increase spline complexity.</p>
+<p><em>Default: 5.0  |  Min: 0.5</em></p>
+<hr />
+<p><strong><code>Height Offset</code></strong> · <code>float</code></p>
+<p>Vertical lift applied to the generated splines to prevent Z-fighting with the
+            terrain surface.</p>
+<p><em>Default: 0.1</em></p>
+<hr />
+<h3 id="stamp_1">Stamp<a class="headerlink" href="#stamp_1" title="Permanent link">&para;</a></h3>
+<p><strong><code>Side Road Stamp</code></strong> · <code>string</code></p>
+<p>The stamp name emitted for side road cells. Must exactly match a
+            Stamp Rule's <code>StampName</code> in one of the assigned Stencils.</p>
+<p><em>Default: VillageSideRoad</em></p>
+<hr />
+<h3 id="microverse-splines-optional_1">Microverse Splines (optional)<a class="headerlink" href="#microverse-splines-optional_1" title="Permanent link">&para;</a></h3>
+<p>Side Roads expose the same Microverse Splines integration as Main Roads. When the
+        <a href="https://assetstore.unity.com/packages/tools/terrain/microverse-splines-232974">Microverse Splines</a>
+        package is installed and <strong>Use Microverse Spline</strong> is enabled, every generated side-road
+        spline GameObject (<code>SideRoad_NN</code>) gets a <code>SplinePath</code> component configured from
+        these settings — independent of the main road's settings, so side roads can use a different width,
+        terrain layer, or noise profile.</p>
+<p>See Roads → Main Roads → Microverse Splines above for the full
+        property reference. The Side Road settings are identical in structure and behaviour, just applied to
+        side-road splines instead of main-road splines.</p>
+<h3 id="buildings-residential">Buildings → Residential<a class="headerlink" href="#buildings-residential" title="Permanent link">&para;</a></h3>
+<p><strong><code>House Spacing (Cells)</code></strong> · <code>int</code></p>
+<p>This value controls the <strong>scan step</strong> (also called the stride) that the placement
+                algorithm uses when walking across the grid looking for valid house locations. It does
+                <em>not</em> add a gap or buffer between buildings — it determines <strong>how many grid
+                cells the algorithm skips between each candidate position it checks</strong>.</p>
+<p><strong>How it works:</strong> The Forger scans the grid from corner to corner in a nested loop,
+                advancing by <code>step</code> cells in both X and Y. At each sampled position it tries to fit
+                one of your enabled house types — checking that the footprint is clear and that at least
+                one edge touches a road. A lower step means more positions are checked and more houses are placed;
+                a higher step means fewer positions are checked and placement becomes sparse.</p>
+<p><strong>Example on a 20×20 grid:</strong></p>
+<p><strong>Why high values fail:</strong> Each candidate position must satisfy two conditions:
+                the full footprint must be clear of roads, buildings, and obstacles, <em>and</em> at least one
+                edge must be adjacent to a road cell. With only a handful of candidate positions, most will
+                be blocked by roads, the village square, special buildings, or obstacle geometry — leaving
+                nowhere valid for houses.</p>
+<p><strong>When set to 0 (auto):</strong> The algorithm automatically uses the smallest dimension
+                among all enabled house types as the step. For example, if your smallest house is 2×2, the
+                step becomes 2. This is the recommended default — it produces a well-populated village
+                without checking unnecessarily many positions.</p>
+<p><strong>Recommendation:</strong> Leave this at <strong>0</strong> unless you specifically want
+                a sparser village. Values of 1–3 are safe. Values above 4 should only be used on very
+                large grids (100+ cells per axis). The inspector will display a warning if the value is high
+                enough to cause placement issues on your current grid size.</p>
+<p><em>Default: 0 (auto)  |  Min: 0</em></p>
+<hr />
+<h3 id="house-definition-properties">House Definition Properties<a class="headerlink" href="#house-definition-properties" title="Permanent link">&para;</a></h3>
+<p>Each entry in the House Types list defines a residential building type.</p>
+<p><strong><code>Enabled</code></strong> · <code>bool</code></p>
+<p>Toggle this house type on or off without removing it from the list.</p>
+<hr />
+<p><strong><code>Building Name</code></strong> · <code>string</code></p>
+<p>The name used for the Stamp and in the Inspector (e.g. "Peasant Hovel").
+                Must exactly match a Stamp Rule's <code>StampName</code> in one of the assigned Stencils.</p>
+<hr />
+<p><strong><code>Snap To Terrain</code></strong> · <code>bool</code></p>
+<p>When enabled, the building's Y position is set to the terrain height at its
+                placement location using high-precision raycasting.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Rotate To Face Road</code></strong> · <code>bool</code></p>
+<p>Automatically rotates the building to face the nearest road using a weighted
+                tangent calculation. Creates natural-looking street-facing architecture.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Size</code></strong> · <code>Vector2Int</code></p>
+<p>The footprint in grid cells. <strong>X = Frontage</strong> (road-facing edge),
+                <strong>Y = Depth</strong> (perpendicular to road). Ensure your prefabs fit within these dimensions
+                multiplied by Resolution.</p>
+<p><em>Default: (2, 2)</em></p>
+<hr />
+<h3 id="buildings-specialized">Buildings → Specialized<a class="headerlink" href="#buildings-specialized" title="Permanent link">&para;</a></h3>
+<p>Special buildings are landmark structures with priority-based placement and flexible road requirements.</p>
+<h3 id="special-building-definition-properties">Special Building Definition Properties<a class="headerlink" href="#special-building-definition-properties" title="Permanent link">&para;</a></h3>
+<p><strong><code>Enabled</code></strong> · <code>bool</code></p>
+<p>Toggle this special building on or off.</p>
+<hr />
+<p><strong><code>Building Name</code></strong> · <code>string</code></p>
+<p>The exact stamp name (e.g. "VillageManor"). Must match a
+                Stamp Rule's <code>StampName</code> in one of the assigned Stencils.</p>
+<hr />
+<p><strong><code>Snap To Terrain</code></strong> · <code>bool</code></p>
+<p>Snap this building to the terrain height at its placement location.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Rotate To Face Road</code></strong> · <code>bool</code></p>
+<p>Rotate the building to face the nearest road.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Size</code></strong> · <code>Vector2Int</code></p>
+<p>The footprint of this building in grid cells (width, depth).</p>
+<p><em>Default: (3, 3)</em></p>
+<hr />
+<p><strong><code>Priority</code></strong> · <code>int</code></p>
+<p>Higher priority buildings are placed first. Use this to ensure important landmarks
+                (church, manor) get prime road-adjacent slots before less important structures.</p>
+<p><em>Default: 10</em></p>
+<hr />
+<p><strong><code>Placement</code></strong> · <code>SpecialPlacementRule</code></p>
+<p>Controls which roads this building can be placed alongside.</p>
+<p><em>Default: Flexible</em></p>
+<hr />
+<p><strong><code>Skip Fallback</code></strong> · <code>bool</code></p>
+<p>When enabled, the Forger will not try side roads if main road placement fails.
+                The building is simply omitted from the layout. Only relevant when Placement is set to Flexible.</p>
+<p><em>Default: false</em></p>
+<hr />
+<h3 id="system-debug-colors">System → Debug Colors<a class="headerlink" href="#system-debug-colors" title="Permanent link">&para;</a></h3>
+<p>These colors control the terrain-conforming debug overlay mesh. Each cell type gets a distinct color
+        for easy identification.</p>
+<p><strong><code>Main Road Color</code></strong> · <code>Color</code></p>
+<p>Overlay color for main road cells.</p>
+<p><em>Default: Red</em></p>
+<hr />
+<p><strong><code>Side Road Color</code></strong> · <code>Color</code></p>
+<p>Overlay color for side road cells.</p>
+<p><em>Default: Yellow</em></p>
+<hr />
+<p><strong><code>Empty Color</code></strong> · <code>Color</code></p>
+<p>Overlay color for empty ground cells.</p>
+<p><em>Default: Blue</em></p>
+<hr />
+<p><strong><code>Village Square Color</code></strong> · <code>Color</code></p>
+<p>Overlay color for the village square area.</p>
+<p><em>Default: Orange</em></p>
+<hr />
+<p><strong><code>Special Building Color</code></strong> · <code>Color</code></p>
+<p>Overlay color for special building footprints.</p>
+<p><em>Default: Purple</em></p>
+<hr />
+<p><strong><code>House Color</code></strong> · <code>Color</code></p>
+<p>Overlay color for residential house footprints.</p>
+<p><em>Default: Green</em></p>
+<hr />
+<p><strong><code>Obstacle Color</code></strong> · <code>Color</code></p>
+<p>Overlay color for cells blocked by scene geometry obstacles. Only visible when <strong>Show Obstacle Gizmos</strong> is enabled.</p>
+<p><em>Default: Red</em></p>
+<hr />
+<p><strong><code>Overlay Offset</code></strong> · <code>float</code></p>
+<p>Vertical lift applied to the overlay mesh to prevent Z-fighting with the
+            terrain surface.</p>
+<p><em>Default: 0.05</em></p>
+<hr />
+<h3 id="system-overlay-shader-properties">System → Overlay Shader Properties<a class="headerlink" href="#system-overlay-shader-properties" title="Permanent link">&para;</a></h3>
+<p>Control the appearance of the procedural grid overlay visualization. The overlay uses a dual-layer system:
+        <strong>major grid lines</strong> mark cell boundaries, and <strong>minor grid lines</strong> show internal world-unit subdivisions.</p>
+<p><strong><code>Global Alpha</code></strong> · <code>float</code></p>
+<p>Overall transparency of the entire overlay mesh (0 = invisible, 1 = fully opaque).</p>
+<p><em>Default: 0.5</em></p>
+<hr />
+<p><strong><code>Major Grid Color</code></strong> · <code>Color</code></p>
+<p>Color and alpha of the major grid lines that mark cell boundaries (grid-cell resolution).</p>
+<p><em>Default: Black with 0.7 alpha</em></p>
+<hr />
+<p><strong><code>Major Thickness</code></strong> · <code>float</code></p>
+<p>Thickness of major grid lines in world units. Range: 0.005 to 0.2.</p>
+<p><em>Default: 0.05</em></p>
+<hr />
+<p><strong><code>Minor Grid Color</code></strong> · <code>Color</code></p>
+<p>Color and alpha of the minor grid lines that subdivide each cell (showing the CellSize world-unit divisions).</p>
+<p><em>Default: Black with 0.3 alpha</em></p>
+<hr />
+<p><strong><code>Minor Thickness</code></strong> · <code>float</code></p>
+<p>Thickness of minor grid lines in world units. Range: 0.005 to 0.1.</p>
+<p><em>Default: 0.02</em></p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Height snapping — heightmap first, raycast as fallback.</strong>
+        Each overlay vertex is lifted to terrain height before drawing. The visualizer prefers
+        the injected <code>IVillageTerrainCache.GetHeight</code> heightmap read — it sees only
+        terrain, never building meshes — so the overlay stays flat under buildings instead of
+        climbing over their roofs. If no terrain cache is available, it falls back to a downward
+        physics raycast restricted to the active terrain's layer (never the Default layer where
+        spawned buildings live), then to the raw vertex height plus <code>YOffset</code>. This
+        ordering was a deliberate fix — earlier builds raycast first against the Default mask
+        and produced "tents" wherever buildings sat under the overlay.</p>
+</div>
+<h3 id="system-diagnostics">System → Diagnostics<a class="headerlink" href="#system-diagnostics" title="Permanent link">&para;</a></h3>
+<p><strong><code>Log Placement Warnings</code></strong> · <code>bool</code></p>
+<p>Logs a warning to the Console when a special building cannot be placed anywhere
+            on the grid. Helpful for identifying when your grid is too small or too crowded for all
+            defined buildings.</p>
+<p><em>Default: true</em></p>
+<hr />
+<p><strong><code>Strict Placement</code></strong> · <code>bool</code></p>
+<p>When enabled, generation aborts entirely if any special building cannot be placed.
+            Useful for strict layout validation during development.</p>
+<p><em>Default: false</em></p>
+<hr />
+<p><strong><code>Verbose Diagnostics</code></strong> · <code>bool</code></p>
+<p>Logs detailed per-building placement pass/fail results to the Console.
+            Use this to diagnose why specific buildings are not appearing in the layout.</p>
+<p><em>Default: false</em></p>
+<hr />
+<h3 id="system-object-naming">System → Object Naming<a class="headerlink" href="#system-object-naming" title="Permanent link">&para;</a></h3>
+<p>These control the names of procedurally generated GameObjects in the hierarchy. The
+        <code>ForgerOutput</code> marker system tracks these objects by component, not name, so renaming
+        is safe.</p>
+<p><strong><code>Output Holder Name</code></strong> · <code>string</code></p>
+<p>The name of the root GameObject that holds all generated village objects.</p>
+<p><em>Default: <strong>WorldForgerOutput</strong></em></p>
+<hr />
+<p><strong><code>Road Splines Name</code></strong> · <code>string</code></p>
+<p>The name of the GameObject holding the exported road splines.</p>
+<p><em>Default: <strong>WorldForgerRoadSplines</strong></em></p>
+<hr />
+<p><strong><code>Debug Overlay Name</code></strong> · <code>string</code></p>
+<p>The name of the GameObject holding the debug overlay mesh.</p>
+<p><em>Default: <strong>WorldForgerOverlay</strong></em></p>
+<hr />
+<h3 id="village-forger-frequently-asked-questions">Village Forger — Frequently Asked Questions<a class="headerlink" href="#village-forger-frequently-asked-questions" title="Permanent link">&para;</a></h3>
+<p>FAQ 1</p>
+<h3 id="q-i-set-house-spacing-to-5-or-higher-and-now-no-houses-appear-why">Q: I set House Spacing to 5 (or higher) and now no houses appear. Why?<a class="headerlink" href="#q-i-set-house-spacing-to-5-or-higher-and-now-no-houses-appear-why" title="Permanent link">&para;</a></h3>
+<p><strong>House Spacing</strong> is not a gap or buffer between buildings — it is the
+            <strong>scan step</strong> (stride) the placement algorithm uses when walking across your grid
+            looking for valid house locations. The algorithm starts at one corner of the grid and advances
+            by this many cells in both X and Y at each step. At every position it lands on, it checks
+            whether a house footprint fits there (clear of roads, obstacles, and other buildings) and
+            whether at least one edge touches a road.</p>
+<p>A high step value means the algorithm <strong>skips over most of the grid</strong> and only
+            checks a handful of positions. On a 20×20 grid with a step of 5, only about 16 positions
+            are checked. After subtracting positions blocked by roads, the village square, special buildings,
+            and obstacles, there may be zero valid spots left — so no houses get placed.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Fix:</strong> Set House Spacing to <strong>0</strong> (auto). The algorithm will
+            automatically use the smallest enabled house dimension as the step, which produces a
+            well-populated village without unnecessary scanning overhead.</p>
+</div>
+<p>FAQ 2</p>
+<h3 id="q-why-does-house-spacing-1-produce-more-houses-than-house-spacing-0-auto">Q: Why does House Spacing = 1 produce more houses than House Spacing = 0 (auto)?<a class="headerlink" href="#q-why-does-house-spacing-1-produce-more-houses-than-house-spacing-0-auto" title="Permanent link">&para;</a></h3>
+<p>When set to <strong>0 (auto)</strong>, the algorithm does not use a step of 1. Instead, it
+            calculates the step from the smallest dimension of your enabled house types. For example, if
+            your smallest house is 2×2, the auto step becomes <strong>2</strong>. This means:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Actual Step</th>
+<th>Positions on 20×20 Grid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (auto)</td>
+<td>2 (smallest house dim)</td>
+<td>~100</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1 (every cell)</td>
+<td>~400</td>
+</tr>
+</tbody>
+</table>
+<p>A step of 1 checks <strong>every single cell</strong>, so it can find valid placements that a
+            step of 2 skips over. For example, a valid 2×2 slot at position (1, 1) would be missed
+            when stepping by 2 (which checks 0, 2, 4…) but caught when stepping by 1.</p>
+<p>In practice, the difference is usually small. Auto (step = 2) already produces a
+            well-populated village while avoiding redundant overlap checks. Setting the step to 1 is more
+            thorough but does roughly 4× more work — rarely necessary unless you need every
+            possible slot filled on a tight grid.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Recommendation:</strong> Leave at <strong>0 (auto)</strong> for most use cases. Only
+            set to 1 if you notice gaps in placement and want maximum coverage.</p>
+</div>
+<p>FAQ 3</p>
+<h3 id="q-my-special-building-says-placement-failed-in-the-console-what-can-i-do">Q: My special building says "placement failed" in the console. What can I do?<a class="headerlink" href="#q-my-special-building-says-placement-failed-in-the-console-what-can-i-do" title="Permanent link">&para;</a></h3>
+<p>Special buildings are placed <strong>before</strong> residential houses, in descending
+            <strong>Priority</strong> order. Each one needs a contiguous block of empty cells matching its
+            Size, with at least one edge adjacent to a road. Placement can fail for several reasons:
+- The grid is too small for the building’s footprint plus the surrounding road and spacing requirements.
+- The building’s <strong>Placement</strong> rule restricts it to main-road-only or side-road-only cells, and there aren’t enough qualifying positions.
+- Higher-priority buildings already consumed the best positions.
+- Obstacles (scene objects on your Obstacle Layers) are blocking candidate areas.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Troubleshooting steps:</strong></p>
+<p>Enable <strong>Verbose Placement Diagnostics</strong> (System → Diagnostics) to see exactly which positions were tried and why each failed.
+Try changing the building’s <strong>Placement</strong> rule to <code>Flexible</code> so it can use both main and side roads.
+Reduce the building’s <strong>Size</strong> if it’s too large for your grid.
+Increase your grid dimensions to give more room.
+Lower the <strong>Priority</strong> so other buildings don’t claim the best spots first.</p>
+</div>
+<p>FAQ 4</p>
+<h3 id="q-what-is-the-difference-between-the-village-profile-and-the-village-config">Q: What is the difference between the Village Profile and the Village Config?<a class="headerlink" href="#q-what-is-the-difference-between-the-village-profile-and-the-village-config" title="Permanent link">&para;</a></h3>
+<p>The <strong>Village Forger Profile</strong> is a <code>ScriptableObject</code> asset that defines
+            <em>what</em> a village looks like — road shapes, building types, curve parameters, stamp
+            names, debug colors, and all the shared rules. It can be reused across multiple village instances
+            for visual consistency.</p>
+<p>The <strong>Village Forger Config</strong> is a <code>MonoBehaviour</code> component on a
+            specific GameObject in your scene. It holds <em>instance-specific</em> data: the grid Width and
+            Height, the Grid Offset, custom spline assignments, and a reference to which Profile to use.
+            Two villages in the same scene can share the same Profile but have different grid sizes and positions.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Think of it this way:</strong> The Profile is the blueprint (shared DNA), and the Config
+            is the building site (unique location and dimensions).</p>
+</div>
+<p>FAQ 5</p>
+<h3 id="q-why-do-buildings-overlap-or-float-above-the-terrain">Q: Why do buildings overlap or float above the terrain?<a class="headerlink" href="#q-why-do-buildings-overlap-or-float-above-the-terrain" title="Permanent link">&para;</a></h3>
+<p><strong>Overlapping:</strong> Buildings are placed on a grid, so overlap typically means two
+            building types have footprint sizes that don’t tile cleanly with the scan step, or the
+            <strong>Cell Size</strong> doesn’t match your art assets. Make sure each building prefab
+            fits within its defined <strong>Size</strong> (in cells) multiplied by the profile’s
+            <strong>Cell Size</strong>. For example, a 2×2 house on a Cell Size of 3 occupies a
+            6×6 unit area.</p>
+<p><strong>Floating:</strong> Ensure <strong>Snap to Terrain</strong> is enabled on the house or
+            special building definition. The Forger uses high-precision raycasting to sample the terrain
+            height at each placement position. If Snap to Terrain is off, the building spawns at the
+            grid’s Y origin, which may not match the terrain surface.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://assetstore.unity.com" target="_blank" rel="noopener" title="assetstore.unity.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m243.6 91.6 80.1 46.8c2.9 1.6 3 6.2 0 7.8l-95.2 55.6c-2.9 1.7-6.3 1.6-9 0l-95.2-55.6c-2.9-1.6-3-6.3 0-7.8l80.1-46.8V0L0 119.4v238.8l78.4-45.8v-93.6c-.1-3.3 3.8-5.7 6.7-3.9l95.2 55.6c2.9 1.7 4.5 4.7 4.5 7.8v111.2c.1 3.3-3.8 5.7-6.7 3.9L98 346.8l-78.4 45.8L224 512l204.4-119.4-78.4-45.8-80.1 46.8c-2.8 1.7-6.8-.5-6.7-3.9V278.5c0-3.3 1.8-6.3 4.5-7.8l95.2-55.7c2.8-1.7 6.8.5 6.7 3.9v93.6l78.4 45.8V119.5L243.6.1v91.6z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3324 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="World Forger — Procedural world generation toolkit for Unity">
+      
+      
+        <meta name="author" content="B2C3D">
+      
+      
+        <link rel="canonical" href="https://b2c3d.github.io/World-Forger/stencil-graph/">
+      
+      
+        <link rel="prev" href="../prefab-forger/">
+      
+      
+        <link rel="next" href="../tools/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Stencil Graph - World Forger</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Segoe+UI:300,300i,400,400i,700,700i%7CCascadia+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Segoe UI";--md-code-font:"Cascadia Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#stencil-graph" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="World Forger" class="md-header__button md-logo" aria-label="World Forger" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            World Forger
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Stencil Graph
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="World Forger" class="md-nav__button md-logo" aria-label="World Forger" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    World Forger
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../village-forger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Village Forger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../village-profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Village Profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prefab-forger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prefab Forger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stencil Graph
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stencil Graph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#graph-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Editor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editor-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editor Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting Nodes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-each-inspector-shows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Each Inspector Shows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolbar-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toolbar Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyboard-shortcuts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keyboard Shortcuts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-stencils" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Stencils
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Stencils">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stamp-rule-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stamp Rule Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefab-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefab Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefab-array-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefab Array Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stamp-emitter-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stamp Emitter Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vec3-fields-inline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vec3 Fields (inline)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Preview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Tiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seed-pinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seed Pinning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#per-instance-tracker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Instance Tracker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sticky-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sticky Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appearance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appearance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#members" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Members
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolution-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolution Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgermarker-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgerMarker Component
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgerstampinstance-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgerStampInstance Component
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgerchildstampinstance-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgerChildStampInstance Component
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Composition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-reference_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-spawn-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Spawn Filters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-a-filter-vs-another-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to use a filter (vs. another mechanism)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authoring-workflow-three-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authoring workflow — three steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter-hooks-what-each-method-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter Hooks — what each method does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hook-order-per-spawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook order, per spawn
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgerspawncontext-what-filters-see" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgerSpawnContext — what filters see
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-the-values-live-one-class-many-assets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the values live — one class, many assets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefab-array-node-shared-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefab Array Node — shared filters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-preview-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Preview interaction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determinism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Determinism
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stock-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stock Filters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mindistancefilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MinDistanceFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maxslopefilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MaxSlopeFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heightrangefilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HeightRangeFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aligntoterrainnormalfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AlignToTerrainNormalFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snaptogridfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SnapToGridFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-worldforger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending WorldForger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-five-plug-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The five plug points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authoring-workflow-minimal-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authoring workflow — minimal example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-assembly-discovery-how-it-actually-finds-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-assembly discovery — how it actually finds you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#polymorphic-forger-targeting-the-killer-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Polymorphic Forger targeting — the killer feature
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hooking-into-existing-custom-editors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooking into existing custom editors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stock-examples-that-ship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stock examples that ship
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exception-isolation-why-a-buggy-tool-cant-crash-the-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception isolation — why a buggy tool can't crash the editor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tool-authoring-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool authoring checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-salting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial Salting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preview-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preview Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#graph-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Editor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editor-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editor Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting Nodes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-each-inspector-shows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Each Inspector Shows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolbar-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toolbar Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyboard-shortcuts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keyboard Shortcuts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-stencils" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Stencils
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Stencils">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stamp-rule-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stamp Rule Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefab-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefab Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefab-array-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefab Array Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stamp-emitter-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stamp Emitter Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vec3-fields-inline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vec3 Fields (inline)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Preview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Tiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seed-pinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seed Pinning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#per-instance-tracker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Instance Tracker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sticky-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sticky Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appearance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appearance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#members" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Members
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolution-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolution Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgermarker-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgerMarker Component
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgerstampinstance-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgerStampInstance Component
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgerchildstampinstance-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgerChildStampInstance Component
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Composition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-reference_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-spawn-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Spawn Filters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-a-filter-vs-another-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to use a filter (vs. another mechanism)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authoring-workflow-three-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authoring workflow — three steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter-hooks-what-each-method-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter Hooks — what each method does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hook-order-per-spawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook order, per spawn
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgerspawncontext-what-filters-see" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgerSpawnContext — what filters see
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-the-values-live-one-class-many-assets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the values live — one class, many assets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefab-array-node-shared-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefab Array Node — shared filters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-preview-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Preview interaction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determinism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Determinism
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stock-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stock Filters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mindistancefilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MinDistanceFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maxslopefilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MaxSlopeFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heightrangefilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HeightRangeFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aligntoterrainnormalfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AlignToTerrainNormalFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snaptogridfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SnapToGridFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-worldforger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending WorldForger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-five-plug-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The five plug points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authoring-workflow-minimal-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authoring workflow — minimal example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-assembly-discovery-how-it-actually-finds-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-assembly discovery — how it actually finds you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#polymorphic-forger-targeting-the-killer-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Polymorphic Forger targeting — the killer feature
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hooking-into-existing-custom-editors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooking into existing custom editors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stock-examples-that-ship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stock examples that ship
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exception-isolation-why-a-buggy-tool-cant-crash-the-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception isolation — why a buggy tool can't crash the editor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tool-authoring-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool authoring checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-salting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial Salting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preview-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preview Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="stencil-graph">Stencil Graph<a class="headerlink" href="#stencil-graph" title="Permanent link">&para;</a></h1>
+<p>The Stencil Graph is a non-linear interpreter that converts abstract stamp data into physical
+        game objects. It is built on Unity’s built-in <code>UnityEditor.Experimental.GraphView</code>
+        API, providing a fully visual node-based editor for defining how stamps map to prefabs.
+        <strong>Stencils</strong> (<code>WorldForgerGraphAsset</code>) are the core creative asset of
+        the system — the very same asset you edit in the graph window is the runtime asset a
+        Forger consumes at generation time. There is no import step, no sidecar backup file, no
+        compile pass.</p>
+<h3 id="graph-editor">Graph Editor<a class="headerlink" href="#graph-editor" title="Permanent link">&para;</a></h3>
+<p>The Stencil Graph editor is a custom GraphView window that opens when you double-click a
+        <code>WorldForgerGraphAsset</code> in the Project window. It provides a full node-graph
+        canvas with drag-and-drop prefab assignment, color-coded node types, integrated live
+        preview, and inline validation.</p>
+<h3 id="editor-features">Editor Features<a class="headerlink" href="#editor-features" title="Permanent link">&para;</a></h3>
+<p><strong><code>Node Canvas</code></strong></p>
+<p>Standard GraphView canvas with pan, zoom, box selection, and
+                copy/paste. Right-click the canvas background to open the node creation menu
+                (Add Stamp Rule, Add Prefab, Add Sticky Note).</p>
+<hr />
+<p><strong><code>Color-Coded Nodes</code></strong></p>
+<p>Each node type has a distinct header stripe for quick visual identification:
+                <strong>Green</strong> = Stamp Rule,
+                <strong>Blue</strong> = Prefab.
+                Edges connect a Stamp Rule's <em>output</em> port to a Prefab's <em>input</em> port,
+                building the candidate list for that rule.</p>
+<hr />
+<p><strong><code>Auto-Save</code></strong></p>
+<p>The editor flushes to disk on focus loss (clicking another window)
+                and on close, so edits land on the asset without an explicit save action — just
+                like an Inspector field. ++ctrl+s++ still saves the current scene as usual.</p>
+<hr />
+<p><strong><code>Persistent View State</code></strong></p>
+<p>Pan offset, zoom scale, and each node's <em>collapsed</em> state are
+                serialised onto the asset (<code>ViewOffset</code>, <code>ViewScale</code>,
+                <code>StampRuleNodeData.Collapsed</code>, <code>PrefabNodeData.Collapsed</code>) so
+                you return to the same view across sessions and domain reloads.</p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Tip — evaluation order:</strong> Prefab Nodes are evaluated in the order their
+        edges were connected to the Stamp Rule. Reorder by removing and re-adding an edge if you
+        want a particular candidate to roll first. <code>StopFlow</code> on a Prefab terminates the
+        roll early once it spawns — useful for prioritising rare variants.</p>
+</div>
+<h3 id="inspecting-nodes">Inspecting Nodes<a class="headerlink" href="#inspecting-nodes" title="Permanent link">&para;</a></h3>
+<p>Clicking any node on the canvas selects it and immediately populates Unity’s Inspector
+        panel with a dedicated editor for that node type — no need to navigate nested foldouts
+        or open a separate properties window.</p>
+<h3 id="what-each-inspector-shows">What Each Inspector Shows<a class="headerlink" href="#what-each-inspector-shows" title="Permanent link">&para;</a></h3>
+<p><strong><code>Stamp Rule</code></strong></p>
+<p>Enabled toggle, Stamp Name, and Position / Rotation / Scale
+                offsets applied to every candidate that spawns under this rule.</p>
+<hr />
+<p><strong><code>Prefab Node</code></strong></p>
+<p>Prefab reference (drag-and-drop), Weight, behavioral flags
+                (Stop Flow, Static Mode, Externally Managed, Nav Static), Position / Rotation /
+                Scale offsets, Spawn Filters, and the per-node Preview Settings override.</p>
+<hr />
+<p><strong><code>Prefab Array Node</code></strong></p>
+<p>Prefabs list, Weight, the same behavioral flags as Prefab Node,
+                Position / Rotation / Scale offsets, and Spawn Filters. All members of the array
+                share the same probability and flags.</p>
+<hr />
+<p><strong><code>Stamp Emitter Node</code></strong></p>
+<p>Stamp Name (the child stamp to fire after the parent prefab
+                spawns) and Position / Rotation / Scale offsets relative to the spawned parent.</p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Tip — Live Preview &amp; Undo:</strong> Inspector edits trigger Live Preview
+        exactly like inline edits. Transform drags use the fast re-pose path (no respawn); structure
+        changes — prefab swap, name rename, flag toggle — trigger a full scene rebuild.
+        All Inspector edits are recorded in Unity’s Undo stack; ++ctrl+z++ works as
+        expected.</p>
+</div>
+<h3 id="toolbar-reference">Toolbar Reference<a class="headerlink" href="#toolbar-reference" title="Permanent link">&para;</a></h3>
+<p>The toolbar runs along the top of the Stencil Graph window. Buttons are arranged left to
+        right in roughly the order you reach for them during a typical editing session.</p>
+<p><strong><code>Live</code></strong> · <code>toggle</code></p>
+<p>Live Preview mode. <strong>ON by default</strong> for every newly opened graph
+            window — every transform/random/probability edit you make in the graph debounces for
+            300 ms and is applied to the active scene's Forger automatically. The button is amber when
+            active. Click to pause (useful before bulk restructuring on a large scene where the slow-path
+            <code>Forger.Build()</code> would stall the editor). See
+            Live Preview for the fast-path
+            vs. slow-path semantics.</p>
+<hr />
+<p><strong><code>Apply</code></strong> · <code>button</code></p>
+<p>Force-flushes any pending Live Preview change immediately rather than
+            waiting for the 300 ms debounce window. Useful when you want to drag a slider, then
+            instantly see the result without releasing the mouse.</p>
+<hr />
+<p><strong><code>Fit</code></strong> · <code>button</code></p>
+<p>Frames all nodes to fit the current window. Shortcut: ++f++
+            with the canvas focused frames the current selection if any nodes are selected, otherwise
+            frames the whole graph.</p>
+<hr />
+<p><strong><code>Tidy</code></strong> · <code>button</code></p>
+<p>Auto-layout pass. Stamp Rule nodes are stacked in a left column and
+            their connected Prefab nodes are arranged in tidy rows to the right, sorted by edge order.
+            Sticky notes and orphan prefabs are not moved. Undoable with ++ctrl+z++.</p>
+<hr />
+<p><strong><code>Map</code></strong> · <code>toggle</code></p>
+<p>Shows or hides the floating MiniMap in the bottom-right corner. The
+            MiniMap is draggable and shows your current viewport rectangle — useful for large
+            graphs where Tidy alone isn't enough to keep your bearings.</p>
+<hr />
+<p><strong><code>Search</code></strong> · <code>text field</code></p>
+<p>Filters nodes by stamp name, prefab name, or sticky-note title.
+            Matches are highlighted; non-matching nodes are dimmed. Press ++ctrl+f++ to focus
+            the field, ++esc++ to clear it. The first match auto-frames in the canvas.</p>
+<hr />
+<h3 id="keyboard-shortcuts">Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permanent link">&para;</a></h3>
+<p>All shortcuts are active while the Stencil Graph window has focus.</p>
+<p><strong><code>F</code></strong></p>
+<p>Frame the current selection. With nothing selected, frames the
+            entire graph (same as the toolbar's <strong>Fit</strong> button).</p>
+<hr />
+<p><strong><code>Delete</code></strong></p>
+<p>Remove the selected nodes, edges, or sticky notes. Deleting a node
+            also removes any edges attached to it. Operation is undoable.</p>
+<hr />
+<p><strong><code>Ctrl+D</code></strong></p>
+<p>Duplicate selection in place — cloned nodes retain settings but
+            get fresh GUIDs and an offset position so they don't sit on top of the originals. Edges
+            between duplicated nodes are also recreated.</p>
+<hr />
+<p><strong><code>Ctrl+C / Ctrl+X / Ctrl+V</code></strong></p>
+<p>Copy / cut / paste. Paste targets the current mouse position so you
+            can move the selection between regions of the graph or even between two open Stencil
+            Graph windows.</p>
+<hr />
+<p><strong><code>Ctrl+F</code></strong></p>
+<p>Focus the toolbar Search field. ++esc++ from the field clears
+            the filter and returns focus to the canvas.</p>
+<hr />
+<p><strong><code>Mouse wheel / Alt+Drag</code></strong></p>
+<p>Standard GraphView pan and zoom. Middle-mouse drag also pans.</p>
+<hr />
+<h3 id="creating-stencils">Creating Stencils<a class="headerlink" href="#creating-stencils" title="Permanent link">&para;</a></h3>
+<p>To create a new Stencil:</p>
+<p><strong><code>Step 1</code></strong></p>
+<p>Create a <code>WorldForgerGraphAsset</code> via the Project window:
+            <strong>Create → World Forger → Stencil</strong>. Name the new asset (e.g.
+            <code>VillageStencil</code>).</p>
+<hr />
+<p><strong><code>Step 2</code></strong></p>
+<p>Double-click the asset (or use <strong>Window → World Forger
+            → Forger Graph</strong> and load it) to open the Stencil Graph editor. You will see
+            an empty canvas with a toolbar across the top.</p>
+<hr />
+<p><strong><code>Step 3</code></strong></p>
+<p>Right-click the canvas and choose <strong>Add Stamp Rule</strong>.
+            Set its <code>StampName</code> to match a stamp your Forger emits (e.g.
+            “House”, “Tree”, “Road”).</p>
+<hr />
+<p><strong><code>Step 4</code></strong></p>
+<p>Right-click again and add one or more <strong>Prefab Nodes</strong>
+            (single prefab) or <strong>Prefab Array Nodes</strong> (uniform-random pick across N
+            prefabs). Drag from the Stamp Rule's output port to each Prefab/Array's input port to
+            connect them. Drop a prefab onto the ObjectField, set its <code>Probability</code>,
+            and set <code>StopFlow</code> and <code>Static</code> as needed.</p>
+<hr />
+<p><strong><code>Step 5</code></strong></p>
+<p>Each Stamp Rule, Prefab Node, and Stamp Emitter has its own
+            <code>PositionOffset</code>, <code>EulerOffset</code>, and <code>Scale</code> Vec3
+            fields built directly into the card. Toggle the <strong>Random</strong> dice icon on
+            any axis to switch from a fixed value to a Min/Max range — no separate Vector3
+            node needed.</p>
+<hr />
+<p><strong><code>Step 6 (optional — recursion)</code></strong></p>
+<p>For child stamps: right-click the canvas and pick <strong>Add Stamp
+            Emitter → <em>name</em></strong> (the menu lists every existing Stamp Rule by
+            name). The emitter appears with the name pre-set. Drag from a Prefab Node's <em>Emit</em>
+            output to the emitter's input. After the parent prefab spawns at runtime, the engine
+            fires a child stamp by that name — resolved to whichever Stamp Rule shares it,
+            and spawned at every <code>ForgerMarker</code> child inside the parent prefab.</p>
+<hr />
+<p><strong><code>Step 7</code></strong></p>
+<p>Click away from the window or close it — the asset auto-saves.
+            Drag the Stencil onto any Forger's <strong>Stencils</strong> array slot in the inspector
+            and press <strong>Build</strong>. There is no import step or sidecar file.</p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Multiple Stencils per Forger.</strong> A single Forger can reference multiple Stencils.
+        When generating, every Stencil's rules are searched in array order — the first
+        Stencil holding a rule whose <code>StampName</code> matches the emitted stamp wins. Use
+        this to layer a base Stencil with optional overrides (e.g. a "Halloween" Stencil that
+        adds extra rules in front of the year-round one).</p>
+</div>
+<p>Stamp</p>
+<h4 id="stamp-rule-node">Stamp Rule Node<a class="headerlink" href="#stamp-rule-node" title="Permanent link">&para;</a></h4>
+<p>The entry point for stencil resolution. Every unique stamp name emitted by a Forger
+            needs a matching Stamp Rule. When the engine processes a stamp, it locates the rule whose
+            <code>StampName</code> matches and evaluates its connected Prefab candidates.
+Output Port:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Prefabs
+</code></pre></div>
+— connects to one or more
+                Prefab Nodes; the connected list becomes this rule's
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PrefabChoices
+</code></pre></div>
+Header field:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>StampName
+</code></pre></div>
+string— the stamp name to match (e.g. “House”). Renaming triggers a
+                downstream invalidation so other Stencils referencing this name notice.Header toggle:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Enabled
+</code></pre></div>
+bool— uncheck to mute the rule without deleting it (useful for A/B comparisons).Body Vec3 fields:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>PositionOffset
+</code></pre></div>
+,
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>EulerOffset
+</code></pre></div>
+,
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Scale
+</code></pre></div>
+— rule-level transform offsets that
+                stack on top of any prefab-level offsets at spawn time. Each axis can be a fixed
+                value or a Min/Max random range — seeVec3 Fields.
+Prefab</p>
+<h4 id="prefab-node">Prefab Node<a class="headerlink" href="#prefab-node" title="Permanent link">&para;</a></h4>
+<p>Holds a candidate prefab and its spawn metadata. Multiple Prefab Nodes connected to one
+            Stamp Rule create a weighted-random candidate pool. The card displays a live preview
+            thumbnail rendered by Unity's <code>AssetPreview</code> service.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>What can be assigned to the Prefab field?</strong>
+Any <em>GameObject asset</em> from the Project window:</p>
+<p><strong>Prefabs</strong> (<code>.prefab</code>) — the typical case
+<strong>Prefab Variants</strong> (also <code>.prefab</code>) — behave identically
+<strong>Model files</strong> (<code>.fbx</code>, <code>.gltf</code>, <code>.obj</code>, <code>.dae</code>, …) — the imported root counts as a GameObject</p>
+<p><strong>Scene objects are not accepted.</strong> The field is project-asset-only.
+<em>Heads up — model files spawn as read-only.</em> If you assign a <code>.fbx</code> directly and later need to attach a script, collider, or other component, the spawned instance won't accept it. Right-click the model in the Project window and run <em>Create → Prefab Variant</em>; assign the variant in place of the raw model.</p>
+</div>
+<p>Input Port:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Stamp
+</code></pre></div>
+— from a Stamp Rule's outputHeader caret:click the ▾/▸ glyph in the title bar to
+                collapse the body to just the title bar — useful for keeping large graphs
+                tidy. The collapsed state is persisted on the asset.Body fields:- <code>Prefab</code> <code>GameObject</code> — the prefab to instantiate. Drag from the Project window onto the ObjectField.
+- <code>Probability</code> <code>float ≥ 0</code> — relative weight inside the candidate pool. Default: 1.0
+- <code>StopFlow</code> <code>bool</code> — if this candidate spawns, the engine stops rolling the rest of the pool
+- <code>Static</code> <code>StaticFlag enum</code> — controls the static flag applied to the spawned GameObject and all of its children:</p>
+<p><strong>Unchanged</strong> — leave the prefab asset's own static setting as-is (default)
+<strong>ForceStatic</strong> — set <code>isStatic = true</code> on the instance and every child (batching / lighting / occlusion bakes)
+<strong>ForceNonStatic</strong> — set <code>isStatic = false</code> on the instance and every child (useful when the source prefab asset is marked static but must spawn as a dynamic object)
+- <strong>Unchanged</strong> — leave the prefab asset's own static setting as-is (default)
+- <strong>ForceStatic</strong> — set <code>isStatic = true</code> on the instance and every child (batching / lighting / occlusion bakes)
+- <strong>ForceNonStatic</strong> — set <code>isStatic = false</code> on the instance and every child (useful when the source prefab asset is marked static but must spawn as a dynamic object)
+- <code>Ext. Managed</code> <code>bool</code> — when checked, the spawned instance is reparented out of the holder on rebuild instead of being destroyed. Use for NPCs or objects whose lifecycle is handed off to an external system (e.g. an NPC controller) after spawning.
+- <code>Nav Static</code> <code>bool</code> — when checked, adds the <strong>Navigation Static</strong> editor flag to the spawned instance and all of its children so they are included in navmesh baking. No effect in player builds.
+- <code>PositionOffset</code>, <code>EulerOffset</code>, <code>Scale</code> — per-prefab Vec3 offsets layered on top of the rule's offsets
+- <code>UseCustomPreviewSettings</code> — opt in to per-node camera tuning. See Preview Settings.</p>
+<p>Array</p>
+<h4 id="prefab-array-node">Prefab Array Node<a class="headerlink" href="#prefab-array-node" title="Permanent link">&para;</a></h4>
+<p>A single card holding a <em>list</em> of prefabs. Picked by uniform random at spawn
+            time. Use this when "any of these N props will do" — rocks, foliage, debris, building
+            variants. One card replaces what would otherwise be a stack of identical Prefab Nodes.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Accepted asset types:</strong> the same as the Prefab Node — any GameObject
+                asset (Prefabs, Prefab Variants, or model files such as <code>.fbx</code> /
+                <code>.gltf</code> / <code>.obj</code>). Scene objects are not accepted.
+                See Prefab Node for the
+                full note about model files and Prefab Variants.</p>
+</div>
+<p>Input Port:from a Stamp Rule (left side)Output Port:"Emit" → connects to one or more Stamp Emitter nodes (right side)Body fields:- <strong>PREFABS</strong> sub-list — one row per prefab; click <strong>+</strong> to add an empty slot, drop a prefab onto its ObjectField. Click <strong>×</strong> to remove.
+- <code>Weight</code> <code>float 0–1</code> — spawn probability shared by every member of the array. Default: 1.0
+- <code>Stop Flow</code> / <code>Static</code> — same semantics as a single Prefab Node (see above), applied uniformly to every member of the array.
+- <code>Ext. Managed</code> / <code>Nav Static</code> — same semantics as a single Prefab Node (see above), applied uniformly to every member of the array.
+- <code>Position</code> / <code>Rotation</code> / <code>Scale</code> Vec3 fields — offsets layered onto each spawned member.</p>
+<p>At compile time the array expands intoNindependent
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>WorldForgerPrefabChoice
+</code></pre></div>
+records sharing the metadata fields above —
+                runtime sees them as flat candidates of the connected Stamp Rule.
+Emit</p>
+<h4 id="stamp-emitter-node">Stamp Emitter Node<a class="headerlink" href="#stamp-emitter-node" title="Permanent link">&para;</a></h4>
+<p>The recursion piece. A small node placed <em>downstream</em> of a Prefab (or Prefab
+            Array) that fires a child stamp by name after the parent spawns. By-name resolution
+            keeps the visual graph acyclic — there's no edge between an emitter and its target
+            Stamp Rule, even though runtime recursion can be arbitrarily deep.
+Input Port:from a Prefab or Prefab Array's "Emit" outputNo Output Port:the emitter is a terminal node on the canvas; the
+                actual recursion target is resolved by
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>StampName
+</code></pre></div>
+match at compile time.Body fields:- <code>StampName</code> <code>string</code> (header) — the name of the child stamp to emit. Must match a <code>StampRuleNode.StampName</code> for any candidates to resolve. Also matched against <code>ForgerMarker.StampName</code> children of the parent prefab to choose the spawn position.
+- <code>Position</code> / <code>Rotation</code> / <code>Scale</code> Vec3 fields — offsets layered onto the matched marker transform (or the parent transform if no marker matches) before each child spawns.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Quick-pick UX:</strong> right-click the canvas and you'll see <strong>Add Stamp Emitter
+                → <em>name</em></strong> for every Stamp Rule already on the canvas. Picking one
+                creates an emitter pre-bound to that name. With no rules yet, the menu falls back
+                to a generic <strong>Add Stamp Emitter Node</strong>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Recursion limit:</strong> the runtime enforces a hard depth cap of
+                <strong>8 levels</strong> (<code>WorldForgerEngine.MaxChildStampDepth</code>).
+                Anything deeper is silently dropped to prevent runaway recursion if an emitter
+                chain happens to loop. The cycle
+                detector will paint the offending Stamp Rules red before that's ever an issue.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Live-preview note:</strong> emitter edits (rename, offsets, edge add/remove)
+                always route through <code>ChangeType.Structure</code> and trigger a full
+                <code>Forger.Build()</code>. The transform-only fast path tracks only top-level
+                spawned instances; per-child trackers are a planned follow-up.</p>
+</div>
+<p>Vec3</p>
+<h4 id="vec3-fields-inline">Vec3 Fields (inline)<a class="headerlink" href="#vec3-fields-inline" title="Permanent link">&para;</a></h4>
+<p>Every <code>PositionOffset</code> / <code>EulerOffset</code> / <code>Scale</code> field
+            on a Stamp Rule, Prefab, or Child Stamp is a tri-axis Vec3 control rendered directly
+            inline on the card — there is no separate Vector3 or Random Vector3 node type. Each
+            axis (X/Y/Z) toggles independently between a fixed value and a Min/Max random range.
+Per-axis controls:- <strong>Dice icon (☢):</strong> click to toggle that axis between
+                    <em>fixed</em> and <em>random</em> mode. The icon highlights when random.
+- <strong>Fixed mode:</strong> a single number field. Edits ride the
+                    <em>TransformOnly</em> live-preview fast path — existing instances reposition in place
+                    with no respawn.
+- <strong>Random mode:</strong> Min and Max number fields. Edits ride the
+                    <em>RuleContent</em> fast path — the matrix is re-evaluated against the same
+                    instance seed, so each instance jumps to its newly-rolled value without flicker.</p>
+<p>Determinism:the random roll is seeded by the spawning instance's
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>EvaluationSeed
+</code></pre></div>
+(the spatial salt at spawn time). The same Stencil + same
+                Forger seed always produces the same per-instance rolls, so tweaking a Min/Max range
+                is non-destructive — pressing Build with the same seed gives the same layout.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Example — Random Y rotation:</strong> on a Prefab Node, click the dice
+                on the <code>EulerOffset</code> Y axis. Enter Min 0, Max 360. Leave X and Z
+                fixed at 0. Each spawned house now faces a random direction.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Example — Slight scale variation:</strong> on a Stamp Rule's
+                <code>Scale</code>, click the dice on all three axes. Set Min 0.95, Max 1.05
+                for each. Every instance of that rule receives a 5 % size jitter on top of
+                its prefab's per-prefab scale.</p>
+</div>
+<h3 id="live-preview">Live Preview<a class="headerlink" href="#live-preview" title="Permanent link">&para;</a></h3>
+<p>Live Preview lets you tune a Stencil with the graph editor open and see the active scene's
+        Forger respond in real time. Toggle <strong>Live</strong> in the toolbar to enable it. Every
+        edit is debounced for 300 ms, then routed to one of two paths depending on what changed.</p>
+<h3 id="change-tiers">Change Tiers<a class="headerlink" href="#change-tiers" title="Permanent link">&para;</a></h3>
+<p><code>LivePreviewController</code> classifies each edit into one of three tiers
+            (<code>ChangeType</code>). Within a debounce window, the controller never downgrades the
+            pending tier — structure always wins.</p>
+<p><strong><code>TransformOnly</code></strong> · <code>Fast path</code></p>
+<p>Fixed-value drags on a <code>PositionOffset</code> /
+                <code>EulerOffset</code> / <code>Scale</code> Vec3 axis — on a Stamp Rule, Prefab,
+                Prefab Array, <em>or</em> Stamp Emitter node. The controller walks every
+                <code>ForgerStampInstance</code> tracker in the scene and re-poses it in place using the
+                new offset, then walks every <code>ForgerChildStampInstance</code> tracker in ascending
+                depth order so the entire child-stamp chain follows along — no respawn, no flicker.</p>
+<hr />
+<p><strong><code>RuleContent</code></strong> · <code>Fast path</code></p>
+<p>Random-mode toggles (the dice icon) and Min/Max range edits.
+                The matrix re-evaluates against each instance's stored seed, so values jump to
+                their newly-rolled results without disturbing the GameObject identity. Rides the
+                same fast path as TransformOnly.</p>
+<hr />
+<p><strong><code>Structure</code></strong> · <code>Slow path</code></p>
+<p>Anything that changes <em>which</em> prefab spawns,
+                <em>how many</em>, or under what conditions: prefab swap, probability,
+                <code>StopFlow</code>, <code>Static</code> (StaticFlag), edge add/remove, rule add/remove,
+                stamp-name rename, adding/removing a
+                Spawn Filter. Triggers
+                a full <code>Forger.Build()</code> using an in-memory Stencil derived from the
+                current graph.</p>
+<hr />
+<h3 id="seed-pinning">Seed Pinning<a class="headerlink" href="#seed-pinning" title="Permanent link">&para;</a></h3>
+<p>On the first slow-path build of a Live session, the controller captures the Forger's
+            <code>EffectiveSeed</code> and reuses it for every subsequent rebuild. This keeps the
+            spatial layout consistent while you tweak rules — you're seeing the same village,
+            with one variable changing. Reassigning the asset (or closing/reopening the window)
+            resets the pinned seed.</p>
+<h3 id="per-instance-tracker">Per-Instance Tracker<a class="headerlink" href="#per-instance-tracker" title="Permanent link">&para;</a></h3>
+<p>Every top-level GameObject the engine spawns receives a
+            <code>ForgerStampInstance</code> component recording the originating stamp's world
+            transform, the rule and choice GUIDs, and the spatial-salt seed used for its random
+            rolls. Each child stamp the engine spawns through a <code>ForgerMarker</code> socket (or
+            via pivot-to-pivot chaining) receives a <code>ForgerChildStampInstance</code> component
+            instead, recording its parent instance, marker-local matrix, depth in the chain, and the
+            emitter / rule / choice GUIDs. The fast path processes both tiers in ascending depth
+            order so every parent's transform is up-to-date before its children re-evaluate. See
+            ForgerStampInstance and
+            ForgerChildStampInstance
+            for the field-level reference.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Limitations.</strong> The fast path only re-poses <em>top-level</em> spawned
+        instances. <code>ChildStamps</code> emitted via <code>ForgerMarker</code> sockets do
+        <em>not</em> carry trackers — their transforms update on the next full Build. If your
+        scene predates the tracker (was built before this engine version shipped), the first
+        TransformOnly edit will fall through to a full rebuild silently; subsequent edits are then
+        on the fast path.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Apply button.</strong> The <strong>Apply</strong> toolbar button force-flushes any
+        pending change immediately, bypassing the 300 ms debounce. Useful for slider drags
+        where you want every intermediate value reflected in the scene.</p>
+</div>
+<h3 id="sticky-notes">Sticky Notes<a class="headerlink" href="#sticky-notes" title="Permanent link">&para;</a></h3>
+<p>Sticky notes are free-floating annotations on the canvas. They have no runtime effect —
+        they exist purely so designers can leave inline comments on the graph (TODOs, balance notes,
+        "tweak this for variety", etc.). Add one via right-click → <strong>Add Sticky
+        Note</strong>.</p>
+<p>Selecting a sticky note opens its inspector pane on the right with two foldable sections,
+        <strong>Identity</strong> (Title + multi-line Contents) and <strong>Appearance</strong>
+        (Theme + Font Size dropdowns). All four fields can also be edited inline on the canvas, but
+        the inspector is friendlier for paragraph-length notes and discoverable for the
+        right-click-only theme / font-size options.</p>
+<p><strong><code>Title / Contents</code></strong></p>
+<p>Click the title bar on the canvas to rename, or click the body to
+            edit inline. Both fields are also editable from the inspector — Title is a single-line
+            text field; Contents is a multi-line growable text area suitable for paragraphs. Both
+            persist on the asset (<code>StickyNoteData.Title</code> /
+            <code>StickyNoteData.Contents</code>).</p>
+<hr />
+<p><strong><code>Theme</code></strong> · <code>Classic / Black</code></p>
+<p>Pickable from the inspector's Appearance section, or via right-click
+            on the canvas note. Maps to
+            <code>UnityEditor.Experimental.GraphView.StickyNoteTheme</code> (0 = Classic,
+            1 = Black).</p>
+<hr />
+<p><strong><code>Font Size</code></strong> · <code>Small / Medium / Large / Huge</code></p>
+<p>Pickable from the inspector's Appearance section, or via right-click
+            on the canvas note. Stored as an integer (0–3) on
+            <code>StickyNoteData.FontSize</code>.</p>
+<hr />
+<p><strong><code>Resize / Move</code></strong></p>
+<p>Sticky notes are resizable by dragging the bottom-right corner and
+            movable by dragging the title bar. Position and size persist. Selecting a note and
+            pressing ++delete++ removes it.</p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Search includes notes.</strong> The toolbar Search field matches sticky-note titles
+        as well as stamp/prefab names, so a note titled "TODO: Halloween" is findable from the
+        same search box used to navigate the graph.</p>
+</div>
+<h3 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">&para;</a></h3>
+<p>Groups are named frames that visually cluster related nodes on the canvas. Like sticky notes
+        they have <em>no</em> runtime effect — they exist purely to help organise large stencils.
+        Moving a group's frame moves every node inside it together. Create one via right-click →
+        <strong>Create Group</strong>, or by selecting nodes and choosing <strong>Group Selection</strong>.</p>
+<p>Selecting a group frame opens its inspector pane on the right, with three foldable sections:
+        <strong>Identity</strong>, <strong>Appearance</strong>, and <strong>Members</strong>.</p>
+<h3 id="identity">Identity<a class="headerlink" href="#identity" title="Permanent link">&para;</a></h3>
+<p><strong><code>Title</code></strong> · <code>string</code></p>
+<p>Editable label shown in the group's canvas header. Renaming in the
+            inspector updates the on-canvas title live without reloading the graph. Also editable
+            inline by double-clicking the header text on the canvas.</p>
+<hr />
+<h3 id="appearance">Appearance<a class="headerlink" href="#appearance" title="Permanent link">&para;</a></h3>
+<p><strong><code>Background</code></strong> · <code>Color</code></p>
+<p>Optional tint applied to the group frame on the canvas. Useful for
+            visually grouping clusters by category — for example all "Houses" wirings in green,
+            all "Specialised Buildings" in blue. The picker hides the alpha slider so you can't
+            accidentally save an invisible colour.</p>
+<hr />
+<p><strong><code>Title</code></strong> · <code>Color</code></p>
+<p>Optional override for the group title text colour. Use this when a
+            strongly tinted background makes the default light-grey title hard to read — pick a
+            contrasting colour to keep the header legible.</p>
+<hr />
+<p><strong><code>Reset to Default</code></strong></p>
+<p>Clears both colour overrides at once and restores the GraphView's
+            built-in colours. Use the alpha-0 sentinel internally so re-saved assets serialise cleanly
+            with no override data when you've reset.</p>
+<hr />
+<h3 id="members">Members<a class="headerlink" href="#members" title="Permanent link">&para;</a></h3>
+<p><strong><code>Tree view</code></strong></p>
+<p>A read-only outline of the nodes inside the group, organised by their
+            edge connections. Stamp Rules sit at the top level; their connected Prefab and Prefab Array
+            cards appear indented under them; any Stamp Emitters hanging off those prefab cards
+            appear one level deeper. Members with no in-group parent (e.g. a lone Prefab Array node
+            grouped on its own) appear as roots.</p>
+<p>Each row shows the node's kind (Stamp Rule / Prefab / Prefab Array
+            / Stamp Emitter) plus its primary identifier — the stamp name for rules and emitters,
+            the prefab name for single Prefab cards, and "<em>N</em> prefabs — <em>first</em>, …" for arrays.
+            Useful for auditing a group's contents at a glance without scanning the canvas.</p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Foldout state persists per group.</strong> Each group remembers its Identity /
+        Appearance / Members section's expanded-or-collapsed state independently in
+        <code>EditorPrefs</code>, so you can keep Members collapsed on most groups and expanded on
+        the one you're auditing.</p>
+</div>
+<h3 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h3>
+<p>The graph editor flags configuration mistakes inline so you don't have to dig through the
+        scene to find why a stamp isn't spawning. Validators run on every edit, not just on Build.</p>
+<p><strong><code>Orphan Prefab</code></strong> · <code>amber outline</code></p>
+<p>A Prefab Node with no incoming edge has nothing to spawn it. The
+            card paints an amber border and a tooltip on the input port reads "No Stamp Rule
+            connects to this Prefab." Connect an edge from a Stamp Rule to clear it.</p>
+<hr />
+<p><strong><code>Empty Stamp Rule</code></strong> · <code>amber outline</code></p>
+<p>A Stamp Rule with no Prefab candidates does nothing at runtime —
+            the engine simply emits the stamp and finds no matching choice. The card paints an
+            amber border. Connect at least one Prefab to clear it.</p>
+<hr />
+<p><strong><code>Missing Prefab Reference</code></strong> · <code>red ring</code></p>
+<p>A Prefab Node whose <code>Prefab</code> ObjectField is empty (or
+            references a deleted asset) paints a red ring around the field. The runtime would
+            silently skip this candidate at spawn time.</p>
+<hr />
+<p><strong><code>Duplicate Stamp Name</code></strong> · <code>amber border on title</code></p>
+<p>Two Stamp Rules sharing the same <code>StampName</code> means only
+            the first match wins at lookup time. The duplicates show an amber title bar with a
+            tooltip naming the conflict. Rename one or merge the rules.</p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Validation is non-blocking.</strong> You can still save and Build with warnings
+        present — they're advisory. The amber/red colours match the project-wide debug-colour
+        scheme used elsewhere in the toolkit (warn / error).</p>
+</div>
+<h3 id="runtime-engine">Runtime Engine<a class="headerlink" href="#runtime-engine" title="Permanent link">&para;</a></h3>
+<p>The <code>WorldForgerEngine</code> is the runtime interpreter that resolves stamps into
+        instantiated prefabs. It processes every stamp emitted by a Forger against the assigned
+        Stencils.</p>
+<h3 id="resolution-algorithm">Resolution Algorithm<a class="headerlink" href="#resolution-algorithm" title="Permanent link">&para;</a></h3>
+<p><strong><code>1. Match Stamp</code></strong></p>
+<p>For each emitted stamp, the engine searches the Forger's
+                Stencils in array order for a <code>WorldForgerStampRule</code> whose
+                <code>StampName</code> matches. The first match wins.</p>
+<hr />
+<p><strong><code>2. Spatial Salt</code></strong></p>
+<p>A spatial salt is computed from the stamp's position. The
+                Forger's seed is XOR'd with this salt to produce an <code>EvaluationSeed</code> that
+                drives every random decision for this single placement.</p>
+<hr />
+<p><strong><code>3. Weighted Roll</code></strong></p>
+<p>The rule's <code>PrefabChoices</code> are walked in connection
+                order. Each candidate's <code>Probability</code> is rolled against the
+                spatially-seeded random; the first to succeed becomes the spawn target. If
+                <code>StopFlow</code> is true on the winner, the remaining candidates are skipped.</p>
+<hr />
+<p><strong><code>4. Compose Matrix</code></strong></p>
+<p>The final world matrix is
+                <code>TRS(stamp) * TRS(rule offset) * TRS(choice offset)</code>. Vec3 fields in
+                random mode roll their Min/Max range against the same
+                <code>EvaluationSeed</code> — deterministic across runs.</p>
+<hr />
+<p><strong><code>5. Instantiate &amp; Tag</code></strong></p>
+<p>The prefab is instantiated under the Forger's holder. A
+                <code>ForgerStampInstance</code> tracker is added to the top-level instance
+                recording the stamp transform, rule GUID, choice GUID, seed, and
+                <code>ExternallyManaged</code> flag — so Live Preview can re-pose without
+                rebuilding and <code>Forger.Demolish()</code> can rescue managed instances.</p>
+<hr />
+<p><strong><code>6. Child Recursion</code></strong></p>
+<p>If the chosen prefab has <code>ChildStamps</code> defined and
+                contains <code>ForgerMarker</code> children whose <code>StampName</code> matches,
+                the engine recursively resolves each child stamp. Each child instance receives a
+                <code>ForgerChildStampInstance</code> tracker recording its parent, depth,
+                marker-local matrix, and emitter / rule / choice GUIDs — so the entire chain
+                participates in the Live Preview fast path. Maximum recursion depth:
+                <strong>8 levels</strong> (<code>WorldForgerEngine.MaxChildStampDepth</code>).</p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Stencil order matters.</strong> Stencils on a Forger are searched array-first; the
+        earliest Stencil with a matching <code>StampName</code> wins. Layer overrides (e.g. a
+        seasonal Stencil) at index 0 and the base Stencil at index 1.</p>
+</div>
+<h3 id="forgermarker-component">ForgerMarker Component<a class="headerlink" href="#forgermarker-component" title="Permanent link">&para;</a></h3>
+<p><code>ForgerMarker</code> is a lightweight component you add to child GameObjects inside
+        a prefab to define <strong>child-stamp sockets</strong> — positions where the
+        engine can recursively spawn additional themed objects.</p>
+<p><strong><code>StampName</code></strong> · <code>string</code></p>
+<p>The name of the child stamp this socket represents. Must match the
+            <code>StampName</code> on a Child Stamp entry inside the parent Prefab Node, AND a
+            corresponding Stamp Rule somewhere in the Forger's Stencils.</p>
+<hr />
+<h3 id="workflow-example">Workflow Example<a class="headerlink" href="#workflow-example" title="Permanent link">&para;</a></h3>
+<p>Suppose you have a “House” prefab and want to place random chimney variations on
+            its roof:
+- Open the House prefab and create an empty child GameObject at the chimney position
+- Add a <code>ForgerMarker</code> component and set <code>StampName</code> to “Chimney”
+- In your Stencil, on the House Prefab Node, click <strong>+</strong> under <em>Child Stamps</em> and add an entry named “Chimney”
+- Add a separate Stamp Rule with <code>StampName</code> = “Chimney” and connect chimney Prefab Nodes to it</p>
+<p>At generation time, the engine spawns a House, finds the ForgerMarker, emits a fresh
+            "Chimney" stamp at the marker's transform, and resolves it through the Chimney Stamp
+            Rule — placing a randomly chosen chimney at the marked position.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Tip:</strong> You can place multiple ForgerMarkers with different stamp names inside a
+        single prefab. A house could have sockets for “Chimney”, “Door”, and
+        “WindowBox” — each resolved independently.</p>
+</div>
+<h3 id="forgerstampinstance-component">ForgerStampInstance Component<a class="headerlink" href="#forgerstampinstance-component" title="Permanent link">&para;</a></h3>
+<p><code>ForgerStampInstance</code> is a tracker component automatically added by the engine
+        to every <em>top-level</em> GameObject it spawns. It records what produced this instance
+        so the Live Preview fast path can recompose the world matrix without rebuilding.</p>
+<h3 id="field-reference">Field Reference<a class="headerlink" href="#field-reference" title="Permanent link">&para;</a></h3>
+<p><strong><code>StampPos / StampRot / StampScale</code></strong> · <code>Vector3 / Quaternion / Vector3</code></p>
+<p>The <em>original stamp transform</em> the Forger emitted —
+                position, rotation, and scale before any rule or prefab offset. The fast path
+                rebuilds the matrix as
+                <code>TRS(stamp) * TRS(rule offset) * TRS(choice offset)</code>; only the second
+                two factors change when you tweak Vec3 fields, so this stays constant for the
+                life of the instance.</p>
+<hr />
+<p><strong><code>RuleGuid / ChoiceGuid</code></strong> · <code>string</code></p>
+<p>Stable identifiers (<code>StampRuleNodeData.Guid</code> /
+                <code>PrefabNodeData.Guid</code>) the live-preview controller uses to look up the
+                current rule and choice from the editing Stencil. If either GUID no longer
+                matches (e.g. you deleted the rule), the instance is left alone until the next
+                full Build.</p>
+<hr />
+<p><strong><code>EvaluationSeed</code></strong> · <code>int</code></p>
+<p>The spatially-salted seed used for this instance's random
+                rolls. Re-rolling against the same seed produces the same Min/Max value, so
+                random Vec3 edits look stable when previewed live.</p>
+<hr />
+<p><strong><code>ExternallyManaged</code></strong> · <code>bool</code></p>
+<p>Mirrors the <code>Ext. Managed</code> flag on the originating
+                Prefab / Prefab Array node. When <code>true</code>, <code>Forger.Demolish()</code>
+                reparents the instance out of the holder before destroying the holder, so the
+                GameObject survives a rebuild. Use for NPCs or any object whose lifecycle is owned
+                by an external system after spawning.</p>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Don't edit by hand.</strong> The component is marked
+        <code>[DisallowMultipleComponent]</code> and its values are written by the engine on
+        spawn. Modifying fields manually breaks the fast path's lookup — the instance will
+        revert on the next Live Preview tick.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Child stamps have their own tracker.</strong> The top-level instance gets
+        <code>ForgerStampInstance</code>; every child stamp the engine spawns (marker-based or
+        pivot-to-pivot) gets a <code>ForgerChildStampInstance</code> instead. Both tiers are walked
+        by the Live Preview fast path so an offset edit on a Stamp Emitter node deep in the chain
+        re-poses every existing instance without a full rebuild. See
+        ForgerChildStampInstance.</p>
+</div>
+<h3 id="forgerchildstampinstance-component">ForgerChildStampInstance Component<a class="headerlink" href="#forgerchildstampinstance-component" title="Permanent link">&para;</a></h3>
+<p><code>ForgerChildStampInstance</code> is the child-stamp counterpart to
+        <code>ForgerStampInstance</code>. The engine adds it to every GameObject spawned by
+        <code>ProcessChildStamps</code> — whether the child landed on a
+        <code>ForgerMarker</code> socket or chained pivot-to-pivot from its parent — so the
+        Live Preview fast path can recompose the child's world matrix from the live graph without a
+        full <code>Forger.Build()</code>.</p>
+<h3 id="matrix-composition">Matrix Composition<a class="headerlink" href="#matrix-composition" title="Permanent link">&para;</a></h3>
+<p>For each tracker the fast path computes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>socketMatrix = parentFinalWorld * markerLocalMatrix   (marker-based)
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>            or parentFinalWorld                        (pivot-to-pivot)
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>final = socketMatrix
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>      * emitterOffset(EvaluationSeed)   // StampEmitterNodeData offsets
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>      * choiceOffset(EvaluationSeed)    // WorldForgerPrefabChoice offsets
+</code></pre></div>
+<p><code>parentFinalWorld</code> is read directly from <code>ParentInstance.transform</code>.
+            The fast path processes trackers in ascending <code>Depth</code> order so the parent's
+            transform has already been updated in the same tick before any child reads it.</p>
+<h3 id="field-reference_1">Field Reference<a class="headerlink" href="#field-reference_1" title="Permanent link">&para;</a></h3>
+<p><strong><code>Depth</code></strong> · <code>int</code></p>
+<p><code>1</code> for a direct child of a top-level stamp,
+                <code>2</code> for a grandchild, and so on. Capped at
+                <code>WorldForgerEngine.MaxChildStampDepth</code> (8). The fast path uses this to
+                sort updates so parents are always re-posed before children.</p>
+<hr />
+<p><strong><code>ParentInstance</code></strong> · <code>GameObject</code></p>
+<p>The spawned GameObject one level up the chain. Carries
+                <code>ForgerStampInstance</code> when <code>Depth == 1</code>, otherwise another
+                <code>ForgerChildStampInstance</code>.</p>
+<hr />
+<p><strong><code>UsesMarker</code></strong> · <code>bool</code></p>
+<p><code>true</code> if a <code>ForgerMarker</code> socket on the
+                parent prefab was used to place this instance — the
+                <code>MarkerLocal*</code> fields then store that marker's transform in the parent
+                prefab's local space. <code>false</code> for pivot-to-pivot chaining, in which case
+                the marker fields are unused and the parent's final world matrix is the socket
+                directly.</p>
+<hr />
+<p><strong><code>MarkerLocalPos / MarkerLocalRot / MarkerLocalScale</code></strong> · <code>Vector3 / Quaternion / Vector3</code></p>
+<p>Captured at spawn time from
+                <code>parent.transform.worldToLocalMatrix * markerWorldMatrix</code>. Re-using these
+                instead of re-querying the marker each tick lets the fast path survive cases where
+                the marker GameObject has been disabled or moved by another system.</p>
+<hr />
+<p><strong><code>EmitterNodeGuid</code></strong> · <code>string</code></p>
+<p>GUID of the <code>StampEmitterNodeData</code> that defined this
+                child-stamp slot. Used by the fast path to look up the emitter's current
+                <code>PositionOffset</code> / <code>EulerOffset</code> / <code>Scale</code> via
+                <code>WorldForgerGraphAsset.TryGetEmitterNode</code>.</p>
+<hr />
+<p><strong><code>ChildRuleGuid / ChildChoiceGuid</code></strong> · <code>string</code></p>
+<p>GUIDs of the Stamp Rule the child resolved to (by name match)
+                and the Prefab Node selected from its candidate pool. Used together with
+                <code>WorldForgerGraphAsset.TryGetRuleAndChoice</code> to read the choice's current
+                offsets.</p>
+<hr />
+<p><strong><code>EvaluationSeed</code></strong> · <code>int</code></p>
+<p>The seed passed to <code>WorldForgerVector3.Evaluate</code> at
+                spawn time. Re-using it keeps random offset rolls deterministic across fast-path
+                ticks.</p>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Don't edit by hand.</strong> Same caveat as
+        <code>ForgerStampInstance</code> — the component is
+        <code>[DisallowMultipleComponent]</code> and is overwritten on every spawn. Manual edits
+        revert on the next Live Preview tick.</p>
+</div>
+<h3 id="custom-spawn-filters">Custom Spawn Filters<a class="headerlink" href="#custom-spawn-filters" title="Permanent link">&para;</a></h3>
+<p>A <strong>spawn filter</strong> is a designer-authored ScriptableObject that runs every
+        time the engine is about to spawn one of your prefabs. Each filter gets to make one of
+        three decisions:
+- <strong>Reject the spawn</strong> — "don't place a tree here, there's already one within 3 m"
+- <strong>Modify the world transform</strong> — "snap this fence post to align with the terrain normal"
+- <strong>Post-process the spawned GameObject</strong> — "after this barrel spawns, attach a Rigidbody to it"</p>
+<p>Filters are attached to <strong>Prefab</strong> and <strong>Prefab Array</strong> nodes in
+        the Stencil Graph. They run in list order; the first <code>TryAccept</code> rejection
+        cancels the spawn entirely. Multiple filters on one node compose — e.g. drop both
+        a <code>MinDistance</code> and an <code>AlignToTerrain</code> filter on the same Tree node
+        and the engine first rejects spawns that are too close, then aligns the survivors to the
+        ground.</p>
+<h3 id="when-to-use-a-filter-vs-another-mechanism">When to use a filter (vs. another mechanism)<a class="headerlink" href="#when-to-use-a-filter-vs-another-mechanism" title="Permanent link">&para;</a></h3>
+<p><strong><code>Use a filter when…</code></strong></p>
+<p>The decision depends on context that isn't part of the
+                stencil itself: terrain slope, distance to other spawned objects, layer-mask checks,
+                day/night state, save data. Filters get a live <code>ForgerSpawnContext</code> and
+                can read whatever scene data they need.</p>
+<hr />
+<p><strong><code>Don't reach for a filter when…</code></strong></p>
+<p>A simpler primitive already exists. Random scale variation?
+                Use the <strong>random</strong> mode on the Vec3 field. Spawn this prefab less
+                often? Lower its <strong>Probability</strong>. Stop spawning siblings once one
+                hits? Use <strong>StopFlow</strong>. Filters are for <em>conditional / contextual</em>
+                logic that can't be expressed as static parameters.</p>
+<hr />
+<h3 id="authoring-workflow-three-steps">Authoring workflow — three steps<a class="headerlink" href="#authoring-workflow-three-steps" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1.</strong> Write a C# class that inherits from
+            <code>ForgerSpawnFilter</code>. Override one or more of the five virtual methods (all
+            are optional). Add a <code>[CreateAssetMenu]</code> attribute so the asset shows up in
+            <code>Assets → Create</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>using UnityEngine;
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>using B2C3D.WorldForger;
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>[CreateAssetMenu(menuName = &quot;World Forger/Filters/Min Distance&quot;)]
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>public class MinDistanceFilter : ForgerSpawnFilter
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>{
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    public float MinDistance = 3f;
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    public override bool TryAccept(ForgerSpawnContext ctx)
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    {
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>        Vector3 pos = ctx.ProposedPosition;
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>        foreach (Transform child in ctx.Holder)
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>            if (Vector3.Distance(child.position, pos) &lt; MinDistance)
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>                return false;   // reject — too close
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>        return true;            // accept
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>    }
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>}
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Performance note — the snippet above is illustrative, not production-ready.</strong>
+            Walking <code>ctx.Holder</code> on every spawn attempt is <code>O(N)</code> per call, so a
+            full build is <code>O(N²)</code> in the spawn count. Fine for ~50 buildings; visibly slow
+            past a few thousand. For production, use the spatial-hash pattern: allocate a uniform-grid
+            <code>Dictionary&lt;Vector3Int, List&lt;Vector3&gt;&gt;</code> in <code>OnBuildStart</code>
+            with cell size equal to <code>MinDistance</code>, record each accepted spawn in
+            <code>OnInstantiated</code>, and only consult the 9 (2D) or 27 (3D) neighbouring cells
+            in <code>TryAccept</code>. That collapses each call to roughly constant time. The
+            shipping <code>MinDistanceFilter.cs</code> is implemented exactly this way — read
+            it for the full reference pattern.</p>
+</div>
+<p><strong>Step 2.</strong> Right-click in the Project window and run
+            <code>Create → World Forger → Filters → Min Distance</code>. This
+            creates a <code>.asset</code> file holding one configured copy of the filter. You can
+            create as many as you want, each with its own values:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Assets/Filters/
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>├─ TreeMinDist3m.asset      (MinDistance = 3, used on Tree nodes)
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>├─ HouseMinDist8m.asset     (MinDistance = 8, used on House nodes)
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>└─ TowerMinDist15m.asset    (MinDistance = 15, used on Tower nodes)
+</code></pre></div>
+<p><strong>Step 3.</strong> Open the Stencil Graph, find the Prefab Node (or Prefab Array
+            Node) you want to gate, and look for the <strong>FILTERS</strong> section near the
+            bottom of the card. Click <code>+</code> to add an empty slot, then drag your filter
+            asset onto it. The same asset can be referenced from many nodes — editing the
+            asset's values updates every node that uses it.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>One class, many configured assets.</strong> The C# class defines the
+            <em>behaviour</em>. Each <code>.asset</code> file is one <em>configured instance</em>.
+            That means one <code>MinDistanceFilter.cs</code> can produce
+            <code>TreeMinDist3m.asset</code>, <code>HouseMinDist8m.asset</code>,
+            <code>TowerMinDist15m.asset</code> — same code, different values.</p>
+</div>
+<p><strong>Step 4 (optional) — Custom icon.</strong> If you want your filter asset
+            to show a distinctive icon in the Project window (matching the visual language of the
+            stock filters), drop a 64×64 PNG anywhere in the project and call
+            <code>IconRegistry.TryAssign&lt;T&gt;(iconFileName)</code> from a small editor-only
+            <code>[InitializeOnLoad]</code> shim. The lookup is path-free — it finds the
+            icon by file name and the script by type, then writes the binding into the script's
+            <code>.meta</code> file (so it survives moving either the icon or the script):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>using B2C3D.WorldForger.Editor;
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>using UnityEditor;
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>[InitializeOnLoad]
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>internal static class MyFilterIconBinding
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>{
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    static MyFilterIconBinding()
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    {
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        EditorApplication.delayCall += () =&gt;
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>            IconRegistry.TryAssign&lt;MinDistanceFilter&gt;(&quot;MinDistanceFilter&quot;);
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    }
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>}
+</code></pre></div>
+<p>The first argument is the C# type, the second is the icon's file name without
+            extension. Place the shim in any editor-only assembly (an <code>Editor</code>
+            subfolder, or any asmdef with <code>"includePlatforms": ["Editor"]</code>).
+            <code>TryAssign</code> is idempotent — safe to call on every domain reload, only
+            re-imports when the binding actually changes.</p>
+<h3 id="filter-hooks-what-each-method-does">Filter Hooks — what each method does<a class="headerlink" href="#filter-hooks-what-each-method-does" title="Permanent link">&para;</a></h3>
+<p><strong><code>OnBuildStart(Transform holder)</code></strong> · <code>virtual void</code></p>
+<p>Called once at the start of every
+                <code>Forger.Build()</code>, before any candidate is processed. Use this to
+                initialise per-build state — clear a spatial hash, snapshot the terrain,
+                allocate buffers. Default: no-op. The same <code>holder</code> Transform will
+                be passed to every <code>ForgerSpawnContext</code> during this build.</p>
+<hr />
+<p><strong><code>TryAccept(ForgerSpawnContext ctx) → bool</code></strong> · <code>virtual bool</code></p>
+<p>Decide whether to allow this candidate to spawn. Return
+                <code>false</code> to reject — the engine then continues to the next sibling
+                candidate (or stops, if a <code>StopFlow</code> would have applied). Filters in
+                the list run in order; the FIRST <code>false</code> short-circuits the rest.
+                Default: returns <code>true</code>.</p>
+<hr />
+<p><strong><code>ModifyTransform(ForgerSpawnContext ctx) → Matrix4x4</code></strong> · <code>virtual Matrix4x4</code></p>
+<p>Modify the world transform before instantiation. Each filter
+                receives the previous filter's output as <code>ctx.ProposedTransform</code>, so
+                multiple filters chain (e.g. <code>SnapToGrid</code> →
+                <code>AlignToNormal</code>). Return <code>ctx.ProposedTransform</code> unchanged
+                to leave the transform alone. Default: returns
+                <code>ctx.ProposedTransform</code>.</p>
+<hr />
+<p><strong><code>OnInstantiated(GameObject instance, ForgerSpawnContext ctx)</code></strong> · <code>virtual void</code></p>
+<p>Called once per spawn after the prefab has been instantiated,
+                its world transform applied, the live-preview tracker attached, and any
+                child-stamp recursion completed. Use for component additions
+                (<code>AddComponent&lt;Rigidbody&gt;</code>), layer changes, registering the
+                instance with an external system, etc. Default: no-op.</p>
+<hr />
+<p><strong><code>OnBuildEnd(Transform holder)</code></strong> · <code>virtual void</code></p>
+<p>Called once at the end of every <code>Forger.Build()</code>,
+                after every stamp has been processed. Always fires — even if the build
+                throws — so any state you allocated in <code>OnBuildStart</code> can be
+                released here. Default: no-op.</p>
+<hr />
+<h3 id="hook-order-per-spawn">Hook order, per spawn<a class="headerlink" href="#hook-order-per-spawn" title="Permanent link">&para;</a></h3>
+<p>For each candidate that passes its probability roll, the engine walks the filter list
+            three times:
+1. <strong>Pass 1 — Selection.</strong> Walk filters → the first
+            <code>TryAccept</code> returning <code>false</code> cancels the spawn (engine moves on
+            to the next sibling).
+2. <strong>Pass 2 — Transform modification.</strong> Walk filters →
+            <code>ModifyTransform</code> chains, each filter seeing the previous filter's output
+            via <code>ctx.ProposedTransform</code>.
+3. <strong>Engine instantiates the prefab</strong>, applies the (possibly modified)
+            transform, attaches trackers, applies static / nav-static flags, and recurses into
+            child stamps.
+4. <strong>Pass 3 — Post-instantiation.</strong> Walk filters →
+            <code>OnInstantiated</code> for any cleanup or augmentation. By this point the spawned
+            subtree is fully built, so a filter that calls
+            <code>SetLayerRecursively(instance.transform, layer)</code> covers every child stamp
+            too.</p>
+<h3 id="forgerspawncontext-what-filters-see">ForgerSpawnContext — what filters see<a class="headerlink" href="#forgerspawncontext-what-filters-see" title="Permanent link">&para;</a></h3>
+<p>A read-only struct passed by value to every hook. Fields:</p>
+<p><strong><code>Stamp</code></strong> · <code>WorldForgerStamp</code></p>
+<p>The originating top-level stamp emitted by the Forger
+                (<code>StampName</code>, world <code>Position</code> /
+                <code>Rotation</code> / <code>Scale</code>, optional
+                <code>Metadata</code>). Always non-null — even at deep child-stamp depths,
+                this still references the original top-level stamp for traceability.</p>
+<hr />
+<p><strong><code>Rule</code></strong> · <code>WorldForgerStampRule</code></p>
+<p>The Stamp Rule that resolved this candidate — gives
+                access to the rule's stamp name, sibling candidates, and rule-level offsets.
+                For child-stamp spawns this is still the originating top-level rule (use
+                <code>Depth</code> to tell which level of the chain you're at).</p>
+<hr />
+<p><strong><code>Choice</code></strong> · <code>WorldForgerPrefabChoice</code></p>
+<p>The specific Prefab Choice the engine is about to spawn:
+                <code>Prefab</code> reference, probability, flags
+                (<code>StaticMode</code> / <code>ExternallyManaged</code> /
+                <code>AffectsNavigation</code>), and the child stamps it will emit. A single
+                shared filter asset can branch on <code>ctx.Choice.Prefab</code> for per-prefab
+                logic.</p>
+<hr />
+<p><strong><code>ProposedTransform</code></strong> · <code>Matrix4x4</code></p>
+<p>The world matrix the engine intends to use, already composed
+                from stamp × rule offset × choice offset (and, for child stamps,
+                marker-local × emitter offset × choice offset). Convenience getters:
+                <code>ProposedPosition</code>, <code>ProposedRotation</code>,
+                <code>ProposedScale</code>.</p>
+<hr />
+<p><strong><code>Depth</code></strong> · <code>int</code></p>
+<p><code>0</code> for top-level stamps; <code>1</code> for direct
+                children spawned through a <code>ForgerMarker</code> socket or pivot-to-pivot
+                chaining; <code>2</code> for grandchildren; capped at
+                <code>WorldForgerEngine.MaxChildStampDepth</code> (8). A filter that should only
+                affect top-level placements can early-out on <code>ctx.Depth != 0</code>.</p>
+<hr />
+<p><strong><code>Seed</code></strong> · <code>int</code></p>
+<p>The spatially-salted seed used for this instance's random
+                rolls. Filters that need their own deterministic random (jitter that survives
+                rebuilds with the same Forger seed) should derive a <code>System.Random</code>
+                from this rather than from <code>UnityEngine.Random</code>.</p>
+<hr />
+<p><strong><code>Holder</code></strong> · <code>Transform</code></p>
+<p>The Forger's output holder Transform — every
+                already-spawned sibling in this build is one of its descendants, which is how
+                <code>MinDistance</code>-style spatial queries work. Climb to
+                <code>holder.parent</code> to reach the Forger itself if you need scene-level
+                state.</p>
+<hr />
+<h3 id="where-the-values-live-one-class-many-assets">Where the values live — one class, many assets<a class="headerlink" href="#where-the-values-live-one-class-many-assets" title="Permanent link">&para;</a></h3>
+<p>Configuration lives on the <code>.asset</code> file, not on the node. So if you want
+            a 3 m minimum distance for trees and an 8 m minimum for houses, you create
+            <em>two</em> asset files from the same <code>MinDistanceFilter</code> class, each
+            with its own value, and drop the appropriate one onto each node. Asset files are
+            ~200 bytes each — cheap, version-controlled, and discoverable in the Project view.</p>
+<p>For more elaborate cases (one asset that switches behaviour based on which prefab
+            is spawning), branch on <code>ctx.Choice.Prefab</code> inside the filter:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>[CreateAssetMenu(menuName = &quot;World Forger/Filters/Min Distance (Per-Prefab)&quot;)]
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>public class MinDistancePerPrefabFilter : ForgerSpawnFilter
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>{
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    [System.Serializable] public class PrefabRule {
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>        public GameObject Prefab;
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>        public float      MinDistance;
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    }
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    public float DefaultMinDistance = 3f;
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    public List&lt;PrefabRule&gt; Overrides = new();
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    public override bool TryAccept(ForgerSpawnContext ctx) {
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>        float minDist = DefaultMinDistance;
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>        foreach (var o in Overrides)
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>            if (o.Prefab == ctx.Choice.Prefab) { minDist = o.MinDistance; break; }
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>        // ... distance check using minDist
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>    }
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>}
+</code></pre></div>
+<h3 id="prefab-array-node-shared-filters">Prefab Array Node — shared filters<a class="headerlink" href="#prefab-array-node-shared-filters" title="Permanent link">&para;</a></h3>
+<p>The filter list on a Prefab Array Node is <strong>shared metadata</strong> —
+            every member of the array runs through the same filter chain. This matches how
+            <code>StaticMode</code>, <code>ExternallyManaged</code>, and
+            <code>AffectsNavigation</code> are shared across the array.
+            <code>WorldForgerGraphAsset.RebuildPrefabArrayCompiledChoices</code> copies the
+            list (by reference) into every compiled <code>WorldForgerPrefabChoice</code> at
+            <code>Compile()</code> time.</p>
+<p>If you need different filters per array member, split the array into individual
+            Prefab Nodes — each then has its own filter list.</p>
+<h3 id="live-preview-interaction">Live Preview interaction<a class="headerlink" href="#live-preview-interaction" title="Permanent link">&para;</a></h3>
+<p>Filters run during the <strong>slow path</strong> only — that is, inside
+            <code>WorldForgerEngine.Apply</code> during a full <code>Forger.Build()</code>. The
+            <strong>fast path</strong>
+            (Live Preview's
+            <code>TryApplyTransformOnly</code>) only re-poses already-spawned instances and does
+            <em>not</em> re-run filters — selection decisions were locked in at the
+            original spawn.</p>
+<p>Adding or removing a filter on a node fires <code>ChangeType.Structure</code>, which
+            triggers a full rebuild — correct, since filters change <em>which</em> instances
+            spawn. Editing parameters <em>inside</em> a filter asset (e.g. raising
+            <code>MinDistance</code> from 3 to 5) is outside the graph and does <em>not</em>
+            trigger Live Preview automatically. To re-evaluate, click <strong>Apply</strong> in
+            the toolbar.</p>
+<h3 id="build-lifecycle">Build lifecycle<a class="headerlink" href="#build-lifecycle" title="Permanent link">&para;</a></h3>
+<p><code>Forger.Build()</code> walks every rule in every assigned Stencil, collects
+            every unique <code>ForgerSpawnFilter</code> referenced by any
+            <code>WorldForgerPrefabChoice.SpawnFilters</code> list, and dedupes via a
+            <code>HashSet&lt;ForgerSpawnFilter&gt;</code>. Each unique filter receives exactly
+            one <code>OnBuildStart</code> call and exactly one <code>OnBuildEnd</code> call per
+            build, regardless of how many nodes reference it.</p>
+<p><code>OnBuildEnd</code> fires unconditionally inside a <code>finally</code> block, so
+            a filter that allocates resources in <code>OnBuildStart</code> can release them even
+            if the engine throws.</p>
+<h3 id="determinism">Determinism<a class="headerlink" href="#determinism" title="Permanent link">&para;</a></h3>
+<p>Filter logic should be a pure function of <code>ForgerSpawnContext</code> plus the
+            filter's own configured fields. Any randomness should be seeded from
+            <code>ctx.Seed</code> — not <code>UnityEngine.Random</code> — so a rebuild
+            with the same Forger seed produces identical output. The seed is already
+            spatially-salted at this point, so two stamps at different positions get independent
+            random sequences automatically.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Stock filters ship in the box.</strong> See
+        Stock Filters for
+        <code>MinDistanceFilter</code>, <code>MaxSlopeFilter</code>,
+        <code>HeightRangeFilter</code>, <code>AlignToTerrainNormalFilter</code>, and
+        <code>SnapToGridFilter</code> — each is a complete
+        <code>ForgerSpawnFilter</code> subclass you can create assets from directly via
+        <code>Assets → Create → World Forger → Filters → ...</code>,
+        no scripting required.</p>
+</div>
+<h3 id="stock-filters">Stock Filters<a class="headerlink" href="#stock-filters" title="Permanent link">&para;</a></h3>
+<p>World Forger ships with five ready-to-use <code>ForgerSpawnFilter</code> subclasses
+        covering the common spatial-constraint cases. Right-click in the Project window and
+        choose <code>Create → World Forger → Filters → [name]</code> to make
+        configured asset instances, then drop them onto Prefab / Prefab Array nodes.</p>
+<p>All five live under <code>Assets/B2C3D/WorldForger/Runtime/Filters/Stock/</code>.
+        Read their source for a worked example of how to author your own filters —
+        <code>MinDistanceFilter.cs</code> in particular shows the
+        <code>OnBuildStart</code> / <code>OnInstantiated</code> / <code>OnBuildEnd</code>
+        lifecycle pattern for spatial-hash state.
+MinDistanceFilter</p>
+<h3 id="mindistancefilter">MinDistanceFilter<a class="headerlink" href="#mindistancefilter" title="Permanent link">&para;</a></h3>
+<p>Rejects a spawn when any previously-accepted sibling in the same build is closer
+            than a configurable distance. Backed by a uniform-grid spatial hash so it stays
+            fast on village-scale rebuilds (no O(N²) scan). The hash is allocated in
+            <code>OnBuildStart</code> and released in <code>OnBuildEnd</code>.</p>
+<p>"Sibling" means another spawn that <em>also</em> ran through this same
+            filter asset. Drop the same asset onto every node that should respect each
+            other; the asset is shared so they all consult and update the same hash.</p>
+<p><strong><code>MinDistance</code></strong> · <code>float</code></p>
+<p>Minimum world-space distance between this spawn and any
+                already-accepted sibling. Spawns closer than this are rejected. Default 3.</p>
+<hr />
+<p><strong><code>IgnoreYAxis</code></strong> · <code>bool</code></p>
+<p>When true (default), only X/Z components are used —
+                two objects on different terraces count as separated. Set false for full 3D
+                distance checks (caves, towers, multi-story builds).</p>
+<hr />
+<p>MaxSlopeFilter</p>
+<h3 id="maxslopefilter">MaxSlopeFilter<a class="headerlink" href="#maxslopefilter" title="Permanent link">&para;</a></h3>
+<p>Rejects a spawn when the ground slope at the proposed position is steeper than
+            the configured angle. Use for content that should only land on relatively-flat
+            ground — houses, market stalls, paved tiles. Casts one ray straight down
+            through the chosen <code>GroundLayers</code> and compares the hit normal to
+            world up.</p>
+<p><strong><code>MaxSlopeAngle</code></strong> · <code>float (0–90)</code></p>
+<p>Maximum allowed angle between the ground normal and
+                world up, in degrees. 0 = perfectly flat only; 90 = any slope including
+                walls. Default 15.</p>
+<hr />
+<p><strong><code>GroundLayers</code></strong> · <code>LayerMask</code></p>
+<p>Which collider layers count as ground. Include your
+                Unity Terrain layer (the TerrainCollider sits on layer 0 by default) and
+                any mesh-collider terrain layers. Default Everything.</p>
+<hr />
+<p><strong><code>RayHeight / RayLength</code></strong> · <code>float / float</code></p>
+<p>Origin height (above proposed position) and total
+                length of the downward ray. Defaults 50 / 200 cover most village-scale
+                terrain.</p>
+<hr />
+<p><strong><code>RejectIfNoGround</code></strong> · <code>bool</code></p>
+<p>When true (default), reject if the ray hits nothing.
+                Set false if your scene has stamps that legitimately float above empty space.</p>
+<hr />
+<p>HeightRangeFilter</p>
+<h3 id="heightrangefilter">HeightRangeFilter<a class="headerlink" href="#heightrangefilter" title="Permanent link">&para;</a></h3>
+<p>Rejects a spawn whose Y position is outside <code>[MinHeight, MaxHeight]</code>.
+            Useful for biome-style gating: reeds only near sea level, snowy pines only above
+            80 m, lanterns only between 0–3 m off the ground.</p>
+<p><strong><code>Source</code></strong> · <code>enum (ProposedPosition / RaycastDown)</code></p>
+<p><code>ProposedPosition</code> reads Y straight off the
+                stamp — cheap, right when the Forger emits stamps already at the
+                surface. <code>RaycastDown</code> casts a ray and uses the actual ground Y
+                — right when stamps are emitted at a fixed height (e.g. y=0).</p>
+<hr />
+<p><strong><code>MinHeight / MaxHeight</code></strong> · <code>float / float</code></p>
+<p>Inclusive bounds (world space).</p>
+<hr />
+<p><strong><code>GroundLayers / RayHeight / RayLength / RejectIfNoGround</code></strong> · <code>LayerMask / float / float / bool</code></p>
+<p>Raycast settings — only consulted when
+                <code>Source = RaycastDown</code>. Same semantics as the matching fields on
+                <code>MaxSlopeFilter</code>.</p>
+<hr />
+<p>AlignToTerrainNormalFilter</p>
+<h3 id="aligntoterrainnormalfilter">AlignToTerrainNormalFilter<a class="headerlink" href="#aligntoterrainnormalfilter" title="Permanent link">&para;</a></h3>
+<p>Tilts the proposed rotation so the prefab's local up direction matches the
+            terrain normal at the spawn position. Original yaw is preserved — only
+            pitch and roll change. This is the only stock filter that hooks
+            <code>ModifyTransform</code> rather than <code>TryAccept</code>.</p>
+<p>If the downward ray misses ground, the filter is a no-op and returns the
+            proposed transform unchanged. Pair with <code>MaxSlopeFilter</code> or a
+            <code>RaycastDown</code>-mode <code>HeightRangeFilter</code> if you need
+            placements without ground to be rejected.</p>
+<p><strong><code>GroundLayers / RayHeight / RayLength</code></strong> · <code>LayerMask / float / float</code></p>
+<p>Same semantics as <code>MaxSlopeFilter</code>.</p>
+<hr />
+<p><strong><code>Strength</code></strong> · <code>float (0–1)</code></p>
+<p>0 = no effect; 1 = full alignment. Slerps between the
+                original and target rotation, so mid values give a partial lean toward the
+                slope — often more natural for short props on shallow grades.</p>
+<hr />
+<p>SnapToGridFilter</p>
+<h3 id="snaptogridfilter">SnapToGridFilter<a class="headerlink" href="#snaptogridfilter" title="Permanent link">&para;</a></h3>
+<p>Snaps the proposed position to the nearest cell of a uniform grid. Useful for
+            cobblestones, road segments, modular building blocks — any content
+            authored on a fixed grid where stencil offsets would otherwise break alignment.
+            Rotation and scale pass through untouched.</p>
+<p><strong><code>CellSize</code></strong> · <code>Vector3</code></p>
+<p>Cell size per axis. Set X=2, Y=0, Z=2 for a 2 m
+                horizontal grid that leaves Y free. Values ≤ 0 disable snapping on that
+                axis regardless of the boolean flags.</p>
+<hr />
+<p><strong><code>Origin</code></strong> · <code>Vector3</code></p>
+<p>Grid lines pass through this world-space point. Use
+                to align the grid to an off-zero reference (e.g. centre cells over (1,0,1)).</p>
+<hr />
+<p><strong><code>SnapX / SnapY / SnapZ</code></strong> · <code>bool / bool / bool</code></p>
+<p>Per-axis enable. Default <code>true / false / true</code>
+                — horizontal snap, terrain-following Y.</p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Stacking patterns.</strong></p>
+<p><strong>Houses on flat, well-spaced ground:</strong>
+<code>MinDistanceFilter(8) + MaxSlopeFilter(15°)</code>
+<strong>Trees with terrain-following lean:</strong>
+<code>MinDistanceFilter(2) + AlignToTerrainNormalFilter(Strength = 0.4)</code>
+<strong>Cobblestone tiles snapped to a grid:</strong>
+<code>SnapToGridFilter(CellSize = 1) + MaxSlopeFilter(5°)</code>
+<strong>Reeds at sea level only:</strong>
+<code>HeightRangeFilter(0–0.5)</code>
+<strong>Snowy pines on a high alpine biome:</strong>
+<code>HeightRangeFilter(80–200) + MinDistanceFilter(5)</code></p>
+</div>
+<h3 id="extending-worldforger">Extending WorldForger<a class="headerlink" href="#extending-worldforger" title="Permanent link">&para;</a></h3>
+<p>The <strong>Editor Tools framework</strong> lets you (or third-party asset-pack
+        authors) add toolbar buttons, right-click menu items, validation rules, inspector
+        buttons, and graph exporters to WorldForger <em>without modifying its source
+        code</em>. Everything is reflection-discovered at editor load time, so dropping
+        a script into your project is the only setup required — no manifest, no
+        registration call, no settings file.</p>
+<h3 id="the-five-plug-points">The five plug points<a class="headerlink" href="#the-five-plug-points" title="Permanent link">&para;</a></h3>
+<p>Each plug point is a pair: an <code>[Attribute]</code> that marks a class as
+            discoverable, plus an <code>abstract</code> base class your subclass extends.
+            The framework scans every loaded assembly via Unity's
+            <code>TypeCache.GetTypesWithAttribute&lt;T&gt;</code>, finds your subclasses,
+            instantiates them once, and routes invocations.</p>
+<p><strong><code>[ForgerStencilGraphTool]</code></strong> · <code>extends ForgerStencilGraphTool</code></p>
+<p>A button under the Stencil Graph window's
+                <strong>Tools</strong> dropdown. Receives the active asset and graph
+                view; mutate the asset, frame nodes, etc. Grouped by Category.</p>
+<hr />
+<p><strong><code>[ForgerNodeContextMenu(typeof(...))]</code></strong> · <code>extends ForgerNodeContextMenu</code></p>
+<p>A right-click menu item that appears <em>only</em> on
+                graph nodes whose data type matches the target type
+                (<code>PrefabNodeData</code>, <code>StampRuleNodeData</code>, etc.).
+                Optional <code>IsAvailable</code> override grays the item out
+                conditionally.</p>
+<hr />
+<p><strong><code>[ForgerGraphValidator]</code></strong> · <code>extends ForgerGraphValidator</code></p>
+<p>A diagnostic that runs when the user clicks the
+                <strong>Validate</strong> button. Walks the asset, appends issues with
+                severity (Info/Warning/Error) and optional node GUIDs. Issues with a
+                node GUID are click-to-frame in the results popup.</p>
+<hr />
+<p><strong><code>[ForgerInspectorTool(typeof(...))]</code></strong> · <code>extends ForgerInspectorTool</code></p>
+<p>A button on a Forger's component inspector.
+                Polymorphic targeting: <code>typeof(Forger)</code> appears on every
+                Forger subclass; <code>typeof(VillageForger)</code> only on VillageForger;
+                a third-party <code>typeof(MyDungeonForger)</code> only on their
+                Forger.</p>
+<hr />
+<p><strong><code>[ForgerExporter]</code></strong> · <code>extends ForgerExporter</code></p>
+<p>A custom export format. Appears under the
+                <strong>Tools → Export</strong> submenu. The framework prompts for
+                a save path (filtered by your declared file extension) and calls your
+                <code>Export(asset, path)</code>. Throw on I/O errors — the
+                framework catches and shows a dialog.</p>
+<hr />
+<h3 id="authoring-workflow-minimal-example">Authoring workflow — minimal example<a class="headerlink" href="#authoring-workflow-minimal-example" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1.</strong> Create your own assembly definition (highly
+            recommended for asset-pack authors), or drop the script into the project's
+            default Editor folder. Reference <code>Forge.Editor.asmdef</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>// MyAssetPack.Editor.asmdef
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>{
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  &quot;name&quot;: &quot;MyAssetPack.Editor&quot;,
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>  &quot;references&quot;: [
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    &quot;Forge.Editor&quot;,
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    &quot;Forge.Runtime&quot;
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>  ],
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>  &quot;includePlatforms&quot;: [&quot;Editor&quot;]
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>}
+</code></pre></div>
+<p><strong>Step 2.</strong> Write a class and decorate it with the appropriate
+            attribute. No further wiring needed:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>using UnityEditor;
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>using UnityEngine;
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>using B2C3D.WorldForger;
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>using B2C3D.WorldForger.Editor;
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>[ForgerStencilGraphTool(Category = &quot;My Asset Pack&quot;, DisplayName = &quot;Set All Probabilities to 1.0&quot;)]
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>public class SetProbabilitiesToOneTool : ForgerStencilGraphTool
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>{
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>    public override void OnInvoke(WorldForgerGraphAsset asset, WorldForgerGraphView view)
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>    {
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>        Undo.RecordObject(asset, &quot;Set Probabilities&quot;);
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>        foreach (var n in asset.PrefabNodes)
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>            if (n?.Choice != null) n.Choice.Probability = 1f;
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>        EditorUtility.SetDirty(asset);
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>    }
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>}
+</code></pre></div>
+<p><strong>Step 3.</strong> Save. Unity recompiles. The next time you open a
+            Stencil Graph, your tool appears under <strong>Tools → My Asset Pack
+            → Set All Probabilities to 1.0</strong>. No Asset Store download has
+            opinions about it — it's just a class in your project.</p>
+<h3 id="cross-assembly-discovery-how-it-actually-finds-you">Cross-assembly discovery — how it actually finds you<a class="headerlink" href="#cross-assembly-discovery-how-it-actually-finds-you" title="Permanent link">&para;</a></h3>
+<p><code>ForgerToolRegistry</code> uses <code>UnityEditor.TypeCache</code> —
+            an indexed cache Unity maintains across the entire editor domain. It does
+            <em>not</em> walk individual asmdefs or care which assembly you put your
+            tool in; the index covers <em>everything</em> Unity has loaded. The only
+            requirement is that your assembly is loaded (true for any asmdef in the
+            project) and that your class has the right attribute.</p>
+<p>On <code>AssemblyReloadEvents.afterAssemblyReload</code> the registry
+            invalidates its cache, so editing or adding a tool produces an updated
+            menu on the very next interaction — no editor restart, no domain
+            reload prompt.</p>
+<p><strong>Asset pack distribution.</strong> When a buyer drops your asset
+            pack into their project, every <code>[ForgerStencilGraphTool]</code> /
+            <code>[ForgerInspectorTool]</code> / etc. you ship auto-appears in the
+            relevant menus. No setup screen, no integration step. That's the headline
+            value of the framework.</p>
+<h3 id="polymorphic-forger-targeting-the-killer-feature">Polymorphic Forger targeting — the killer feature<a class="headerlink" href="#polymorphic-forger-targeting-the-killer-feature" title="Permanent link">&para;</a></h3>
+<p><code>[ForgerInspectorTool]</code> takes a Forger type. The framework walks
+            the inheritance chain so:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>// Appears on every Forger — VillageForger, PrefabForger, future DungeonForger…
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>[ForgerInspectorTool(typeof(Forger), DisplayName = &quot;Save Build As Prefab&quot;)]
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>public class SaveAsPrefabTool : ForgerInspectorTool { ... }
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>// Appears only on VillageForger (its inheritance chain includes Forger).
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>[ForgerInspectorTool(typeof(VillageForger), DisplayName = &quot;Regenerate Roads Only&quot;)]
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>public class RegenerateRoadsTool : ForgerInspectorTool { ... }
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>// A third-party asset-pack ships a DungeonForger AND its tools; tools
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>// appear only on the DungeonForger inspector, naturally scoped.
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>[ForgerInspectorTool(typeof(MyDungeonForger), DisplayName = &quot;Bake Per-Room Lighting&quot;)]
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>public class BakeRoomLightingTool : ForgerInspectorTool { ... }
+</code></pre></div>
+<p>The same dispatch machinery handles
+            <code>[ForgerNodeContextMenu(typeof(NodeData))]</code> — menu items
+            scope to a specific node type so the right-click menu doesn't bloat as more
+            tools land.</p>
+<h3 id="hooking-into-existing-custom-editors">Hooking into existing custom editors<a class="headerlink" href="#hooking-into-existing-custom-editors" title="Permanent link">&para;</a></h3>
+<p>For Forger subclasses with <em>no</em> custom editor, the framework's
+            <code>ForgerEditor</code> auto-applies via
+            <code>[CustomEditor(typeof(Forger), editorForChildClasses: true, isFallback: true)]</code>
+            and draws the default Inspector plus your tools. No work needed.</p>
+<p>For Forger subclasses <em>with</em> their own custom editor (e.g.
+            <code>VillageForgerEditor</code>, <code>PrefabForgerEditor</code>), Unity's
+            polymorphic-editor dispatch claims the subclass before the framework's
+            fallback. Add a single line at the end of your custom editor's
+            <code>OnInspectorGUI</code> to surface the tool buttons:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>public override void OnInspectorGUI()
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>{
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    // ... your existing UI ...
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    // Append framework tool buttons for this Forger&#39;s runtime type.
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    ForgerInspectorToolsDrawer.Draw((Forger)target);
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>}
+</code></pre></div>
+<p>One line, no more thinking required. The drawer renders nothing when no
+            tools target this Forger type, so it's safe to add even when you have no
+            tools yet.</p>
+<h3 id="stock-examples-that-ship">Stock examples that ship<a class="headerlink" href="#stock-examples-that-ship" title="Permanent link">&para;</a></h3>
+<p>The package ships five concrete tools under
+            <code>Editor/Tools/Stock/</code> — one per plug point. Read their
+            source for worked examples:
+- <code>FindEmptyPrefabsTool</code> — <code>ForgerStencilGraphTool</code>
+                that logs and frames Prefab Nodes / Array slots with no prefab assigned.
+- <code>FindOrphanNodesTool</code> — <code>ForgerStencilGraphTool</code>
+                that walks edges to find nodes with no incoming/outgoing connections.
+- <code>EmptyPrefabsValidator</code> — <code>ForgerGraphValidator</code>
+                version of the empty-prefab check, surfaced via the Validate button.
+- <code>JsonGraphExporter</code> — <code>ForgerExporter</code> using
+                <code>JsonUtility</code> for a quick textual snapshot.
+- <code>SelectPrefabInProjectMenu</code> —
+                <code>ForgerNodeContextMenu</code> targeting <code>PrefabNodeData</code>
+                — pings the referenced asset.
+- <code>CopyEffectiveSeedTool</code> —
+                <code>ForgerInspectorTool</code> targeting <code>Forger</code> —
+                copies the last build's seed to the system clipboard.</p>
+<h3 id="exception-isolation-why-a-buggy-tool-cant-crash-the-editor">Exception isolation — why a buggy tool can't crash the editor<a class="headerlink" href="#exception-isolation-why-a-buggy-tool-cant-crash-the-editor" title="Permanent link">&para;</a></h3>
+<p>Every framework call into your code is wrapped in <code>try/catch</code>.
+            Exceptions are logged via <code>Debug.LogException</code> with the offending
+            tool's name, and (for major hooks like Export and StencilGraphTool) surfaced
+            in a Unity dialog so the user knows which tool to blame. Other tools and the
+            editor itself are unaffected.</p>
+<p>The same applies to <em>instantiation</em>: if your tool's constructor throws
+            (e.g. you forgot a parameterless ctor), the registry skips it with an error
+            log, and every other tool still loads. There is never a "one bad tool brings
+            down all tools" failure mode.</p>
+<h3 id="tool-authoring-checklist">Tool authoring checklist<a class="headerlink" href="#tool-authoring-checklist" title="Permanent link">&para;</a></h3>
+<ol>
+<li>The class is <strong>not abstract</strong>.</li>
+<li>The class has a <strong>public parameterless constructor</strong>
+                (auto-generated when you don't declare one).</li>
+<li>The class is decorated with the appropriate attribute
+                (<code>[ForgerStencilGraphTool]</code>, etc.).</li>
+<li>The class extends the matching abstract base
+                (<code>ForgerStencilGraphTool</code>, etc.).</li>
+<li>The required virtual methods are overridden.</li>
+<li>The script lives in an Editor assembly (an Editor folder, an asmdef
+                with <code>"includePlatforms": ["Editor"]</code>, or both).</li>
+<li>The assembly references <code>Forge.Editor.asmdef</code>.</li>
+</ol>
+<p>Failing any of items 1–5 produces a clear error in the Console
+            naming your type. Failing items 6–7 produces a compile error.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Asset Store packaging note.</strong> When you publish a third-party
+        WorldForger extension to the Asset Store, your tool classes need to land in an
+        assembly that loads <em>after</em> WorldForger's. The standard pattern: ship
+        an Editor asmdef under your folder that references <code>Forge.Editor</code>.
+        Buyers drop your package in, recompile happens, your tools auto-appear —
+        the same flow as any user-authored tool above. No special setup. No "enable
+        plugin" step.</p>
+</div>
+<h3 id="spatial-salting">Spatial Salting<a class="headerlink" href="#spatial-salting" title="Permanent link">&para;</a></h3>
+<p>Spatial salting is the randomization strategy that ensures every placement location makes
+        independent random decisions, preventing “all or nothing” patterns.</p>
+<h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<p>Before evaluating probability rolls at each stamp position, the engine computes a
+            <strong>spatial hash</strong> from the stamp’s grid coordinates:</p>
+<p>salt = (ix * 73856) ^ (iz * 19349)</p>
+<p>This salt is combined with the global <strong>Seed</strong> to initialize the random state
+            for that position. The result: two adjacent houses will roll different probabilities, even
+            though they share the same stamp name and Stencil. Changing the seed produces an
+            entirely different layout while preserving determinism — the same seed always
+            generates the same result.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Deterministic Generation:</strong> Because randomization is seeded, runs are fully
+        reproducible. The same Seed + same layout = identical output every time. Use the
+        <strong>Randomize</strong> button to quickly explore variations.</p>
+</div>
+<h3 id="preview-settings">Preview Settings<a class="headerlink" href="#preview-settings" title="Permanent link">&para;</a></h3>
+<p>Prefab Nodes render a live thumbnail of the assigned prefab on the card. By default the
+        thumbnail uses Unity's built-in <code>AssetPreview</code> service. Each Prefab can opt in
+        to a custom camera setup if the auto-framing clips or poorly frames your prefab.</p>
+<p><strong><code>UseCustomPreviewSettings</code></strong> · <code>bool</code></p>
+<p>Toggle on the Prefab inspector to override the default thumbnail
+            with a custom camera. When OFF, Unity's <code>AssetPreview</code> draws the thumbnail
+            and the slider values below it are ignored (but remain visible and editable).</p>
+<hr />
+<p><strong><code>CustomPreviewSettings</code></strong> · <code>WorldForgerPreviewSettings</code></p>
+<p>Per-node camera distance, pitch/yaw angle, and pivot offset.
+            Settings are persisted on the asset and are cosmetic only — they do not affect
+            generation.</p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Tip:</strong> The Preview Settings header is collapsible — click the ▾/▸
+        caret to fold the section away once you've dialled the camera in. All sliders stay visible
+        while expanded regardless of the <em>Use Custom</em> toggle, so you can tune values first
+        and flip the toggle when you're ready.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Tip:</strong> Preview settings are per-node, so different prefabs in the same graph
+        can have individually tuned camera angles for the best visual reference while editing.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://assetstore.unity.com" target="_blank" rel="noopener" title="assetstore.unity.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m243.6 91.6 80.1 46.8c2.9 1.6 3 6.2 0 7.8l-95.2 55.6c-2.9 1.7-6.3 1.6-9 0l-95.2-55.6c-2.9-1.6-3-6.3 0-7.8l80.1-46.8V0L0 119.4v238.8l78.4-45.8v-93.6c-.1-3.3 3.8-5.7 6.7-3.9l95.2 55.6c2.9 1.7 4.5 4.7 4.5 7.8v111.2c.1 3.3-3.8 5.7-6.7 3.9L98 346.8l-78.4 45.8L224 512l204.4-119.4-78.4-45.8-80.1 46.8c-2.8 1.7-6.8-.5-6.7-3.9V278.5c0-3.3 1.8-6.3 4.5-7.8l95.2-55.7c2.8-1.7 6.8.5 6.7 3.9v93.6l78.4 45.8V119.5L243.6.1v91.6z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

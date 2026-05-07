@@ -1,0 +1,1215 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="World Forger — Procedural world generation toolkit for Unity">
+      
+      
+        <meta name="author" content="B2C3D">
+      
+      
+        <link rel="canonical" href="https://b2c3d.github.io/World-Forger/tools/">
+      
+      
+        <link rel="prev" href="../stencil-graph/">
+      
+      
+        <link rel="next" href="../scripting/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Tools - World Forger</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Segoe+UI:300,300i,400,400i,700,700i%7CCascadia+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Segoe UI";--md-code-font:"Cascadia Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#village-profile-browser" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="World Forger" class="md-header__button md-logo" aria-label="World Forger" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            World Forger
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tools
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="World Forger" class="md-nav__button md-logo" aria-label="World Forger" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    World Forger
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../village-forger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Village Forger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../village-profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Village Profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prefab-forger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prefab Forger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stencil-graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stencil Graph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#village-profile-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Village Profile Browser
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Details Panel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toolbar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stencil-graph-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stencil Graph Browser
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-grid_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details-panel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Details Panel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apply-to-selected-forger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apply to Selected Forger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolbar_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toolbar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variant-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variant Generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolbar-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toolbar Fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-grid_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details-panel_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Details Panel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Undo &amp; Safety
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#village-profile-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Village Profile Browser
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Details Panel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toolbar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stencil-graph-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stencil Graph Browser
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-grid_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details-panel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Details Panel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apply-to-selected-forger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apply to Selected Forger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolbar_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toolbar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variant-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variant Generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toolbar-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toolbar Fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#card-grid_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Card Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details-panel_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Details Panel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Undo &amp; Safety
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Tools</h1>
+
+<h3 id="village-profile-browser">Village Profile Browser<a class="headerlink" href="#village-profile-browser" title="Permanent link">&para;</a></h3>
+<p>A dockable editor window that lists every <code>VillageForgerProfile</code> asset in the project,
+        shows each one's key stats at a glance, and offers one-click actions to apply, duplicate, rename,
+        ping, or delete them. Treat it as the "Project window for Village Profiles."</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Open it three ways:</strong></p>
+<p>Menu: <code>World Forger → Village Forger → Village Profile Browser</code>
+Menu: <code>Window → World Forger → Village Forger → Village Profile Browser</code>
+Button: <strong>Browse Profiles</strong> on any Village Forger Config inspector (next to <strong>Create New</strong>)</p>
+</div>
+<h3 id="card-grid">Card Grid<a class="headerlink" href="#card-grid" title="Permanent link">&para;</a></h3>
+<p>The centre of the window shows every profile in the project as a styled card. The grid
+            automatically reflows its column count to match the window width. Each card displays:
+- Profile name (bold)
+- Cell Size
+- Main Road Routing and Side Road Routing
+- Count of <em>enabled</em> house types and special buildings
+- Whether the central village square is on or off
+- <strong>Apply</strong> button (green) — assigns this profile to every selected Village Forger in the scene
+- <strong>Select</strong> button — focuses the details panel on this profile (clicking anywhere on the card does the same)</p>
+<h3 id="details-panel">Details Panel<a class="headerlink" href="#details-panel" title="Permanent link">&para;</a></h3>
+<p>The right-hand panel shows deeper information for the selected profile:
+- <strong>Asset</strong> — name and asset path
+- <strong>Summary</strong> — cell size, routing modes, side road count range, road thicknesses, market square size, enabled-vs-total house and special counts, precise obstacle toggle
+- <strong>Validation warnings</strong> — live output of <code>VillageForgerProfile.Validate()</code> (e.g. "No House Types are enabled")
+- <strong>Rename</strong> — edit the asset name inline and click <em>Apply Rename</em></p>
+<h3 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h3>
+<p><strong><code>Apply to Selected Forger</code></strong></p>
+<p>Assigns the selected profile to every <code>VillageForgerConfig</code>
+                currently selected in the scene. Changes are registered with <code>Undo.RecordObjects</code>,
+                so Ctrl+Z reverts the assignment. Button label reflects the count when multiple Forgers are selected.</p>
+<hr />
+<p><strong><code>Duplicate</code></strong></p>
+<p>Creates a copy of the profile next to the original using
+                <code>AssetDatabase.CopyAsset</code>. The new asset gets an auto-numbered name
+                (e.g. <code>MyProfile 1.asset</code>) and is auto-selected for immediate renaming.</p>
+<hr />
+<p><strong><code>Ping in Project</code></strong></p>
+<p>Highlights the asset in the Project window so you can see where it lives on disk.</p>
+<hr />
+<p><strong><code>Open in Inspector</code></strong></p>
+<p>Sets the profile as Unity's active selection so the Inspector tab shows its full editor
+                — useful for fine-tuning colours, curve ranges, and other fields not summarised on the card.</p>
+<hr />
+<p><strong><code>Delete</code></strong></p>
+<p>Permanently deletes the profile asset after a confirmation dialog.
+                Any Village Forger Configs that referenced it will have their Profile field cleared.
+                <strong>Not undoable via Ctrl+Z</strong> — restore from version control if needed.</p>
+<hr />
+<h3 id="toolbar">Toolbar<a class="headerlink" href="#toolbar" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Search</strong> — filters the grid by profile name (case-insensitive substring match)</li>
+<li><strong>Result count</strong> — shows "filtered / total" so you always know how many profiles exist</li>
+<li><strong>Refresh</strong> — forces a re-scan of the project (happens automatically on any asset change)</li>
+<li><strong>New Profile</strong> — opens a <em>Save File</em> dialog so you choose the exact location for the new asset; the created profile is initialized with <code>ResetToDefaults()</code>, auto-selected in the browser, and pinged in the Project window</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Resizable details panel.</strong> The vertical bar between the card grid and the details
+        panel is a drag handle — hover it for the resize cursor, drag to move. The width persists in
+        EditorPrefs so your preferred layout survives Unity restarts.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Play Mode behaviour:</strong> The window stays open and functional across play/edit transitions.
+        Applying a profile during Play mode is allowed and undo-tracked, but remember that scene changes made
+        in Play mode are reverted on exit.</p>
+</div>
+<h3 id="stencil-graph-browser">Stencil Graph Browser<a class="headerlink" href="#stencil-graph-browser" title="Permanent link">&para;</a></h3>
+<p>A dockable editor window that lists every <code>WorldForgerGraphAsset</code> (stencil) in the
+        project, surfaces each one's wiring and validation state at a glance, and offers one-click
+        actions to open in the graph editor, apply to selected Forger(s), duplicate, rename, ping, or
+        delete. Mirrors the Village Profile Browser's dual-pane layout but works against stencils —
+        which apply to <em>any</em> Forger type, not just Village.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Open it two ways:</strong></p>
+<p>Menu: <code>World Forger → Stencil Graph Browser</code>
+Menu: <code>Window → World Forger → Stencil Graph Browser</code></p>
+</div>
+<h3 id="card-grid_1">Card Grid<a class="headerlink" href="#card-grid_1" title="Permanent link">&para;</a></h3>
+<p>The centre of the window shows every stencil in the project as a styled card. The grid
+            reflows its column count to match the window width. Each card displays:
+- Stencil name (bold)
+- Stamp Rule count — "<em>X</em> wired / <em>Y</em> total"
+- Total prefab cards (single Prefab nodes plus Prefab Array nodes)
+- Validation glyph — <code>✓ no warnings</code> or <code>⚠ N warnings</code>,
+            from <code>StencilGraphBuilder.Validate()</code>
+- <strong>Open</strong> button (green) — opens this stencil in the Forger Graph editor
+- <strong>Select</strong> button — focuses the details panel on this stencil
+            (clicking anywhere on the card does the same)</p>
+<h3 id="details-panel_1">Details Panel<a class="headerlink" href="#details-panel_1" title="Permanent link">&para;</a></h3>
+<p>The right-hand panel shows deeper information for the selected stencil:
+- <strong>Asset</strong> — name and asset path
+- <strong>Summary</strong> — counts for stamp rules wired-vs-total, prefab nodes,
+            prefab arrays, stamp emitters, and edges
+- <strong>Stamp Rules</strong> — one row per Stamp Rule in the graph showing
+            "<em>StampName</em> → <em>N</em> prefabs" or "<em>StampName</em> → (no wiring)".
+            Lets you spot empty stamps at audit time
+- <strong>Validation</strong> — full output of
+            <code>StencilGraphBuilder.Validate()</code>, displayed as warning helpboxes
+- <strong>Rename</strong> — edit the asset name inline and click <em>Apply Rename</em></p>
+<h3 id="apply-to-selected-forger">Apply to Selected Forger<a class="headerlink" href="#apply-to-selected-forger" title="Permanent link">&para;</a></h3>
+<p>Unlike Village Profiles (which slot into a single field on a Forger Config), a Forger's
+            <code>Stencils</code> is a <em>list</em>. The browser surfaces both common workflows:</p>
+<p><strong><code>Set as only Stencil</code></strong></p>
+<p>Replaces every selected Forger's <code>Stencils</code> array with a
+                single-element array containing the picked stencil. Use this when the picked stencil is
+                meant to be the sole authoritative source.</p>
+<hr />
+<p><strong><code>Add to Stencils</code></strong></p>
+<p>Appends the picked stencil to every selected Forger's existing
+                <code>Stencils</code> list. No-op for Forgers that already reference this stencil, so
+                re-clicking is safe. Use this when stacking stencils for layered overrides
+                (e.g. a "Halloween" stencil on top of a base village).</p>
+<hr />
+<p>Both modes record an Undo step so Ctrl+Z reverts the change. Multi-Forger selection is
+            handled in both modes — the button label reflects the count when multiple Forgers are selected.</p>
+<h3 id="actions_1">Actions<a class="headerlink" href="#actions_1" title="Permanent link">&para;</a></h3>
+<p><strong><code>Open in Graph Editor</code></strong></p>
+<p>Routes through <code>WorldForgerGraphWindow.Open</code> — focuses
+                an existing window if one is already showing this stencil, otherwise opens a new graph
+                window with the stencil loaded.</p>
+<hr />
+<p><strong><code>Duplicate</code></strong></p>
+<p>Creates a copy of the stencil next to the original via
+                <code>AssetDatabase.CopyAsset</code>. The new asset gets an auto-numbered name and is
+                auto-selected for immediate renaming.</p>
+<hr />
+<p><strong><code>Ping in Project / Open in Inspector</code></strong></p>
+<p>Standard navigation shortcuts — Ping highlights the asset in the
+                Project window; Open in Inspector sets it as Unity's active selection.</p>
+<hr />
+<p><strong><code>Delete</code></strong></p>
+<p>Permanently deletes the stencil asset after a confirmation dialog.
+                Forgers referencing the deleted stencil will have it removed from their Stencils list
+                automatically by Unity. <strong>Not undoable via Ctrl+Z</strong> — restore from
+                version control if needed.</p>
+<hr />
+<h3 id="toolbar_1">Toolbar<a class="headerlink" href="#toolbar_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Search</strong> — filters the grid by stencil name (case-insensitive substring match)</li>
+<li><strong>Result count</strong> — shows "filtered / total" so you always know how many stencils exist</li>
+<li><strong>Refresh</strong> — forces a re-scan of the project (also happens automatically on any asset change)</li>
+<li><strong>New Stencil</strong> — forwards to <code>World Forger → Create → Forger Graph</code>,
+            which creates a fresh stencil in the active Project-window folder and opens it in the graph editor</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Resizable details panel.</strong> The vertical bar between the card grid and the details
+        panel is a drag handle — hover it for the resize cursor, drag to move. The width persists in
+        EditorPrefs so your preferred layout survives Unity restarts.</p>
+</div>
+<h3 id="variant-generator">Variant Generator<a class="headerlink" href="#variant-generator" title="Permanent link">&para;</a></h3>
+<p>A dockable editor window that generates a batch of seed variants for any Forger, captures a
+        top-down thumbnail of each, and lets you pick the one you like best to apply to the live scene.
+        Think of it as a “contact sheet” for procedural layouts — roll a dozen seeds at
+        once, compare them side-by-side, and commit the winner with one click.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Open it two ways:</strong></p>
+<p>Menu: <code>World Forger → Variant Generator</code>
+Button: <strong>Generate Variants</strong> at the bottom of the Actions section on any
+            <em>Village Forger</em> or <em>Prefab Forger</em> inspector (disabled in Play mode)</p>
+</div>
+<h3 id="toolbar-fields">Toolbar Fields<a class="headerlink" href="#toolbar-fields" title="Permanent link">&para;</a></h3>
+<p><strong><code>Target Forger</code></strong> · <code>Forger</code></p>
+<p>The Forger the batch will run against. Drag any Village Forger or
+                Prefab Forger GameObject into the slot. If the window is opened with nothing assigned,
+                it auto-picks from the current Selection.</p>
+<hr />
+<p><strong><code>Variant Count</code></strong> · <code>int slider (1 – 32)</code></p>
+<p>How many variants to generate in the batch. The card grid reflows to
+                fit; larger counts take proportionally longer.</p>
+<hr />
+<p><strong><code>Base Seed</code></strong> · <code>int</code></p>
+<p><strong>0</strong> means every variant gets a fresh random seed —
+                a non-deterministic batch that’s different every time you press Generate.
+                <strong>Non-zero</strong> means the batch is deterministic: the same Base Seed always
+                produces the same sequence of variants, so you can reproduce a previous batch exactly.</p>
+<p><em>Default: 0 (random batch)</em></p>
+<hr />
+<p><strong><code>Thumbnail Size</code></strong> · <code>popup — 256 / 512 / 1024 px</code></p>
+<p>Resolution of the captured thumbnails. Higher resolutions produce
+                sharper cards but consume more VRAM. The details-panel preview and the whole panel width
+                also scale with this setting, so picking a larger size gives you a bigger on-screen preview.</p>
+<p><em>Default: 512</em></p>
+<hr />
+<p><strong><code>Generate/Regenerate</code></strong></p>
+<p>Kicks off the batch. Shows a cancelable progress bar while each
+                variant is generated and captured. The label changes to <strong>Regenerate</strong> once
+                a batch is already loaded.</p>
+<hr />
+<h3 id="card-grid_2">Card Grid<a class="headerlink" href="#card-grid_2" title="Permanent link">&para;</a></h3>
+<p>After generation, each variant is shown as a card in a reflowing grid on the left. Every card
+            displays:
+- Top-down thumbnail of the generated layout
+- <strong>Variant N</strong> label
+- Seed used for the variant
+- Time (ms) taken to generate
+- <strong>Select</strong> button — focuses the details panel on this variant (clicking
+            anywhere on the card does the same)
+- <strong>Apply</strong> button — applies this variant’s seed to the target Forger
+            immediately, without having to open the details panel first</p>
+<h3 id="details-panel_2">Details Panel<a class="headerlink" href="#details-panel_2" title="Permanent link">&para;</a></h3>
+<p>The right-hand panel shows a larger view of whichever variant is currently selected. Its width
+            and the preview size both scale with the chosen Thumbnail Size.
+- <strong>Large preview</strong> — the variant’s thumbnail at full panel size
+- <strong>Prev / <code>Variant 3 / 12</code> / Next</strong> — cycle through the batch
+            without having to click cards
+- <strong>Seed</strong> — the seed value that produced this variant
+- <strong>Generate Time</strong> — milliseconds for this variant’s run
+- <strong>Holder Count</strong> — number of output holders spawned by the Forger
+- <strong>Apply to Scene</strong> — writes the selected variant’s seed to the
+            target Forger and triggers a full re-generation in the scene
+- <strong>Copy Seed to Clipboard</strong> — handy for pasting into the Forger’s
+            Seed field manually, or sharing with collaborators</p>
+<h3 id="undo-safety">Undo &amp; Safety<a class="headerlink" href="#undo-safety" title="Permanent link">&para;</a></h3>
+<p><strong><code>Batch undo group</code></strong></p>
+<p>The entire variant batch collapses into a single undo group named
+                <em>“Generate N Forger Variants”</em>. One ++ctrl+z++ reverts the whole
+                batch — you will never end up with a half-undone pile of scratch objects in the scene.</p>
+<hr />
+<p><strong><code>Apply to Scene undo</code></strong></p>
+<p>Applying a variant is its own independent undo step, separate from
+                the batch. Ctrl+Z reverts the seed change and scene re-generation without touching the
+                captured thumbnails.</p>
+<hr />
+<p><strong><code>Cancel-safe</code></strong></p>
+<p>Pressing <strong>Cancel</strong> in the progress bar stops the batch
+                after the current variant finishes. Whatever has already been generated is kept, so you
+                can start picking from a partial batch immediately.</p>
+<hr />
+<p><strong><code>Error resilience</code></strong></p>
+<p>If an individual variant’s <code>Build()</code> throws, the
+                error is logged to the Console and the batch continues with the next seed. One bad
+                variant cannot kill the whole run.</p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong>Thumbnails are editor-session-only.</strong> Captured thumbnails live in memory and are
+        discarded when the window closes. <em>Nothing is written to disk.</em> If you want to keep a
+        particular layout, apply it to the scene (which bakes the seed into the Forger) or copy its seed
+        to the clipboard before closing the window.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://assetstore.unity.com" target="_blank" rel="noopener" title="assetstore.unity.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m243.6 91.6 80.1 46.8c2.9 1.6 3 6.2 0 7.8l-95.2 55.6c-2.9 1.7-6.3 1.6-9 0l-95.2-55.6c-2.9-1.6-3-6.3 0-7.8l80.1-46.8V0L0 119.4v238.8l78.4-45.8v-93.6c-.1-3.3 3.8-5.7 6.7-3.9l95.2 55.6c2.9 1.7 4.5 4.7 4.5 7.8v111.2c.1 3.3-3.8 5.7-6.7 3.9L98 346.8l-78.4 45.8L224 512l204.4-119.4-78.4-45.8-80.1 46.8c-2.8 1.7-6.8-.5-6.7-3.9V278.5c0-3.3 1.8-6.3 4.5-7.8l95.2-55.7c2.8-1.7 6.8.5 6.7 3.9v93.6l78.4 45.8V119.5L243.6.1v91.6z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
