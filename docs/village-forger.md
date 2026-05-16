@@ -21,8 +21,10 @@ One or more Stencils that map stamp names to prefabs. Stencils are
 
 **`Randomize Seed`** · `bool`
 
-When enabled, picks a new random seed every time `Build()` is called.
-            The Seed field is ignored when this is active.
+When enabled, picks a new random seed each time you click **Generate** explicitly.
+Auto-rebuilds triggered by stencil or settings changes never randomize the seed,
+so the layout stays stable during iterative editing.
+The Seed field is ignored when this is active.
 
 ---
 
