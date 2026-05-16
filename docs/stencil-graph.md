@@ -1,4 +1,4 @@
-# Stencil Graph
+﻿# Stencil Graph
 
 The Stencil Graph is a non-linear interpreter that converts abstract stamp data into physical
         game objects. It is built on Unity’s built-in `UnityEditor.Experimental.GraphView`
@@ -105,58 +105,88 @@ Stamp Name (the child stamp to fire after the parent prefab
 
 ### Toolbar Reference
 
-The toolbar runs along the top of the Stencil Graph window. Buttons are arranged left to
-        right in roughly the order you reach for them during a typical editing session.
+The toolbar is a floating pill that hovers at the top-centre of the graph canvas. Buttons are
+arranged left to right in roughly the order you reach for them during a typical editing session.
+The window header above it holds the asset name and the **Search** field.
 
-**`Live`** · `toggle`
+**`● Live`** · `toggle`
 
 Live Preview mode. **ON by default** for every newly opened graph
-            window — every transform/random/probability edit you make in the graph debounces for
-            300 ms and is applied to the active scene's Forger automatically. The button is amber when
-            active. Click to pause (useful before bulk restructuring on a large scene where the slow-path
-            `Forger.Build()` would stall the editor). See
-            Live Preview for the fast-path
-            vs. slow-path semantics.
+window — every transform/random/probability edit you make in the graph debounces for
+300 ms and is applied to the active scene's Forger automatically. The button is amber when
+active. Click to pause (useful before bulk restructuring on a large scene where the slow-path
+`Forger.Build()` would stall the editor). See Live Preview for the fast-path vs. slow-path semantics.
 
 ---
 
-**`Apply`** · `button`
+**`► Apply`** · `button`
 
 Force-flushes any pending Live Preview change immediately rather than
-            waiting for the 300 ms debounce window. Useful when you want to drag a slider, then
-            instantly see the result without releasing the mouse.
+waiting for the 300 ms debounce window. Useful when you want to drag a slider, then
+instantly see the result without releasing the mouse.
 
 ---
 
-**`Fit`** · `button`
+**`⊞ Fit`** · `button`
 
 Frames all nodes to fit the current window. Shortcut: ++f++
-            with the canvas focused frames the current selection if any nodes are selected, otherwise
-            frames the whole graph.
+with the canvas focused frames the current selection if any nodes are selected, otherwise
+frames the whole graph.
 
 ---
 
-**`Tidy`** · `button`
+**`☰ Tidy`** · `button`
 
 Auto-layout pass. Stamp Rule nodes are stacked in a left column and
-            their connected Prefab nodes are arranged in tidy rows to the right, sorted by edge order.
-            Sticky notes and orphan prefabs are not moved. Undoable with ++ctrl+z++.
+their connected Prefab nodes are arranged in tidy rows to the right, sorted by edge order.
+Sticky notes and orphan prefabs are not moved. Undoable with ++ctrl+z++.
 
 ---
 
-**`Map`** · `toggle`
+**`▣ Map`** · `toggle`
 
 Shows or hides the floating MiniMap in the bottom-right corner. The
-            MiniMap is draggable and shows your current viewport rectangle — useful for large
-            graphs where Tidy alone isn't enough to keep your bearings.
+MiniMap is draggable and shows your current viewport rectangle — useful for large
+graphs where Tidy alone isn't enough to keep your bearings.
+
+---
+
+**`≡ Tools ▾`** · `dropdown`
+
+Opens a menu of registered graph tools — exporters, validators, and any custom commands
+contributed via `[ForgerStencilGraphTool]` or `[ForgerExporter]` attributes. Drop a class
+carrying one of those attributes anywhere in the project and it appears here automatically
+on the next assembly reload.
+
+---
+
+**`✔ Validate`** · `button`
+
+Runs every registered `ForgerGraphValidator` against the current graph and surfaces any
+issues in the graph window's validation panel. Validators check for things like disconnected
+nodes, null prefab references, and duplicate stamp names.
+
+---
+
+**`⌨ Keys`** · `toggle`
+
+Shows or hides the **Shortcut Hint overlay** in the lower-left corner of the canvas.
+See [Canvas Overlays](#canvas-overlays) below. State persists across editor restarts.
+
+---
+
+**`ⓘ Tips`** · `toggle`
+
+Shows or hides the **Node Info overlay** in the lower-right corner of the canvas.
+See [Canvas Overlays](#canvas-overlays) below. State persists across editor restarts.
 
 ---
 
 **`Search`** · `text field`
 
-Filters nodes by stamp name, prefab name, or sticky-note title.
-            Matches are highlighted; non-matching nodes are dimmed. Press ++ctrl+f++ to focus
-            the field, ++esc++ to clear it. The first match auto-frames in the canvas.
+Located in the window header above the floating toolbar. Filters nodes by stamp name,
+prefab name, or sticky-note title. Matches are highlighted; non-matching nodes are dimmed.
+Press ++ctrl+f++ to focus the field, ++esc++ to clear it. The first match auto-frames in the canvas.
 
 ---
 
@@ -204,6 +234,31 @@ Focus the toolbar Search field. ++esc++ from the field clears
 **`Mouse wheel / Alt+Drag`**
 
 Standard GraphView pan and zoom. Middle-mouse drag also pans.
+
+---
+
+### Canvas Overlays { #canvas-overlays }
+
+Two non-interactive overlays float on the graph canvas and provide at-a-glance context
+without stealing focus from the nodes. Both are toggled from the floating toolbar and their
+visibility persists across editor restarts.
+
+**Shortcut Hint overlay** (lower-left)
+
+Lists the keyboard shortcuts most relevant to the current canvas state. When nothing is
+selected, navigation and node-creation shortcuts are shown. When one or more nodes are
+selected, the list switches to selection-action shortcuts (duplicate, delete, copy/paste, etc.).
+Toggle with the **⌨ Keys** button on the floating toolbar.
+
+---
+
+**Node Info overlay** (lower-right)
+
+Displays a summary card for the currently selected node: a coloured type badge (teal for
+Stamp Rule, indigo for Prefab / Prefab Array, amber for Stamp Emitter), the node title, a
+one-line purpose description, and key stats (e.g. prefab count, probability, child-stamp
+connections). When nothing is selected the card rotates through general World Forger tips
+instead. Toggle with the **ⓘ Tips** button on the floating toolbar.
 
 ---
 
