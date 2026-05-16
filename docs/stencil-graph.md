@@ -237,7 +237,7 @@ Standard GraphView pan and zoom. Middle-mouse drag also pans.
 
 ---
 
-### Canvas Overlays { #canvas-overlays }
+### Canvas Overlays
 
 Two non-interactive overlays float on the graph canvas and provide at-a-glance context
 without stealing focus from the nodes. Both are toggled from the floating toolbar and their
